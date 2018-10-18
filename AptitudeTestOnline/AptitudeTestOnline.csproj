@@ -194,6 +194,10 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\Manager\Controllers\AdminAccountController.cs" />
+    <Compile Include="Areas\Manager\Controllers\AdminManageController.cs" />
+    <Compile Include="Areas\Manager\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Manager\ManagerAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -220,6 +224,33 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Areas\Manager\Views\web.config" />
+    <Content Include="Areas\Manager\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Manager\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Manager\Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Areas\Manager\Views\Shared\Error.cshtml" />
+    <Content Include="Areas\Manager\Views\Shared\Lockout.cshtml" />
+    <Content Include="Areas\Manager\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Manager\Views\AdminAccount\VerifyCode.cshtml" />
+    <Content Include="Areas\Manager\Views\AdminAccount\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Areas\Manager\Views\AdminAccount\ConfirmEmail.cshtml" />
+    <Content Include="Areas\Manager\Views\AdminAccount\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Areas\Manager\Views\AdminAccount\ExternalLoginFailure.cshtml" />
+    <Content Include="Areas\Manager\Views\AdminAccount\ForgotPassword.cshtml" />
+    <Content Include="Areas\Manager\Views\AdminAccount\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Areas\Manager\Views\AdminAccount\Login.cshtml" />
+    <Content Include="Areas\Manager\Views\AdminAccount\Register.cshtml" />
+    <Content Include="Areas\Manager\Views\AdminAccount\ResetPassword.cshtml" />
+    <Content Include="Areas\Manager\Views\AdminAccount\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Areas\Manager\Views\AdminAccount\SendCode.cshtml" />
+    <Content Include="Areas\Manager\Views\AdminManage\AddPhoneNumber.cshtml" />
+    <Content Include="Areas\Manager\Views\AdminManage\ChangePassword.cshtml" />
+    <Content Include="Areas\Manager\Views\AdminManage\Index.cshtml" />
+    <Content Include="Areas\Manager\Views\AdminManage\ManageLogins.cshtml" />
+    <Content Include="Areas\Manager\Views\AdminManage\SetPassword.cshtml" />
+    <Content Include="Areas\Manager\Views\AdminManage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Areas\Manager\Views\Home\About.cshtml" />
+    <Content Include="Areas\Manager\Views\Home\Contact.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -268,6 +299,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Manager\Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
