@@ -6,7 +6,7 @@ using System.Data.Entity;
 
 namespace AptitudeTestOnline.Models
 {
-    public class ATODatabaseContext: DbContext
+    public class ATODatabaseContext : DbContext
     {
         public ATODatabaseContext() : base("name=DefaultConnection") { }
         public DbSet<TypeOfQuestionModel> TypeOfQuestionModel { get; set; }
