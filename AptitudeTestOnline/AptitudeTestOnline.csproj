@@ -204,6 +204,7 @@
     <Compile Include="Areas\Manager\Controllers\AdminAccountController.cs" />
     <Compile Include="Areas\Manager\Controllers\AdminManageController.cs" />
     <Compile Include="Areas\Manager\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Manager\Controllers\TypeOfQuestionsController.cs" />
     <Compile Include="Areas\Manager\ManagerAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -212,6 +213,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ATODatabaseContext.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\TypeOfQuestionModel.cs" />
@@ -2228,6 +2230,11 @@
     <Content Include="Assets\default\vendors\tinymce\skins\lightgray\fonts\tinymce.eot" />
     <Content Include="Assets\default\vendors\tinymce\skins\lightgray\fonts\tinymce.ttf" />
     <Content Include="Assets\default\vendors\tinymce\skins\lightgray\fonts\tinymce.woff" />
+    <Content Include="Areas\Manager\Views\TypeOfQuestions\Create.cshtml" />
+    <Content Include="Areas\Manager\Views\TypeOfQuestions\Delete.cshtml" />
+    <Content Include="Areas\Manager\Views\TypeOfQuestions\Details.cshtml" />
+    <Content Include="Areas\Manager\Views\TypeOfQuestions\Edit.cshtml" />
+    <Content Include="Areas\Manager\Views\TypeOfQuestions\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

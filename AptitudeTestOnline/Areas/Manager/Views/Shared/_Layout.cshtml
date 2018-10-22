@@ -32,16 +32,7 @@
             <div class="navbar-menu-wrapper d-flex align-items-center">
                 <ul class="navbar-nav navbar-nav-left header-links d-none d-md-flex">
                     <li class="nav-item">
-                        @Html.ActionLink("Home", "Index", "Home")
-                    </li>
-                    <li class="nav-item">
-                        @Html.ActionLink("About", "About", "Home")
-                    </li>
-                    <li class="nav-item">
-                        @Html.ActionLink("Contact", "Contact", "Home")
-                    </li>
-                    <li class="nav-item">
-                        @Html.ActionLink("Manager", "Index", "Manager/Home")
+                        @Html.ActionLink("Manager", "Index", "Home")
                     </li>
                 </ul>
                 <ul class="navbar-nav navbar-nav-right">
@@ -59,33 +50,22 @@
 
             <nav class="sidebar sidebar-offcanvas" id="sidebar-client">
                 <ul class="nav">
-                    <li class="nav-item nav-profile">
-                        <div class="nav-link">
+
+                    <li class="nav-item">
+                        <div class="nav-link" style="margin-top: 10px">
                             <div class="user-wrapper">
                                 <div class="profile-image">
 
                                 </div>
                                 <div class="text-wrapper">
-                                    <p class="profile-name">Richard V.Welsh</p>
-                                    <div>
-                                        <small class="designation text-muted">Manager</small>
-                                        <span class="status-indicator online"></span>
-                                    </div>
+                                    @Html.ActionLink("Type Of Questions", "Index", "TypeOfQuestions")
                                 </div>
                             </div>
-                            <button class="btn btn-success btn-block">
-                                New Project
-                                <i class="mdi mdi-plus"></i>
-                            </button>
                         </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">
-                            <i class="menu-icon mdi mdi-television"></i>
-                            <span class="menu-title">Dashboard</span>
-                        </a>
-                    </li>
                     <li class="dropdown-divider"></li>
+
+
                 </ul>
             </nav>
 

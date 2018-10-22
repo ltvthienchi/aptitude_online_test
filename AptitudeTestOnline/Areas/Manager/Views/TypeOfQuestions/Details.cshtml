@@ -1,0 +1,26 @@
+﻿@model AptitudeTestOnline.Models.TypeOfQuestionModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TypeOfQuestionModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NameTypeOfQuestion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NameTypeOfQuestion)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.TypeOfQuestion }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

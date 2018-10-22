@@ -13,7 +13,5 @@ namespace AptitudeTestOnline.Models
         [Key]
         public int TypeOfQuestion { get; set; }
         public string NameTypeOfQuestion { get; set; }
-
-        public ICollection<TypeOfQuestionModel> TypeOfQuestionModels { get; set; }
     }
 }
