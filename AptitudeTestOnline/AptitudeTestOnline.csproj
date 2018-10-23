@@ -2290,6 +2290,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Manager\Assets\" />
     <Folder Include="Areas\Manager\Models\" />
   </ItemGroup>
   <ItemGroup>
