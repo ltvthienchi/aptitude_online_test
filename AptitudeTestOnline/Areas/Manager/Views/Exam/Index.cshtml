@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AptitudeTestOnline.Models.QuestionsModels>
+﻿@model IEnumerable<AptitudeTestOnline.Models.ExamModels>
 
 @{
     ViewBag.Title = "Index";
@@ -6,7 +6,7 @@
 
 <div class="row mb-3">
     <div class="col-2">
-        <a class="btn btn-success btn-block" href="/Manager/Questions/Create">
+        <a class="btn btn-success btn-block" href="/Manager/Exam/Create">
             Create
             <i class="fas fa-plus"></i>
         </a>
@@ -18,16 +18,13 @@
     <table class="table table-bordered table-hover">
         <tr class="bg-default">
             <th class="w-1">
-                Id
+                #
             </th>
-            <th class="w-5">
-                Questions Name
+            <th class="w-6">
+                Exam Name
             </th>
             <th class="w-2">
-                Questions Type
-            </th>
-            <th class="w-1">
-                Mark
+                Description
             </th>
             <th class="w-1">
                 Tools
@@ -39,19 +36,16 @@
         {
             <tr>
                 <td>
-                    <p>@i</p> 
+                    <p>@i</p>
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.QuestionsName)
+                    @Html.DisplayFor(modelItem => item.ExamName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.TypeOfQuestion)
+                    @Html.DisplayFor(modelItem => item.Description)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Mark)
-                </td>
-                <td>
-                    @Html.ActionLink(" ", "Edit", new { id = item.QuestionsID }, htmlAttributes: new { @class = "fas fa-edit btn-admin" })
+                    @Html.ActionLink(" ", "Edit", new { id = item.ExamID }, htmlAttributes: new { @class = "fas fa-edit btn-admin" })
                 </td>
             </tr>
             i++;

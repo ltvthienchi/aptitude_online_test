@@ -4,56 +4,37 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<div class="table-responsive">
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+    <table class="table table-bordered table-hover">
+        <tr class="bg-default">
+            <th>
+                #
+            </th>
+            <th>
+                Id
+            </th>
+            <th>
+                Name
+            </th>
+        </tr>
 
-<div class="col-lg-12 grid-margin stretch-card">
-    <div class="card">
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>
-                                #
-                            </th>
-                            <th>
-                                Id type of Question
-                            </th>
-                            <th>
-                                Name type of Question
-                            </th>
-                            <th>
-                                
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                <td>
-                                    1
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.TypeOfQuestion)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.NameTypeOfQuestion)
-                                </td>
-                                <td>
-                                    @Html.ActionLink("Edit", "Edit", new { id = item.TypeOfQuestion }) |
-                                    @Html.ActionLink("Details", "Details", new { id = item.TypeOfQuestion }) |
-                                    @Html.ActionLink("Delete", "Delete", new { id = item.TypeOfQuestion })
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
+        @{int i = 1;}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <p>@i</p> 
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TypeOfQuestion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NameTypeOfQuestion)
+                </td>
+            </tr>
+            i++;
+        }
+
+    </table>
 </div>

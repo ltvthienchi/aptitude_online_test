@@ -1,15 +1,4 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
-}
-
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
-}
-
-/* Override the default bootstrap behavior where horizontal description lists 
+﻿/* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
 .dl-horizontal dt {
@@ -29,3 +18,55 @@ textarea {
     background: linear-gradient(120deg, #5983e8, #00e4d0);
     color: white;
 }
+
+
+.w-1 {
+    width: 10%;
+}
+
+.w-2 {
+    width: 20%;
+}
+
+.w-3 {
+    width: 30%;
+}
+
+.w-4 {
+    width: 40%;
+}
+
+.w-5 {
+    width: 50%;
+}
+
+.w-6 {
+    width: 60%;
+}
+
+.w-7 {
+    width: 70%;
+}
+
+.w-8 {
+    width: 80%;
+}
+
+.w-9 {
+    width: 90%;
+}
+
+.btn-admin {
+    text-decoration: none;
+    font-size: 1.2rem;
+    background: #5cb85c;
+    padding: 5px;
+    border-radius: 2px;
+    color: white;
+}
+
+.btn-admin:hover {
+    background: #1eb31e;
+    color: white;
+}
+

@@ -13,18 +13,20 @@ html {
 }
 
 .page-body-wrapper {
-  min-height: calc(100vh - #{$navbar-height});
-  @include display-flex();
-  @include flex-direction(row);
-  padding-left: 0;
-  padding-right: 0;
-  &:not(.auth-page) {
-    padding-top: $navbar-height;
-  }
-  &.full-page-wrapper {
-    width: 100%;
-    min-height: 100vh;
-  }
+    min-height: calc(100vh - #{$navbar-height});
+    @include display-flex();
+    @include flex-direction(row);
+    padding-left: 0;
+    padding-right: 0;
+
+    &:not(.auth-page) {
+        padding-top: ($navbar-height / 2);
+    }
+
+    &.full-page-wrapper {
+        width: 100%;
+        min-height: 100vh;
+    }
 }
 
 .main-panel {

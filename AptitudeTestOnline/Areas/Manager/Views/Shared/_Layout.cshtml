@@ -13,7 +13,8 @@
     <link rel="stylesheet" href="~/Assets/default/vendors/css/vendor.bundle.base.css">
     <link rel="stylesheet" href="~/Assets/default/vendors/css/vendor.bundle.addons.css">
     <link rel="stylesheet" href="~/Assets/default/css/style.css">
-    <link rel="stylesheet" href="~/Content/Site.css"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+    <link rel="stylesheet" href="~/Content/Site.css" />
 
 </head>
 <body>
@@ -64,6 +65,7 @@
                         </div>
                     </li>
                     <li class="dropdown-divider"></li>
+                    <!---->
                     <li class="nav-item">
                         <div class="nav-link" style="margin-top: 10px">
                             <div class="user-wrapper">
@@ -77,8 +79,20 @@
                         </div>
                     </li>
                     <li class="dropdown-divider"></li>
+                    <!---->
+                    <li class="nav-item">
+                        <div class="nav-link" style="margin-top: 10px">
+                            <div class="user-wrapper">
+                                <div class="profile-image">
 
-
+                                </div>
+                                <div class="text-wrapper">
+                                    @Html.ActionLink("Exam", "Index", "Exam")
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="dropdown-divider"></li>
 
                 </ul>
             </nav>

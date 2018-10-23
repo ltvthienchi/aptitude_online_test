@@ -203,6 +203,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Manager\Controllers\AdminAccountController.cs" />
     <Compile Include="Areas\Manager\Controllers\AdminManageController.cs" />
+    <Compile Include="Areas\Manager\Controllers\ExamController.cs" />
     <Compile Include="Areas\Manager\Controllers\HomeController.cs" />
     <Compile Include="Areas\Manager\Controllers\QuestionsController.cs" />
     <Compile Include="Areas\Manager\Controllers\TypeOfQuestionsController.cs" />
@@ -217,6 +218,8 @@
     <Compile Include="Models\AccountModel.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ATODatabaseContext.cs" />
+    <Compile Include="Models\DetailsExamModels.cs" />
+    <Compile Include="Models\ExamModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\QuestionsModels.cs" />
@@ -2244,6 +2247,11 @@
     <Content Include="Areas\Manager\Views\Questions\Details.cshtml" />
     <Content Include="Areas\Manager\Views\Questions\Edit.cshtml" />
     <Content Include="Areas\Manager\Views\Questions\Index.cshtml" />
+    <Content Include="Areas\Manager\Views\Exam\Create.cshtml" />
+    <Content Include="Areas\Manager\Views\Exam\Delete.cshtml" />
+    <Content Include="Areas\Manager\Views\Exam\Details.cshtml" />
+    <Content Include="Areas\Manager\Views\Exam\Edit.cshtml" />
+    <Content Include="Areas\Manager\Views\Exam\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
