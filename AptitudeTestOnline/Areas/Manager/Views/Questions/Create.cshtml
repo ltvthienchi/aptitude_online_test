@@ -1,0 +1,125 @@
+﻿@model AptitudeTestOnline.Models.QuestionsModels
+
+@{
+    ViewBag.Title = "Create";
+}
+<div class="forms-sample">
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal ">
+            <h4>Create new question</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group row">
+                <label for="QuestionsName" class="control-label col-md-2">Questions Name</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" placeholder="Choose question type"
+                           id="QuestionsName" name="QuestionsName" type="text" value="">
+                </div>
+                @Html.ValidationMessageFor(model => model.QuestionsName, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group row">
+                <label for="TypeOfQuestion" class="control-label col-md-2">Type Of Question</label>
+                <div class="col-sm-9">
+                    <select class="form-control" id="TypeOfQuestion" name="TypeOfQuestion">
+                        <option value="1">General Knowledge</option>
+                        <option value="2">Mathematics</option>
+                        <option value="3">Computer Technology</option>
+                    </select>
+                </div>
+                @Html.ValidationMessageFor(model => model.TypeOfQuestion, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group row">
+                <label for="AnswerOne" class="control-label col-md-2">Answer (A)</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" placeholder="Enter answer A"
+                           id="AnswerOne" name="AnswerOne" type="text" value="">
+                </div>
+                @Html.ValidationMessageFor(model => model.AnswerOne, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group row">
+                <label for="AnswerTwo" class="control-label col-md-2">Answer (B)</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" placeholder="Enter answer B"
+                           id="AnswerTwo" name="AnswerTwo" type="text" value="">
+                </div>
+                @Html.ValidationMessageFor(model => model.AnswerTwo, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group row">
+                <label for="AnswerThree" class="control-label col-md-2">Answer (C)</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" placeholder="Enter answer C"
+                           id="AnswerThree" name="AnswerThree" type="text" value="">
+                </div>
+                @Html.ValidationMessageFor(model => model.AnswerThree, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group row">
+                <label for="AnswerFour" class="control-label col-md-2">Answer (D)</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" placeholder="Enter answer D"
+                           id="AnswerFour" name="AnswerFour" type="text" value="">
+                </div>
+                @Html.ValidationMessageFor(model => model.AnswerFour, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group row">
+                <label class="control-label col-md-2">Correct Answer</label>
+                <div class="col-md-10">
+                    <div class="form-radio form-radio-flat col-sm-3">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="CorrectAnswer" value="1" checked> (A)
+                        </label>
+                    </div>
+                    <div class="form-radio form-radio-flat col-sm-3">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="CorrectAnswer" value="2"> (B)
+                        </label>
+                    </div>
+                    <div class="form-radio form-radio-flat col-sm-3">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="CorrectAnswer" value="3"> (C)
+                        </label>
+                    </div>
+                    <div class="form-radio form-radio-flat col-sm-3">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="CorrectAnswer" value="4"> (D)
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="Mark" class="control-label col-md-2">Mark</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" placeholder=""
+                           id="Mark" name="Mark" type="number" value="" required>
+                </div>
+                @Html.ValidationMessageFor(model => model.Mark, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-success mr-2" />
+                    <button class="btn btn-light">Cancel</button>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

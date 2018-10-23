@@ -1,0 +1,82 @@
+﻿@model AptitudeTestOnline.Models.QuestionsModels
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>QuestionsModels</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.QuestionsName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuestionsName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TypeOfQuestion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TypeOfQuestion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AnswerOne)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AnswerOne)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AnswerTwo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AnswerTwo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AnswerThree)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AnswerThree)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AnswerFour)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AnswerFour)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CorrectAnswer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CorrectAnswer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mark)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mark)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.QuestionsID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

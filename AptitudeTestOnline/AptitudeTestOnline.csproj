@@ -204,6 +204,7 @@
     <Compile Include="Areas\Manager\Controllers\AdminAccountController.cs" />
     <Compile Include="Areas\Manager\Controllers\AdminManageController.cs" />
     <Compile Include="Areas\Manager\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Manager\Controllers\QuestionsController.cs" />
     <Compile Include="Areas\Manager\Controllers\TypeOfQuestionsController.cs" />
     <Compile Include="Areas\Manager\ManagerAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -216,6 +217,7 @@
     <Compile Include="Models\ATODatabaseContext.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\QuestionsModels.cs" />
     <Compile Include="Models\TypeOfQuestionModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -2235,6 +2237,11 @@
     <Content Include="Areas\Manager\Views\TypeOfQuestions\Details.cshtml" />
     <Content Include="Areas\Manager\Views\TypeOfQuestions\Edit.cshtml" />
     <Content Include="Areas\Manager\Views\TypeOfQuestions\Index.cshtml" />
+    <Content Include="Areas\Manager\Views\Questions\Create.cshtml" />
+    <Content Include="Areas\Manager\Views\Questions\Delete.cshtml" />
+    <Content Include="Areas\Manager\Views\Questions\Details.cshtml" />
+    <Content Include="Areas\Manager\Views\Questions\Edit.cshtml" />
+    <Content Include="Areas\Manager\Views\Questions\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

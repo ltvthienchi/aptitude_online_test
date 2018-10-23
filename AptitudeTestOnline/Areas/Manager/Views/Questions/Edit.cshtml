@@ -1,0 +1,122 @@
+﻿@model AptitudeTestOnline.Models.QuestionsModels
+
+@{
+    ViewBag.Title = "Edit";
+
+}
+
+<div class="forms-sample">
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal ">
+            <h4>Edit</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.QuestionsID)
+
+
+            <div class="form-group row">
+                <label for="QuestionsName" class="control-label col-md-2">Questions Name</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.QuestionsName, new { htmlAttributes = new { @class = "form-control text-box single-line" } })
+                </div>
+                @Html.ValidationMessageFor(model => model.QuestionsName, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                <label for="TypeOfQuestion" class="control-label col-md-2">Type Of Question</label>
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.TypeOfQuestion,
+                    new SelectList( new List<Object> {  new { value = 1 , text = "General Knowledge"  }, new { value = 2 , text = "Mathematics" },
+                                                    new { value = 3 , text = "Computer Technology"} }, "value", "text", Model.TypeOfQuestion ),
+                    htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.TypeOfQuestion, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="AnswerOne" class="control-label col-md-2">Answer (A)</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.AnswerOne, new { htmlAttributes = new { @class = "form-control text-box single-line" } })
+                </div>
+                @Html.ValidationMessageFor(model => model.AnswerOne, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group row">
+                <label for="AnswerTwo" class="control-label col-md-2">Answer (B)</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.AnswerTwo, new { htmlAttributes = new { @class = "form-control text-box single-line" } })
+                </div>
+                @Html.ValidationMessageFor(model => model.AnswerTwo, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group row">
+                <label for="AnswerThree" class="control-label col-md-2">Answer (C)</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.AnswerThree, new { htmlAttributes = new { @class = "form-control text-box single-line" } })
+                </div>
+                @Html.ValidationMessageFor(model => model.AnswerThree, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group row">
+                <label for="AnswerFour" class="control-label col-md-2">Answer (D)</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.AnswerFour, new { htmlAttributes = new { @class = "form-control text-box single-line" } })
+                </div>
+                @Html.ValidationMessageFor(model => model.AnswerFour, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group row">
+                <label class="control-label col-md-2">Correct Answer</label>
+                <div class="col-md-10">
+                    <div class="form-radio form-radio-flat col-sm-3">
+                        <label class="form-check-label">
+                            @Html.RadioButtonFor(model => model.CorrectAnswer, 1, htmlAttributes: new { @class = "form-check-input" }) (A)
+                        </label>
+                    </div>
+                    <div class="form-radio form-radio-flat col-sm-3">
+                        <label class="form-check-label">
+                            @Html.RadioButtonFor(model => model.CorrectAnswer, 2, htmlAttributes: new { @class = "form-check-input" }) (B)
+                        </label>
+                    </div>
+                    <div class="form-radio form-radio-flat col-sm-3">
+                        <label class="form-check-label">
+                            @Html.RadioButtonFor(model => model.CorrectAnswer, 3, htmlAttributes: new { @class = "form-check-input" }) (C)
+                        </label>
+                    </div>
+                    <div class="form-radio form-radio-flat col-sm-3">
+                        <label class="form-check-label">
+                            @Html.RadioButtonFor(model => model.CorrectAnswer, 4, htmlAttributes: new { @class = "form-check-input" }) (D)
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="Mark" class="control-label col-md-2">Answer (D)</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Mark, new { htmlAttributes = new { @class = "form-control text-box single-line" } })
+                </div>
+                @Html.ValidationMessageFor(model => model.Mark, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-success mr-2" />
+                    <button class="btn btn-light">Cancel</button>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
