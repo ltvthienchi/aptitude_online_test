@@ -46,7 +46,7 @@ namespace AptitudeTestOnline.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "AccountID,Education,Experience,Interest")] AccountModel accountModel)
+        public ActionResult Create([Bind(Include = "AccountID,Education,Experience,Interest,Email,UserID")] AccountModel accountModel)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace AptitudeTestOnline.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "AccountID,Education,Experience,Interest")] AccountModel accountModel)
+        public ActionResult Edit([Bind(Include = "AccountID,Education,Experience,Interest,Email,UserID")] AccountModel accountModel)
         {
             if (ModelState.IsValid)
             {

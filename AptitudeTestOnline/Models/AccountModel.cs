@@ -26,5 +26,12 @@ namespace AptitudeTestOnline.Models
         [Display(Name = "Interest")]
         public string Interest { get; set; }
 
+        [Required]
+        [Display(Name = "Email")]
+        [DataType(DataType.EmailAddress)]
+        public string Email { get; set; }
+
+        public string UserID { get; set; }
+
     }
 }
