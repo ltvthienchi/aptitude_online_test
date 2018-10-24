@@ -131,6 +131,7 @@
           padding-left: 2%;
           .nav-item {
             margin: 0;
+            min-width: 130px;
             a {
               height: $navbar-height;
               font-size: $navbar-font-size;
