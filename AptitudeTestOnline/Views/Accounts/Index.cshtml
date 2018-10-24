@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AptitudeTestOnline.Models.AccountModel>
+﻿@model IEnumerable<AptitudeTestOnline.Models.Account>
 
 @{
     ViewBag.Title = "Index";
@@ -20,6 +20,12 @@
         <th>
             @Html.DisplayNameFor(model => model.Interest)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserID)
+        </th>
         <th></th>
     </tr>
 
@@ -33,6 +39,12 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Interest)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserID)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.AccountID }) |

@@ -1,0 +1,69 @@
+﻿@model IEnumerable<AptitudeTestOnline.Models.Account>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table table-bordered table-hover">
+    <tr>
+    <tr class="bg-default">
+        <th class="w-3">
+            Education
+        </th>
+        <th class="w-3">
+            Experience
+        </th>
+        <th class="w-1">
+            Interest
+        </th>
+        <th class="w-1">
+            Email
+        </th>
+        <th class="w-1">
+            UserID
+        </th>
+        <th class="w-1">
+            Tools
+        </th>
+        
+    </tr>
+    
+    
+    
+    
+    
+    
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Education)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Experience)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Interest)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserID)
+            </td>
+            <td>
+                
+                @Html.ActionLink("Edit", "Edit", new { id = item.AccountID }, htmlAttributes: new { @class = "fas fa-edit btn-admin" }) |
+                @Html.ActionLink("Details", "Details", new { id = item.AccountID }) |
+                
+            </td>
+        </tr>
+    }
+
+</table>

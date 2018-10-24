@@ -36,7 +36,7 @@
                         @Html.ActionLink("Home", "Index", "Home")
                     </li>
                     <li class="nav-item">
-                        @Html.ActionLink("About", "About", "Home")
+                        @Html.ActionLink("Apply", "Create", "Accounts")
                     </li>
                     <li class="nav-item">
                         @Html.ActionLink("Contact", "Contact", "Home")
@@ -91,8 +91,14 @@
             </nav>
 
             <div class="main-panel">
-
-                @RenderBody()
+                <div class="content-wrapper">
+                    <div class="card">
+                        <div class="card-body">
+                            @RenderBody()
+                        </div>
+                    </div>
+                </div>
+                
 
                 <footer class="footer">
                     <div class="container-fluid clearfix">

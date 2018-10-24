@@ -1,0 +1,13 @@
+diff a/AptitudeTestOnline/AptitudeTestOnline.csproj b/AptitudeTestOnline/AptitudeTestOnline.csproj	(rejected hunks)
+@@ -2253,6 +2253,11 @@
+     <Content Include="Areas\Manager\Views\Exam\Details.cshtml" />
+     <Content Include="Areas\Manager\Views\Exam\Edit.cshtml" />
+     <Content Include="Areas\Manager\Views\Exam\Index.cshtml" />
++    <Content Include="Areas\Manager\Views\Candidate\Create.cshtml" />
++    <Content Include="Areas\Manager\Views\Candidate\Delete.cshtml" />
++    <Content Include="Areas\Manager\Views\Candidate\Details.cshtml" />
++    <Content Include="Areas\Manager\Views\Candidate\Edit.cshtml" />
++    <Content Include="Areas\Manager\Views\Candidate\Index.cshtml" />
+     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+     <Content Include="Scripts\jquery-3.3.1.js" />
+     <Content Include="Scripts\jquery-3.3.1.min.js" />

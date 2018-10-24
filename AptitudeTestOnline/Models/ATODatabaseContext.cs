@@ -11,8 +11,12 @@ namespace AptitudeTestOnline.Models
         public ATODatabaseContext() : base("name=DefaultConnection") { }
         public DbSet<TypeOfQuestionModel> TypeOfQuestionModel { get; set; }
         public DbSet<QuestionsModels> QuestionsModels { get; set; }
-        public DbSet<AccountModel> AccountModels { get; set; }
+
+        
         public DbSet<ExamModels> ExamModels { get; set; }
         public DbSet<DetailsExamModels> DetailsExamModels { get; set; }
+
+        public  DbSet<Account> AccountModels { get; set; }
+
     }
 }

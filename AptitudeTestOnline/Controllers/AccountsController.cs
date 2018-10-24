@@ -10,107 +10,107 @@ using AptitudeTestOnline.Models;
 
 namespace AptitudeTestOnline.Controllers
 {
-    public class CandidateController : Controller
+    public class AccountsController : Controller
     {
         private ATODatabaseContext db = new ATODatabaseContext();
 
-        // GET: Candidate
+        // GET: Accounts
         public ActionResult Index()
         {
             return View(db.AccountModels.ToList());
         }
 
-        // GET: Candidate/Details/5
+        // GET: Accounts/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AccountModel accountModel = db.AccountModels.Find(id);
-            if (accountModel == null)
+            Account account = db.AccountModels.Find(id);
+            if (account == null)
             {
                 return HttpNotFound();
             }
-            return View(accountModel);
+            return View(account);
         }
 
-        // GET: Candidate/Create
+        // GET: Accounts/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Candidate/Create
+        // POST: Accounts/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "AccountID,Education,Experience,Interest")] AccountModel accountModel)
+        public ActionResult Create([Bind(Include = "AccountID,Education,Experience,Interest,Email,UserID")] Account account)
         {
             if (ModelState.IsValid)
             {
-                db.AccountModels.Add(accountModel);
+                db.AccountModels.Add(account);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(accountModel);
+            return View(account);
         }
 
-        // GET: Candidate/Edit/5
+        // GET: Accounts/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AccountModel accountModel = db.AccountModels.Find(id);
-            if (accountModel == null)
+            Account account = db.AccountModels.Find(id);
+            if (account == null)
             {
                 return HttpNotFound();
             }
-            return View(accountModel);
+            return View(account);
         }
 
-        // POST: Candidate/Edit/5
+        // POST: Accounts/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "AccountID,Education,Experience,Interest")] AccountModel accountModel)
+        public ActionResult Edit([Bind(Include = "AccountID,Education,Experience,Interest,Email,UserID")] Account account)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(accountModel).State = EntityState.Modified;
+                db.Entry(account).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(accountModel);
+            return View(account);
         }
 
-        // GET: Candidate/Delete/5
+        // GET: Accounts/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AccountModel accountModel = db.AccountModels.Find(id);
-            if (accountModel == null)
+            Account account = db.AccountModels.Find(id);
+            if (account == null)
             {
                 return HttpNotFound();
             }
-            return View(accountModel);
+            return View(account);
         }
 
-        // POST: Candidate/Delete/5
+        // POST: Accounts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            AccountModel accountModel = db.AccountModels.Find(id);
-            db.AccountModels.Remove(accountModel);
+            Account account = db.AccountModels.Find(id);
+            db.AccountModels.Remove(account);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
