@@ -36,27 +36,7 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
         }
 
         // GET: Manager/Candidate/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Manager/Candidate/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "AccountID,Education,Experience,Interest,Email,UserID")] Account account)
-        {
-            if (ModelState.IsValid)
-            {
-                db.AccountModels.Add(account);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(account);
-        }
+        
 
         // GET: Manager/Candidate/Edit/5
         public ActionResult Edit(int? id)
