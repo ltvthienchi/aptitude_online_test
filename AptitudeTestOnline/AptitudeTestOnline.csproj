@@ -367,6 +367,7 @@
     <Content Include="Assets\default\images\flags\VN.png" />
     <Content Include="Assets\default\images\flags\YE.png" />
     <Content Include="Assets\default\images\logo-mini.svg" />
+    <Content Include="Assets\default\images\logo-oil.png" />
     <Content Include="Assets\default\images\logo.svg" />
     <Content Include="Assets\default\images\samples\weather.svg" />
     <Content Include="Assets\default\js\chart.js" />
