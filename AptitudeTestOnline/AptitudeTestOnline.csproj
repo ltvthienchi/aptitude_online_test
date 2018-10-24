@@ -213,6 +213,7 @@
     <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PerformTestController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -2303,11 +2304,17 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Accounts\Create.cshtml" />
-    <Content Include="Views\Accounts\Delete.cshtml" />
-    <Content Include="Views\Accounts\Details.cshtml" />
-    <Content Include="Views\Accounts\Edit.cshtml" />
-    <Content Include="Views\Accounts\Index.cshtml" />
+    <Content Include="Views\Candidate\Create.cshtml" />
+    <Content Include="Views\Candidate\Delete.cshtml" />
+    <Content Include="Views\Candidate\Details.cshtml" />
+    <Content Include="Views\Candidate\Edit.cshtml" />
+    <Content Include="Views\Candidate\Index.cshtml" />
+    <Content Include="Views\PerformTest\Create.cshtml" />
+    <Content Include="Views\PerformTest\Delete.cshtml" />
+    <Content Include="Views\PerformTest\Details.cshtml" />
+    <Content Include="Views\PerformTest\Edit.cshtml" />
+    <Content Include="Views\PerformTest\Index.cshtml" />
+    <Content Include="Views\PerformTest\Begin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

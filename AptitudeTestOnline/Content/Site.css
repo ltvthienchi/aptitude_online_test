@@ -70,3 +70,21 @@ textarea {
     color: white;
 }
 
+.admin .tab-pane {
+    margin-top: 20px;
+}
+
+input, textarea {
+    min-height: 40px;
+}
+
+.form-group .btn.btn-light {
+    padding: 12px 22px;
+}
+
+@media (min-width: 768px) {
+    .form-horizontal .control-label {
+        padding-top: 13px !important;
+    }
+}
+
