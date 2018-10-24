@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AptitudeTestOnline.Models.Account>
+﻿@model IEnumerable<AptitudeTestOnline.Models.Accounts>
 
 @{
     ViewBag.Title = "Index";
@@ -8,60 +8,62 @@
 
 
 <table class="table table table-bordered table-hover">
-    <tr>
     <tr class="bg-default">
-        <th class="w-3">
-            Education
+        <th class="w-2">
+            @Html.DisplayNameFor(model => model.Name)
         </th>
-        <th class="w-3">
-            Experience
-        </th>
-        <th class="w-1">
-            Interest
+        <th class="w-2">
+            @Html.DisplayNameFor(model => model.Education)
         </th>
         <th class="w-1">
-            Email
+            @Html.DisplayNameFor(model => model.Experience)
         </th>
         <th class="w-1">
-            UserID
+            @Html.DisplayNameFor(model => model.Interest)
+        </th>
+        <th class="w-1">
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th class="w-1">
+            @Html.DisplayNameFor(model => model.UserID)
+        </th>
+        <th class="w-1">
+            @Html.DisplayNameFor(model => model.Dateofbirth)
         </th>
         <th class="w-1">
             Tools
         </th>
-        
     </tr>
-    
-    
-    
-    
-    
-    
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Education)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Experience)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Interest)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserID)
-            </td>
-            <td>
-                
-                @Html.ActionLink("Edit", "Edit", new { id = item.AccountID }, htmlAttributes: new { @class = "fas fa-edit btn-admin" }) |
-                @Html.ActionLink("Details", "Details", new { id = item.AccountID }) |
-                
-            </td>
-        </tr>
-    }
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Education)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Experience)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Interest)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dateofbirth)
+        </td>
+        <td>
+            @Html.ActionLink(" ", "Edit", new { id=item.AccountID }, htmlAttributes: new { @class = "fas fa-edit btn-admin" }) |
+            @Html.ActionLink(" ", "Details", new { id=item.AccountID }, htmlAttributes: new { @class = "fas fa-plus btn-admin btn-ad-cr" }) |
+            
+        </td>
+    </tr>
+}
 
 </table>

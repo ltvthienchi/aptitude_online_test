@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AptitudeTestOnline.Models.Accounts>
+﻿@model IEnumerable<AptitudeTestOnline.Models.UserViewModel>
 
 @{
     ViewBag.Title = "Index";
@@ -21,16 +21,7 @@
             @Html.DisplayNameFor(model => model.Experience)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Interest)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Dateofbirth)
+            @Html.DisplayNameFor(model => model.Mark)
         </th>
         <th></th>
     </tr>
@@ -47,16 +38,7 @@
             @Html.DisplayFor(modelItem => item.Experience)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Interest)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Dateofbirth)
+            @Html.DisplayFor(modelItem => item.Mark)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.AccountID }) |

@@ -74,6 +74,10 @@ textarea {
     margin-top: 20px;
 }
 
+.btn-ad-cr {
+    background: blue;
+}
+
 input, textarea {
     min-height: 40px;
 }

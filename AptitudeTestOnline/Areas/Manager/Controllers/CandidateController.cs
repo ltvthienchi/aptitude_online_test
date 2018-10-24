@@ -27,16 +27,36 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Account account = db.AccountModels.Find(id);
-            if (account == null)
+            Accounts accounts = db.AccountModels.Find(id);
+            if (accounts == null)
             {
                 return HttpNotFound();
             }
-            return View(account);
+            return View(accounts);
         }
 
         // GET: Manager/Candidate/Create
-        
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: Manager/Candidate/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "AccountID,Name,Education,Experience,Interest,Email,UserID,Dateofbirth")] Accounts accounts)
+        {
+            if (ModelState.IsValid)
+            {
+                db.AccountModels.Add(accounts);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(accounts);
+        }
 
         // GET: Manager/Candidate/Edit/5
         public ActionResult Edit(int? id)
@@ -45,12 +65,12 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Account account = db.AccountModels.Find(id);
-            if (account == null)
+            Accounts accounts = db.AccountModels.Find(id);
+            if (accounts == null)
             {
                 return HttpNotFound();
             }
-            return View(account);
+            return View(accounts);
         }
 
         // POST: Manager/Candidate/Edit/5
@@ -58,15 +78,15 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "AccountID,Education,Experience,Interest,Email,UserID")] Account account)
+        public ActionResult Edit([Bind(Include = "AccountID,Name,Education,Experience,Interest,Email,UserID,Dateofbirth")] Accounts accounts)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(account).State = EntityState.Modified;
+                db.Entry(accounts).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(account);
+            return View(accounts);
         }
 
         // GET: Manager/Candidate/Delete/5
@@ -76,12 +96,12 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Account account = db.AccountModels.Find(id);
-            if (account == null)
+            Accounts accounts = db.AccountModels.Find(id);
+            if (accounts == null)
             {
                 return HttpNotFound();
             }
-            return View(account);
+            return View(accounts);
         }
 
         // POST: Manager/Candidate/Delete/5
@@ -89,8 +109,8 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Account account = db.AccountModels.Find(id);
-            db.AccountModels.Remove(account);
+            Accounts accounts = db.AccountModels.Find(id);
+            db.AccountModels.Remove(accounts);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
