@@ -1,7 +1,12 @@
-﻿@model IEnumerable<AptitudeTestOnline.Models.QuestionsModels>
+﻿@*@model IEnumerable<AptitudeTestOnline.Models.QuestionsModels>*@
 
 @{
     ViewBag.Title = "Index";
+    IEnumerable<AptitudeTestOnline.Models.QuestionsModels> Questions =
+        ViewData["Questions"] as IEnumerable<AptitudeTestOnline.Models.QuestionsModels>;
+    IEnumerable<AptitudeTestOnline.Models.TypeOfQuestionModel> TypeOfQuestion =
+        ViewData["TypeOfQuestion"] as IEnumerable<AptitudeTestOnline.Models.TypeOfQuestionModel>;
+
 }
 
 <div class="row mb-3">
@@ -35,7 +40,7 @@
         </tr>
 
         @{int i = 1;}
-        @foreach (var item in Model)
+        @foreach (var item in Questions)
         {
             <tr>
                 <td>
@@ -45,7 +50,13 @@
                     @Html.DisplayFor(modelItem => item.QuestionsName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.TypeOfQuestion)
+                    @foreach (var itemType in TypeOfQuestion)
+                    {
+                        if (item.TypeOfQuestion == itemType.TypeOfQuestion)
+                        {
+                            @itemType.NameTypeOfQuestion;
+                        }
+                    }
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Mark)

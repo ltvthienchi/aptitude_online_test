@@ -1,8 +1,9 @@
 ﻿@model AptitudeTestOnline.Models.QuestionsModels
 
 @{
-    ViewBag.Title = "Edit";
-
+    ViewBag.Title = "Edit " + Model.QuestionsName;
+        IEnumerable<AptitudeTestOnline.Models.TypeOfQuestionModel> TypeOfQuestion =
+            ViewData["TypeOfQuestion"] as IEnumerable<AptitudeTestOnline.Models.TypeOfQuestionModel>;
 }
 
 <div class="forms-sample">
@@ -29,10 +30,19 @@
             <div class="form-group">
                 <label for="TypeOfQuestion" class="control-label col-md-2">Type Of Question</label>
                 <div class="col-md-10">
-                    @Html.DropDownListFor(model => model.TypeOfQuestion,
-                    new SelectList( new List<Object> {  new { value = 1 , text = "General Knowledge"  }, new { value = 2 , text = "Mathematics" },
-                                                    new { value = 3 , text = "Computer Technology"} }, "value", "text", Model.TypeOfQuestion ),
-                    htmlAttributes: new { @class = "form-control" })
+                    <select name="TypeOfQuestion" class="form-control">
+                        @foreach (var item in TypeOfQuestion)
+                        {
+                            if (item.TypeOfQuestion == Model.TypeOfQuestion)
+                            {
+                                <option value="@item.TypeOfQuestion" selected>@item.NameTypeOfQuestion</option>
+                            }
+                            else
+                            {
+                                <option value="@item.TypeOfQuestion">@item.NameTypeOfQuestion</option>
+                            }
+                        }
+                    </select>
                     @Html.ValidationMessageFor(model => model.TypeOfQuestion, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -96,7 +106,7 @@
             </div>
 
             <div class="form-group row">
-                <label for="Mark" class="control-label col-md-2">Answer (D)</label>
+                <label for="Mark" class="control-label col-md-2">Mark</label>
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Mark, new { htmlAttributes = new { @class = "form-control text-box single-line" } })
                 </div>
@@ -106,7 +116,7 @@
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <input type="submit" value="Save" class="btn btn-success mr-2" />
-                    <button class="btn btn-light">Cancel</button>
+                    @Html.ActionLink("Back to List", "Index", "Questions", null, htmlAttributes: new { @class = "btn btn-light" })
                 </div>
             </div>
         </div>

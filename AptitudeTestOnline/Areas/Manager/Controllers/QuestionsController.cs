@@ -14,12 +14,27 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
     {
         private ATODatabaseContext db = new ATODatabaseContext();
 
-        
+        public List<QuestionsModels> GetQuestions()
+        {
+            return db.QuestionsModels.ToList();
+        }
+
+        public List<TypeOfQuestionModel> GetTypeOfQuestions()
+        {
+            return db.TypeOfQuestionModel.ToList();
+        }
+
+        public void GetData()
+        {
+            ViewData["Questions"] = GetQuestions();
+            ViewData["TypeOfQuestion"] = GetTypeOfQuestions();
+        }
 
         // GET: Manager/Questions
         public ActionResult Index()
         {
-            return View(db.QuestionsModels.ToList());
+            GetData();
+            return View();
         }
 
         // GET: Manager/Questions/Details/5
@@ -40,9 +55,8 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
         // GET: Manager/Questions/Create
         public ActionResult Create()
         {
-            ViewBag.TypeOfQuestion = db.TypeOfQuestionModel.ToList();
+            GetData();
             ViewBag.Test = "Test";
-
             return View();
         }
 
@@ -66,6 +80,7 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
         // GET: Manager/Questions/Edit/5
         public ActionResult Edit(int? id)
         {
+            GetData();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
