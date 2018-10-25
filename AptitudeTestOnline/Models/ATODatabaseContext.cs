@@ -16,7 +16,9 @@ namespace AptitudeTestOnline.Models
         public DbSet<ExamModels> ExamModels { get; set; }
         public DbSet<DetailsExamModels> DetailsExamModels { get; set; }
 
-        public  DbSet<Account> AccountModels { get; set; }
+        public  DbSet<Accounts> AccountModels { get; set; }
+        public DbSet<DetailsRegistrations> DetailsRegistrations { get; set; }
 
+        public System.Data.Entity.DbSet<AptitudeTestOnline.Models.UserViewModel> UserViewModels { get; set; }
     }
 }
