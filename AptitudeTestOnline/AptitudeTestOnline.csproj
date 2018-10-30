@@ -207,6 +207,7 @@
     <Compile Include="Areas\Manager\Controllers\ExamController.cs" />
     <Compile Include="Areas\Manager\Controllers\HomeController.cs" />
     <Compile Include="Areas\Manager\Controllers\QuestionsController.cs" />
+    <Compile Include="Areas\Manager\Controllers\SchedulesController.cs" />
     <Compile Include="Areas\Manager\Controllers\TypeOfQuestionsController.cs" />
     <Compile Include="Areas\Manager\Controllers\UsersController.cs" />
     <Compile Include="Areas\Manager\ManagerAreaRegistration.cs" />
@@ -227,6 +228,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\QuestionsModels.cs" />
+    <Compile Include="Models\SchedulesModels.cs" />
     <Compile Include="Models\TypeOfQuestionModel.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -2264,6 +2266,11 @@
     <Content Include="Areas\Manager\Views\Candidate\Details.cshtml" />
     <Content Include="Areas\Manager\Views\Candidate\Edit.cshtml" />
     <Content Include="Areas\Manager\Views\Candidate\Index.cshtml" />
+    <Content Include="Areas\Manager\Views\Schedules\Create.cshtml" />
+    <Content Include="Areas\Manager\Views\Schedules\Delete.cshtml" />
+    <Content Include="Areas\Manager\Views\Schedules\Details.cshtml" />
+    <Content Include="Areas\Manager\Views\Schedules\Edit.cshtml" />
+    <Content Include="Areas\Manager\Views\Schedules\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

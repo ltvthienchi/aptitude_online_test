@@ -18,7 +18,7 @@ namespace AptitudeTestOnline.Models
 
         public  DbSet<Accounts> AccountModels { get; set; }
         public DbSet<DetailsRegistrations> DetailsRegistrations { get; set; }
-
+        public DbSet<SchedulesModels> Schedules { get; set; }
         public System.Data.Entity.DbSet<AptitudeTestOnline.Models.UserViewModel> UserViewModels { get; set; }
     }
 }
