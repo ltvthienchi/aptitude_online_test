@@ -207,6 +207,7 @@
     <Compile Include="Areas\Manager\Controllers\ExamController.cs" />
     <Compile Include="Areas\Manager\Controllers\HomeController.cs" />
     <Compile Include="Areas\Manager\Controllers\QuestionsController.cs" />
+    <Compile Include="Areas\Manager\Controllers\SchedulesController.cs" />
     <Compile Include="Areas\Manager\Controllers\TypeOfQuestionsController.cs" />
     <Compile Include="Areas\Manager\Controllers\UsersController.cs" />
     <Compile Include="Areas\Manager\ManagerAreaRegistration.cs" />
