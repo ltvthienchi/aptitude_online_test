@@ -102,8 +102,13 @@
             <div class="form-group row">
                 <label for="Mark" class="control-label col-md-2">Mark</label>
                 <div class="col-md-10">
-                    <input class="form-control text-box single-line" placeholder=""
-                           id="Mark" name="Mark" type="number" value="1" required>
+                    <select name="Mark" class="form-control">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
                 </div>
                 @Html.ValidationMessageFor(model => model.Mark, "", new { @class = "text-danger" })
             </div>

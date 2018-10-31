@@ -65,65 +65,22 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ExamID,ExamName,Description")] ExamModels examModels)
         {
-            GetData();
-            if (ModelState.IsValid)
+            var result = db.ExamModels.Add(examModels);
+            db.SaveChanges();
+            for (var i = 1; i <= 3; i++)
             {
-                List<int> CheckList = new List<int>();
-                Boolean CheckValid = true;
-                
-                for (var i = 1; i <= 3; i++)
-                    {
-                        if (CheckValid == true)
-                        {
-                            for (var j = 1; j <= 5; j++)
-                            {
-                                string name = "T" + i + "Q" + j;
-                                string value = Request.Form[name];
-                                int QuestionsID = int.Parse(value);
-                                var idx = CheckList.IndexOf(QuestionsID);
-                                if (idx != -1) CheckList.Add(QuestionsID);
-                                else
-                                {
-                                    CheckValid = false;
-                                    var QuestionsError = db.QuestionsModels.Find(QuestionsID);
-                                    var NameTypeOfQuestions = db.TypeOfQuestionModel.Find(QuestionsError.TypeOfQuestion).NameTypeOfQuestion;
-                                    ViewBag.CheckValid = "Question: ";
-                                    ViewBag.QuestionsError = QuestionsError.QuestionsName;
-                                    ViewBag.NameTypeOfQuestions = NameTypeOfQuestions;
-                                }
-
-                            }
-                        } else
-                        {
-                            break;
-                        }
-                    }
-                if (CheckValid == true)
+                for (var j = 1; j <= 5; j++)
                 {
-                    var result = db.ExamModels.Add(examModels);
-                    db.SaveChanges();
-                    for (var i = 1; i <= 3; i++)
-                    {
-                        for (var j = 1; j <= 5; j++)
-                        {
-                            string name = "T" + i + "Q" + j;
-                            string value = Request.Form[name];
-                            DetailsExamModels newDetail = new DetailsExamModels();
-                            newDetail.ExamID = result.ExamID;
-                            newDetail.QuestionsID = int.Parse(value);
-                            var idx = CheckList.IndexOf(newDetail.QuestionsID);
-                            db.DetailsExamModels.Add(newDetail);
-                        }
-                    }
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
-                }
-                else
-                {
-                    return View(examModels);
+                    string name = "T" + i + "Q" + j;
+                    string value = Request.Form[name];
+                    DetailsExamModels newDetail = new DetailsExamModels();
+                    newDetail.ExamID = result.ExamID;
+                    newDetail.QuestionsID = int.Parse(value);
+                    db.DetailsExamModels.Add(newDetail);
                 }
             }
-            return View(examModels);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         // GET: Manager/Exam/Edit/5
@@ -157,51 +114,20 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ExamID,ExamName,Description")] ExamModels examModels)
         {
-            GetData();
-            List<int> MyList = new List<int>();
-            var ListTotalDetailsQuestions = db.DetailsExamModels.Where(r => r.ExamID == examModels.ExamID).ToList();
-            ViewData["DetailQuestions"] = ListTotalDetailsQuestions;
-            foreach (var item in ListTotalDetailsQuestions)
-            {
-                MyList.Add(item.QuestionsID);
-            }
-            ViewData["MyQuestions"] = db.QuestionsModels.Where(r => MyList.Contains(r.QuestionsID)).ToList();
-            Boolean CheckValid = true;
             if (ModelState.IsValid)
             {
                 var ListDetailsQuestions = db.DetailsExamModels.Where(r => r.ExamID == examModels.ExamID).ToList();
-                List<int> CheckList = new List<int>();
                 foreach (var item in ListDetailsQuestions)
                 {
                     string name = item.DetailsID + "";
                     string value = Request.Form[name];
                     DetailsExamModels oldDetail = db.DetailsExamModels.Find(item.DetailsID);
                     oldDetail.QuestionsID = int.Parse(value);
-                    var idx = CheckList.IndexOf(oldDetail.QuestionsID);
-                    if(idx == -1)
-                    {
-                        db.Entry(oldDetail).State = EntityState.Modified;
-                        CheckList.Add(oldDetail.QuestionsID);
-                    } else
-                    {
-                        CheckValid = false;
-                        var QuestionsError = db.QuestionsModels.Find(oldDetail.QuestionsID);
-                        var NameTypeOfQuestions = db.TypeOfQuestionModel.Find(QuestionsError.TypeOfQuestion).NameTypeOfQuestion;
-                        ViewBag.CheckValid = "Question: ";
-                        ViewBag.QuestionsError = QuestionsError.QuestionsName;
-                        ViewBag.NameTypeOfQuestions = NameTypeOfQuestions;
-                        break;
-                    }
+                    db.Entry(oldDetail).State = EntityState.Modified;
                 }
-                if (CheckValid == true)
-                {
-                    db.Entry(examModels).State = EntityState.Modified;
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
-                } else
-                {
-                    return View(examModels);
-                }
+                db.Entry(examModels).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
             }
             return View(examModels);
         }

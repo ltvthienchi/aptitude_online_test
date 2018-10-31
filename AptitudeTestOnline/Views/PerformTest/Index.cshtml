@@ -2,10 +2,16 @@
 
 @{
     ViewBag.Title = "Perform Test";
+    IEnumerable<AptitudeTestOnline.Models.QuestionsModels> Questions =
+          ViewData["Questions"] as IEnumerable<AptitudeTestOnline.Models.QuestionsModels>;
+    IEnumerable<AptitudeTestOnline.Models.QuestionsModels> MyQuestions =
+         ViewData["MyQuestions"] as IEnumerable<AptitudeTestOnline.Models.QuestionsModels>;
+    IEnumerable<AptitudeTestOnline.Models.DetailsExamModels> DetailQuestions =
+         ViewData["DetailQuestions"] as IEnumerable<AptitudeTestOnline.Models.DetailsExamModels>;
+
 }
 
 <style>
-
     .perform-test {
         height: 380px;
         overflow-y: scroll;
@@ -14,529 +20,320 @@
 </style>
 
 
-<h4 class="text-right">
-    <span style="font-weight: bold; text-decoration: underline">Time remaining:</span>
-    <span style="font-size: 1.5rem"> 02:15s</span>
-</h4>
 
-<div class="form-group row">
-    <div class="col-md-12">
-        <nav>
-            <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                <a class="nav-item nav-link disabled" id="nav-home-tab" data-toggle="tab" href="#general-knowledge" role="tab">General Knowledge</a>
-                <a class="nav-item nav-link disabled" id="nav-profile-tab" data-toggle="tab" href="#mathematics" role="tab">Mathematics</a>
-                <a class="nav-item nav-link active" style="color: blue" id="nav-contact-tab" data-toggle="tab" href="#computer-technology" role="tab">Computer Technology</a>
-            </div>
-        </nav>
-        <div class="tab-content perform-test" id="nav-tabContent">
-            <div class="tab-pane fade show active" id="general-knowledge" role="tabpanel" style="margin-top: 20px;">
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
 
 
-                <div class="form-group">
+    <h4 class="text-right">
+        <span style="font-weight: bold; text-decoration: underline">Time remaining:</span>
+        <span style="font-size: 1.5rem">
+            <span id="demo"></span>
+        </span>
+    </h4>
 
-                    <h4>
-                        <span style="font-weight: bold; text-decoration: underline">Question 1:</span>
-                        What is HTML?
-                    </h4>
+    <div class="form-group row">
+        <div class="col-md-12">
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <a class="nav-item nav-link active" id="nav-1" data-toggle="tab" href="#general-knowledge" role="tab">General Knowledge</a>
+                    <a class="nav-item nav-link disabled" id="nav-2" data-toggle="tab" href="#mathematics" role="tab">Mathematics</a>
+                    <a class="nav-item nav-link disabled" id="nav-3" data-toggle="tab" href="#computer-technology" role="tab">Computer Technology</a>
+                </div>
+            </nav>
+            <div id="main-tab">
+                <div class="tab-content perform-test" id="tabContent-1">
+                    <div class="tab-pane fade show active" id="general-knowledge" role="tabpanel" style="margin-top: 20px;">
+                        @{int t1 = 1; }
+                        @foreach (var itemDetail in DetailQuestions)
+                        {
+                            <div class="form-group">
+                                @foreach (var item in MyQuestions)
+                                {
+                                    if (item.TypeOfQuestion == 1)
+                                    {
+                                        if (itemDetail.QuestionsID == item.QuestionsID)
+                                        {
+                                            string name = "T" + 1 + "Q" + t1;
+                                            <h4>
+                                                <span style="font-weight: bold; text-decoration: underline">Question 1:</span>
+                                                @item.QuestionsName
+                                            </h4>
+                                            <div class="form-radio form-radio-flat">
+                                                <label class="form-check-label" for="@name-1">
+                                                    <input type="radio" class="form-check-input" name="@item.QuestionsID" id="@name-1" value="1">
+                                                    (A). @item.AnswerOne
+                                                </label>
+                                            </div>
 
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="" checked> (A). Hyper Text Markup Language
-                        </label>
-                    </div>
+                                            <div class="form-radio form-radio-flat">
+                                                <label class="form-check-label" for="@name-2">
+                                                    <input type="radio" class="form-check-input" name="@item.QuestionsID" id="@name-2" value="2">
+                                                    (B). @item.AnswerTwo
+                                                </label>
+                                            </div>
 
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2"> (B). Hight Text Markup Language
-                        </label>
-                    </div>
+                                            <div class="form-radio form-radio-flat">
+                                                <label class="form-check-label" for="@name-3">
+                                                    <input type="radio" class="form-check-input" name="@item.QuestionsID" id="@name-3" value="3">
+                                                    (C). @item.AnswerThree
+                                                </label>
+                                            </div>
 
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2"> (C). Hight Text Message Language
-                        </label>
-                    </div>
+                                            <div class="form-radio form-radio-flat">
+                                                <label class="form-check-label" for="@name-4">
+                                                    <input type="radio" class="form-check-input" name="@item.QuestionsID" id="@name-4" value="4">
+                                                    (D). @item.AnswerFour
+                                                </label>
+                                            </div>
+                                            t1++;
+                                        }
 
-
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2"> (C). Hyper Text Message Language
-                        </label>
+                                    }
+                                }
+                            </div>
+                        }
                     </div>
                 </div>
+                <div class="tab-content perform-test" id="tabContent-2">
+                    <div class="tab-pane fade show active" id="mathematics" role="tabpanel" style="margin-top: 20px;">
+                        @{int t2 = 1; }
+                        @foreach (var itemDetail in DetailQuestions)
+                        {
+                            <div class="form-group">
+                                @foreach (var item in MyQuestions)
+                                {
+                                    if (item.TypeOfQuestion == 2)
+                                    {
+                                        if (itemDetail.QuestionsID == item.QuestionsID)
+                                        {
+                                            string name = "T" + 2 + "Q" + t2;
+                                            <h4>
+                                                <span style="font-weight: bold; text-decoration: underline">Question 1:</span>
+                                                @item.QuestionsName
+                                            </h4>
+                                            <div class="form-radio form-radio-flat">
+                                                <label class="form-check-label" for="@name-1">
+                                                    <input type="radio" class="form-check-input" name="@item.QuestionsID" id="@name-1" value="1">
+                                                    (A). @item.AnswerOne
+                                                </label>
+                                            </div>
 
-                <div class="form-group">
+                                            <div class="form-radio form-radio-flat">
+                                                <label class="form-check-label" for="@name-2">
+                                                    <input type="radio" class="form-check-input" name="@item.QuestionsID" id="@name-2" value="2">
+                                                    (B). @item.AnswerTwo
+                                                </label>
+                                            </div>
 
-                    <h4>
-                        <span style="font-weight: bold; text-decoration: underline">Question 1:</span>
-                        What is HTML?
-                    </h4>
+                                            <div class="form-radio form-radio-flat">
+                                                <label class="form-check-label" for="@name-3">
+                                                    <input type="radio" class="form-check-input" name="@item.QuestionsID" id="@name-3" value="3">
+                                                    (C). @item.AnswerThree
+                                                </label>
+                                            </div>
 
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="" checked> (A). Hyper Text Markup Language
-                        </label>
-                    </div>
+                                            <div class="form-radio form-radio-flat">
+                                                <label class="form-check-label" for="@name-4">
+                                                    <input type="radio" class="form-check-input" name="@item.QuestionsID" id="@name-4" value="4">
+                                                    (D). @item.AnswerFour
+                                                </label>
+                                            </div>
+                                            t2++;
+                                        }
 
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2"> (B). Hight Text Markup Language
-                        </label>
-                    </div>
-
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2"> (C). Hight Text Message Language
-                        </label>
-                    </div>
-
-
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2"> (C). Hyper Text Message Language
-                        </label>
-                    </div>
-                </div>
-
-                <div class="form-group">
-
-                    <h4>
-                        <span style="font-weight: bold; text-decoration: underline">Question 1:</span>
-                        What is HTML?
-                    </h4>
-
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="" checked> (A). Hyper Text Markup Language
-                        </label>
-                    </div>
-
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2"> (B). Hight Text Markup Language
-                        </label>
-                    </div>
-
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2"> (C). Hight Text Message Language
-                        </label>
-                    </div>
-
-
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2"> (C). Hyper Text Message Language
-                        </label>
+                                    }
+                                }
+                            </div>
+                        }
                     </div>
                 </div>
+                <div class="tab-content perform-test" id="tabContent-3">
+                    <div class="tab-pane fade show active" id="computer-technology" role="tabpanel" style="margin-top: 20px;">
+                        @{int t3 = 1; }
+                        @foreach (var itemDetail in DetailQuestions)
+                        {
+                            <div class="form-group">
+                                @foreach (var item in MyQuestions)
+                                {
+                                    if (item.TypeOfQuestion == 3)
+                                    {
+                                        if (itemDetail.QuestionsID == item.QuestionsID)
+                                        {
+                                            string name = "T" + 3 + "Q" + t3;
+                                            <h4>
+                                                <span style="font-weight: bold; text-decoration: underline">Question 1:</span>
+                                                @item.QuestionsName
+                                            </h4>
+                                            <div class="form-radio form-radio-flat">
+                                                <label class="form-check-label" for="@name-1">
+                                                    <input type="radio" class="form-check-input" name="@item.QuestionsID" id="@name-1" value="1">
+                                                    (A). @item.AnswerOne
+                                                </label>
+                                            </div>
 
-                <div class="form-group">
+                                            <div class="form-radio form-radio-flat">
+                                                <label class="form-check-label" for="@name-2">
+                                                    <input type="radio" class="form-check-input" name="@item.QuestionsID" id="@name-2" value="2">
+                                                    (B). @item.AnswerTwo
+                                                </label>
+                                            </div>
 
-                    <h4>
-                        <span style="font-weight: bold; text-decoration: underline">Question 4:</span>
-                        What is HTML? (2 mark)
-                    </h4>
+                                            <div class="form-radio form-radio-flat">
+                                                <label class="form-check-label" for="@name-3">
+                                                    <input type="radio" class="form-check-input" name="@item.QuestionsID" id="@name-3" value="3">
+                                                    (C). @item.AnswerThree
+                                                </label>
+                                            </div>
 
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="" checked> (A). Hyper Text Markup Language
-                        </label>
-                    </div>
+                                            <div class="form-radio form-radio-flat">
+                                                <label class="form-check-label" for="@name-4">
+                                                    <input type="radio" class="form-check-input" name="@item.QuestionsID" id="@name-4" value="4">
+                                                    (D). @item.AnswerFour
+                                                </label>
+                                            </div>
+                                            t3++;
+                                        }
 
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2"> (B). Hight Text Markup Language
-                        </label>
-                    </div>
-
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2"> (C). Hight Text Message Language
-                        </label>
-                    </div>
-
-
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2"> (D). Hyper Text Message Language
-                        </label>
-                    </div>
-                </div>
-
-                <div class="form-group">
-
-                    <h4>
-                        <span style="font-weight: bold; text-decoration: underline">Question 5:</span>
-                        What is CSS? (3 mark)
-                    </h4>
-
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="Q5" id="optionsRadios1" value=""> (A). Customs Style Sheets
-                        </label>
-                    </div>
-
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="Q5" id="optionsRadios2" value="option2" checked> (B). Cascading Super Sheets
-                        </label>
-                    </div>
-
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="Q5" id="optionsRadios2" value="option2"> (C). Cascading Style Sheets
-                        </label>
-                    </div>
-
-
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="Q5" id="optionsRadios2" value="option2"> (D). Customs Super Sheets
-                        </label>
+                                    }
+                                }
+                            </div>
+                        }
                     </div>
                 </div>
-
-            </div>
-
-            <div class="tab-pane fade" id="mathematics" role="tabpanel" aria-labelledby="nav-profile-tab">
-
-                <div class="form-group">
-
-                    <h4>
-                        <span style="font-weight: bold; text-decoration: underline">Question 1:</span>
-                        What is HTML?
-                    </h4>
-
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="" checked> (A). Hyper Text Markup Language
-                        </label>
-                    </div>
-
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2"> (B). Hight Text Markup Language
-                        </label>
-                    </div>
-
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2"> (C). Hight Text Message Language
-                        </label>
-                    </div>
-
-
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2"> (C). Hyper Text Message Language
-                        </label>
-                    </div>
-                </div>
-
-                <div class="form-group">
-
-                    <h4>
-                        <span style="font-weight: bold; text-decoration: underline">Question 1:</span>
-                        What is HTML?
-                    </h4>
-
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="" checked> (A). Hyper Text Markup Language
-                        </label>
-                    </div>
-
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2"> (B). Hight Text Markup Language
-                        </label>
-                    </div>
-
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2"> (C). Hight Text Message Language
-                        </label>
-                    </div>
-
-
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2"> (C). Hyper Text Message Language
-                        </label>
-                    </div>
-                </div>
-
-                <div class="form-group">
-
-                    <h4>
-                        <span style="font-weight: bold; text-decoration: underline">Question 1:</span>
-                        What is HTML?
-                    </h4>
-
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="" checked> (A). Hyper Text Markup Language
-                        </label>
-                    </div>
-
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2"> (B). Hight Text Markup Language
-                        </label>
-                    </div>
-
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2"> (C). Hight Text Message Language
-                        </label>
-                    </div>
-
-
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2"> (C). Hyper Text Message Language
-                        </label>
-                    </div>
-                </div>
-
-                <div class="form-group">
-
-                    <h4>
-                        <span style="font-weight: bold; text-decoration: underline">Question 4:</span>
-                        What is HTML? (2 mark)
-                    </h4>
-
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="" checked> (A). Hyper Text Markup Language
-                        </label>
-                    </div>
-
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2"> (B). Hight Text Markup Language
-                        </label>
-                    </div>
-
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2"> (C). Hight Text Message Language
-                        </label>
-                    </div>
-
-
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2"> (C). Hyper Text Message Language
-                        </label>
-                    </div>
-                </div>
-
-                <div class="form-group">
-
-                    <h4>
-                        <span style="font-weight: bold; text-decoration: underline">Question 5:</span>
-                        What is CSS? (3 mark)
-                    </h4>
-
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="Q5" id="optionsRadios1" value=""> (A). Customs Style Sheets
-                        </label>
-                    </div>
-
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="Q5" id="optionsRadios2" value="option2" checked> (B). Cascading Super Sheets
-                        </label>
-                    </div>
-
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="Q5" id="optionsRadios2" value="option2"> (C). Cascading Style Sheets
-                        </label>
-                    </div>
-
-
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="Q5" id="optionsRadios2" value="option2"> (C). Customs Super Sheets
-                        </label>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="tab-pane fade" id="computer-technology" role="tabpanel" aria-labelledby="nav-contact-tab">
-
-                <div class="form-group">
-
-                    <h4>
-                        <span style="font-weight: bold; text-decoration: underline">Question 1:</span>
-                        What is HTML?
-                    </h4>
-
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="" checked> (A). Hyper Text Markup Language
-                        </label>
-                    </div>
-
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2"> (B). Hight Text Markup Language
-                        </label>
-                    </div>
-
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2"> (C). Hight Text Message Language
-                        </label>
-                    </div>
-
-
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2"> (C). Hyper Text Message Language
-                        </label>
-                    </div>
-                </div>
-
-                <div class="form-group">
-
-                    <h4>
-                        <span style="font-weight: bold; text-decoration: underline">Question 1:</span>
-                        What is HTML?
-                    </h4>
-
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="" checked> (A). Hyper Text Markup Language
-                        </label>
-                    </div>
-
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2"> (B). Hight Text Markup Language
-                        </label>
-                    </div>
-
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2"> (C). Hight Text Message Language
-                        </label>
-                    </div>
-
-
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2"> (C). Hyper Text Message Language
-                        </label>
-                    </div>
-                </div>
-
-                <div class="form-group">
-
-                    <h4>
-                        <span style="font-weight: bold; text-decoration: underline">Question 1:</span>
-                        What is HTML?
-                    </h4>
-
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="" checked> (A). Hyper Text Markup Language
-                        </label>
-                    </div>
-
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2"> (B). Hight Text Markup Language
-                        </label>
-                    </div>
-
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2"> (C). Hight Text Message Language
-                        </label>
-                    </div>
-
-
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2"> (C). Hyper Text Message Language
-                        </label>
-                    </div>
-                </div>
-
-                <div class="form-group">
-
-                    <h4>
-                        <span style="font-weight: bold; text-decoration: underline">Question 4:</span>
-                        What is HTML? (2 mark)
-                    </h4>
-
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="" checked> (A). Hyper Text Markup Language
-                        </label>
-                    </div>
-
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2"> (B). Hight Text Markup Language
-                        </label>
-                    </div>
-
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2"> (C). Hight Text Message Language
-                        </label>
-                    </div>
-
-
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2"> (D). Hyper Text Message Language
-                        </label>
-                    </div>
-                </div>
-
-                <div class="form-group">
-
-                    <h4>
-                        <span style="font-weight: bold; text-decoration: underline">Question 5:</span>
-                        What is CSS? (3 mark)
-                    </h4>
-
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="Q5" id="optionsRadios1" value=""> (A). Customs Style Sheets
-                        </label>
-                    </div>
-
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="Q5" id="optionsRadios2" value="option2" checked> (B). Cascading Super Sheets
-                        </label>
-                    </div>
-
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="Q5" id="optionsRadios2" value="option2"> (C). Cascading Style Sheets
-                        </label>
-                    </div>
-
-                    <div class="form-radio form-radio-flat">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="Q5" id="optionsRadios2" value="option2"> (D). Customs Super Sheets
-                        </label>
-                    </div>
-                </div>
-
             </div>
         </div>
     </div>
-</div>
 
-<input type="submit" value="Complete" class="btn btn-success mr-2 float-right" />
+    @*@Html.ActionLink("Next", "Index", new { id = ViewBag.Test + 1}, htmlAttributes: new { @class = "btn btn-success mr-2 float-right" })*@
+    @*<input type="button" id="step-1" value="Next" class="btn btn-success mr-2 float-right disabled" />*@
+    <button type="button" id="step-1" class="btn btn-success mr-2 float-right disabled" disabled>Next</button>
+    <button type="button" id="step-2" class="btn btn-success mr-2 float-right disabled" disabled hidden>Next</button>
+    <button type="button" id="step-3" class="btn btn-success mr-2 float-right disabled" disabled hidden>Completed</button>
+    <input type="submit" value="Index" id="completed" hidden/>
+}
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script>
+    var arrDetailQuestions = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewData["DetailQuestions"]));
+    var arrMyQuestions = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewData["MyQuestions"]));
+    //
+    let arrGeneral = [];
+    let arrMathematics = [];
+    let arrComputer = [];
+    var countDownDate = presentTime();
+    var distance;
+    var time;
+    //
+    var tab1;
+    var tab2 = $("#tabContent-2");
+    var tab3 = $("#tabContent-3");
+    $("#tabContent-2").remove();
+    $("#tabContent-3").remove();
+    checkInput("#step-1", arrGeneral, 1);
+    setTimeRemaining(function () {
+        getStepTwo();
+    });
+    //
+    function presentTime() {
+        var newDate = new Date();
+        var newDateObj = new Date(newDate.getTime() + 1 * 60000);
+        return newDateObj.getTime();
+    }
+
+    function checkInput(step, arr, typeQuestion) {
+        arrMyQuestions.map(item => {
+            if (item.TypeOfQuestion == typeQuestion) {
+                let name = `input:radio[name="${item.QuestionsID}"]`;
+                console.log(name);
+                $(name).change(
+                function () {
+                    if ($(this).is(':checked')) {
+                        let idx = arr.indexOf(item.QuestionsID);
+                        if (idx == -1) arr.push(item.QuestionsID);
+                        if (arr.length == 5) {
+                            $(step).removeClass('disabled').removeAttr('disabled');
+                        }
+                    }
+                });
+            }
+        })
+    }
+
+    function setTimeRemaining(callback) {
+        var x = setInterval(function () {
+            var now = new Date().getTime();
+            distance = countDownDate - now;
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            time = minutes + "m " + seconds + "s ";
+            document.getElementById("demo").innerHTML = time;
+            if (distance < 0) {
+                alert("Click ok to next test");
+                clearInterval(x);
+                document.getElementById("demo").innerHTML = "Start test";
+                callback();
+            }
+        }, 1000);
+    }
+    //
+    function getStepTwo() {
+        $("#tabContent-1").hide();
+        tab1 = $("#tabContent-1");
+        $("#main-tab").append(tab2);
+        $("#tabContent-1").remove();
+        $("#nav-1").removeClass("active").addClass("disabled");
+        $("#nav-2").addClass("active").removeClass("disabled");
+        $("#step-2").removeAttr("hidden");
+        $(".form-check-label").append('<i class="input-helper"><i/>');
+        $("#step-1").remove();
+        setTimeout(function () {
+            checkInput("#step-2", arrMathematics, 2);
+            setTimeRemaining(function () {
+                getStepThree();
+            });
+        }, 1000);
+        countDownDate = presentTime();
+    }
+
+    function getStepThree() {
+        $("#tabContent-2").hide();
+        tab2 = $("#tabContent-2");
+        $("#main-tab").append(tab3);
+        $("#tabContent-2").remove();
+        $("#nav-2").removeClass("active").addClass("disabled");
+        $("#nav-3").addClass("active").removeClass("disabled");
+        $("#step-3").removeAttr("hidden");
+        $(".form-check-label").append('<i class="input-helper"><i/>');
+        $("#step-2").remove();
+        setTimeout(function () {
+            checkInput("#step-3", arrComputer, 3);
+            setTimeRemaining(function () {
+                completeTest()
+            });
+        }, 1000);
+        countDownDate = presentTime();
+    }
+
+    function completeTest() {
+        $('#step-3').removeAttr('disabled');
+        $('#step-3').click();
+    }
+
+    $("#step-1").click(function () {
+        getStepTwo();
+    })
+
+    $("#step-2").click(function () {
+        getStepThree();
+    })
+
+    $("#step-3").click(function () {
+        $("#main-tab").append(tab1);
+        $("#main-tab").append(tab2);
+        $("#completed").click();
+    })
+
+</script>

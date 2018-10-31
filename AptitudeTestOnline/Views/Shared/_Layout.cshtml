@@ -35,9 +35,11 @@
                     <li class="nav-item" style="min-width: 130px">
                         @Html.ActionLink("Apply cv", "Create", "Accounts")
                     </li>
-                    <li class="nav-item" style="min-width: 130px">
-                        @Html.ActionLink("Perform Test", "Begin", "PerformTest")
-                    </li>
+                    @if (Request.IsAuthenticated) {
+                        <li class="nav-item" style="min-width: 130px">
+                            @Html.ActionLink("Perform Test", "Begin", "PerformTest")
+                        </li>
+                    }
                     <li class="nav-item" style="min-width: 130px">
                         @Html.ActionLink("Contact", "Contact", "Home")
                     </li>
@@ -91,13 +93,7 @@
             </nav>
 
             <div class="main-panel">
-                <div class="content-wrapper">
-                    <div class="card">
-                        <div class="card-body" style="min-height: 580px">
                             @RenderBody()
-                        </div>
-                    </div>
-                </div>
                 
 
                 <footer class="footer">
