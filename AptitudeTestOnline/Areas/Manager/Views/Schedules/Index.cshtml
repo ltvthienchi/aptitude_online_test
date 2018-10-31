@@ -2,6 +2,8 @@
 
 @{
     ViewBag.Title = "Index";
+    IEnumerable<AptitudeTestOnline.Models.ExamModels> Exam =
+        ViewData["Exam"] as IEnumerable<AptitudeTestOnline.Models.ExamModels>;
 }
 
 <div class="row mb-3">
@@ -21,7 +23,7 @@
                 #
             </th>
             <th class="w-6">
-                Exam ID
+                Exam Name
             </th>
             <th class="w-2">
                 Date of Time
@@ -39,7 +41,13 @@
                     @Html.DisplayFor(modelItem => item.ScheduleID)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ExamID)
+                    @foreach (var itemm in Exam)
+                    {
+                        if (itemm.ExamID == item.ExamID)
+                        {
+                            @Html.DisplayFor(modelItem => itemm.ExamName)
+                        }
+                    }
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.DateOfTime)

@@ -18,12 +18,19 @@
         @Html.HiddenFor(model => model.ScheduleID)
 
         <div class="form-group row">
-           <label for="ExamID" class="control-label col-md-2">Exam ID</label>
+           <label for="ExamID" class="control-label col-md-2">Exam Name</label>
             <div class="col-sm-9">
                 <select class="form-control" id="ExamID" name="ExamID">
                     @foreach (var item in Exam)
                     {
-                        <option value="@item.ExamID">@item.ExamID</option>
+                        if (item.ExamID == Model.ExamID)
+                        {
+                            <option value="@item.ExamID" selected>@item.ExamName</option>
+                        }
+                        else
+                        {
+                            <option value="@item.ExamID">@item.ExamName</option>
+                        }
                     }
                 </select>
             </div>
