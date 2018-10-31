@@ -285,20 +285,57 @@
             </div>
         </div>
 
-        @if(ViewBag.CheckValid != null)
-        {
-        <p style="color: red">@ViewBag.CheckValid <b>@ViewBag.QuestionsError</b> of question type <b>@ViewBag.NameTypeOfQuestions</b> duplicate, please replace!</p>
-        }
+        <p style="color: red" id="exam-alert"></p>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-success mr-2" />
+                <button type="button" id="btn-test" class="btn btn-success mr-2">Create</button>
+                <input type="submit" value="Create" id="btn-create-exam" class=" hidden" />
                 @Html.ActionLink("Back to List", "Index", "Exam", null, htmlAttributes: new { @class = "btn btn-light" })
             </div>
         </div>
-    </div>
+</div>
 }
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+   
 }
+<script src="https://code.jquery.com/jquery-3.3.1.js" ></script>
+
+<script>
+    $("#btn-test").click(function () {
+        var arr = [];
+        var check = true;
+        for (let i = 1; i <= 3; i++) {
+            for (let j = 1; j <= 5; j++) {
+                let name = "#T" + i + "Q" + j;
+                let value = $(name).val();
+                let idx = arr.indexOf(value);
+                if (idx == -1) arr.push(value);
+                else {
+                    check = false;
+                    
+                    var typeOfQuestions = "";
+                    switch (i) {
+                        case 1:
+                            typeOfQuestions = "General Knowledge";
+                            break;
+                        case 2:
+                            typeOfQuestions = "Mathematics";
+                            break;
+                        case 3:
+                            typeOfQuestions = "Computer Technology";
+                            break;
+
+                    }
+                    var text = "Questions " + j + " of tab " + typeOfQuestions + " duplicate, please replace!"
+                    $("#exam-alert").text(text);
+                }
+            }
+        }
+        if (check) {
+            $("#btn-create-exam").click();
+        }
+    })
+</script>

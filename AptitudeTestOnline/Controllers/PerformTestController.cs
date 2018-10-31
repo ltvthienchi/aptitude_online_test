@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AptitudeTestOnline.Models;
+using Newtonsoft.Json;
 
 namespace AptitudeTestOnline.Controllers
 {
@@ -14,11 +15,57 @@ namespace AptitudeTestOnline.Controllers
     {
         private ATODatabaseContext db = new ATODatabaseContext();
 
+        public List<QuestionsModels> GetQuestions()
+        {
+            return db.QuestionsModels.ToList();
+        }
+       
+        public void GetData()
+        {
+            ViewData["Questions"] = GetQuestions();
+        }
         // GET: PerformTest
         public ActionResult Index()
         {
+            GetData();
+            List<int> MyList = new List<int>();
+            var ListDetailsQuestions = db.DetailsExamModels.Where(r => r.ExamID == 1).ToList();
+            ViewData["DetailQuestions"] = ListDetailsQuestions;
+            foreach (var item in ListDetailsQuestions)
+            {
+                MyList.Add(item.QuestionsID);
+            }
+            ViewBag.Test = ListDetailsQuestions;
+            ViewData["MyQuestions"] = db.QuestionsModels.Where(r => MyList.Contains(r.QuestionsID)).ToList();
             return View(db.ExamModels.ToList());
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Index(int? id)
+        {
+            List<int> MyList = new List<int>();
+            var ListDetailsQuestions = db.DetailsExamModels.Where(r => r.ExamID == 1).ToList();
+            ViewData["DetailQuestions"] = ListDetailsQuestions;
+            foreach (var item in ListDetailsQuestions) { MyList.Add(item.QuestionsID); }
+            var ListMyQuestions = db.QuestionsModels.Where(r => MyList.Contains(r.QuestionsID)).ToList();
+
+            int CandidateMark = 0, totalMark = 0;
+            foreach (var item in ListMyQuestions)
+            {
+                int name = item.QuestionsID;
+                var temp = int.Parse(Request.Form[name]);
+                if (temp == item.CorrectAnswer) CandidateMark += item.Mark;
+                totalMark += item.Mark;
+            }
+            int test = CandidateMark;
+
+            //string name = "T" + 1 + "Q" + 1;
+            //string value = Request.Form[name];
+            //string valueTwo = Request.Form["T1Q2"];
+            return Redirect("Begin");
+        }
+
 
         public ActionResult Begin()
         {
