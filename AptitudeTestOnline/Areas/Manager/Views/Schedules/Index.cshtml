@@ -33,7 +33,6 @@
             </th>
         </tr>
 
-        @{int i = 1;}
         @foreach (var item in Model)
         {
             <tr>
@@ -56,7 +55,6 @@
                     @Html.ActionLink("Edit", "Edit", new { id=item.ScheduleID }, htmlAttributes: new { @class = "fas fa-edit btn-admin" })
                 </td>
             </tr>
-            i++;
         }
 
     </table>
