@@ -20,6 +20,7 @@ namespace AptitudeTestOnline.Controllers
         private ApplicationDbContext dbApp = new ApplicationDbContext();
         public List<QuestionsModels> GetQuestions()
         {
+            //
             return db.QuestionsModels.ToList();
         }
        
