@@ -59,9 +59,9 @@
             @Html.DisplayFor(modelItem => item.Dateofbirth)
         </td>
         <td>
-            @Html.ActionLink(" ", "Edit", new { id=item.AccountID }, htmlAttributes: new { @class = "fas fa-edit btn-admin" }) |
-            @Html.ActionLink(" ", "Details", new { id=item.AccountID }, htmlAttributes: new { @class = "fas fa-plus btn-admin btn-ad-cr" }) |
-            
+            @Html.ActionLink(" ", "Edit", new { id = item.AccountID }, htmlAttributes: new { @class = "fas fa-edit btn-admin" }) |
+            @Html.ActionLink(" ", "Details", new { id = item.AccountID }, htmlAttributes: new { @class = "fas fa-plus btn-admin btn-ad-cr" }) |
+            @Html.ActionLink(" ", "Schedule", new { id = item.AccountID }, htmlAttributes: new { @class = "fas fa-plus btn-admin" }) |
         </td>
     </tr>
 }

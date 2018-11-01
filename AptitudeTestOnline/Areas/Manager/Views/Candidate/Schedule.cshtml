@@ -1,0 +1,49 @@
+﻿@model AptitudeTestOnline.Models.DetailsRegistrations
+
+@{
+    ViewBag.Title = "Schedule";
+    IEnumerable<AptitudeTestOnline.Models.Accounts> Accounts =
+        ViewData["Accounts"] as IEnumerable<AptitudeTestOnline.Models.Accounts>;
+
+    IEnumerable<AptitudeTestOnline.Models.SchedulesModels> Schedules =
+        ViewData["Schedules"] as IEnumerable<AptitudeTestOnline.Models.SchedulesModels>;
+}
+
+<h2>Schedule</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>DetailsRegistrations</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @foreach (var item in Accounts)
+        {
+            <input id="AccountID" name="AccountID" type="number" value="@item.AccountID" hidden>
+        }
+
+        <div class="form-group row">
+            <label for="TypeOfQuestion" class="control-label col-md-2">Type Of Question</label>
+            <div class="col-sm-9">
+                <select class="form-control" id="ScheduleID" name="ScheduleID">
+                    @foreach (var item in Schedules)
+                    {
+                        <option value="@item.ScheduleID">@item.DateOfTime</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
