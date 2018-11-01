@@ -123,5 +123,27 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult Schedule(int id)
+        {
+            ViewData["Accounts"] = db.AccountModels.Where(item => item.AccountID == id);
+            ViewData["Schedules"] = db.Schedules.ToList();
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Schedule([Bind(Include = "")] DetailsRegistrations detailsRegistrations)
+        {
+            if (ModelState.IsValid)
+            {
+                detailsRegistrations.Mark = -1;
+                db.DetailsRegistrations.Add(detailsRegistrations);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(detailsRegistrations);
+        }
     }
 }
