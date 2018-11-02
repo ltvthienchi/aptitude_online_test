@@ -21,7 +21,7 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
         {
             GetData();
             var schedules = from q in db.Schedules select q;
-            int pageSize = 10;
+            int pageSize = 5;
             int pageNumber = (page ?? 1);
             schedules = schedules.OrderByDescending(q => q.ScheduleID);
             return View(schedules.ToPagedList(pageNumber, pageSize));
