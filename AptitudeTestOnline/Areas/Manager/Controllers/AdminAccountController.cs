@@ -9,12 +9,17 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using AptitudeTestOnline.Models;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Net;
 
 namespace AptitudeTestOnline.Areas.Manager.Controllers
 {
     [Authorize]
     public class AdminAccountController : Controller
     {
+        private ATODatabaseContext db = new ATODatabaseContext();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -137,8 +142,18 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
         //
         // GET: /Account/Register
         [AllowAnonymous]
-        public ActionResult Register()
+        public ActionResult Register(int? id)
         {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Accounts accounts = db.AccountModels.Find(id);
+            if (accounts == null)
+            {
+                return HttpNotFound();
+            }
+            ViewData["AccountInfor"] = accounts;
             return View();
         }
 
@@ -151,11 +166,12 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    //await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link

@@ -181,5 +181,10 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script>
+        var height = $('.content-wrapper').height();
+        console.log(height);
+        $(".card-body").height(height);
+    </script>
 </body>
 </html>

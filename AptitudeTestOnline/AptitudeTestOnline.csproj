@@ -53,6 +53,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -224,11 +230,13 @@
     <Compile Include="Models\Accounts.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ATODatabaseContext.cs" />
+    <Compile Include="Models\CandidateAnswer.cs" />
     <Compile Include="Models\DetailsExamModels.cs" />
     <Compile Include="Models\DetailsRegistrations.cs" />
     <Compile Include="Models\ExamModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\PerformTest.cs" />
     <Compile Include="Models\QuestionsModels.cs" />
     <Compile Include="Models\SchedulesModels.cs" />
     <Compile Include="Models\TypeOfQuestionModel.cs" />
@@ -2046,6 +2054,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -2253,8 +2262,6 @@
     <Content Include="Areas\Manager\Views\TypeOfQuestions\Edit.cshtml" />
     <Content Include="Areas\Manager\Views\TypeOfQuestions\Index.cshtml" />
     <Content Include="Areas\Manager\Views\Questions\Create.cshtml" />
-    <Content Include="Areas\Manager\Views\Questions\Delete.cshtml" />
-    <Content Include="Areas\Manager\Views\Questions\Details.cshtml" />
     <Content Include="Areas\Manager\Views\Questions\Edit.cshtml" />
     <Content Include="Areas\Manager\Views\Questions\Index.cshtml" />
     <Content Include="Areas\Manager\Views\Exam\Create.cshtml" />
@@ -2273,6 +2280,8 @@
     <Content Include="Areas\Manager\Views\Schedules\Details.cshtml" />
     <Content Include="Areas\Manager\Views\Schedules\Edit.cshtml" />
     <Content Include="Areas\Manager\Views\Schedules\Index.cshtml" />
+    <Content Include="Areas\Manager\Views\Candidate\Schedule.cshtml" />
+    <Content Include="Areas\Manager\Views\Questions\_Pagination.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -2318,10 +2327,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\PerformTest\Create.cshtml" />
-    <Content Include="Views\PerformTest\Delete.cshtml" />
-    <Content Include="Views\PerformTest\Details.cshtml" />
-    <Content Include="Views\PerformTest\Edit.cshtml" />
     <Content Include="Views\PerformTest\Index.cshtml" />
     <Content Include="Views\PerformTest\Begin.cshtml" />
     <Content Include="Views\Accounts\Create.cshtml" />
@@ -2332,6 +2337,7 @@
     <Content Include="Views\PerformTest\Next.cshtml" />
     <Content Include="Views\Schedule\Index.cshtml" />
     <Content Include="Views\Result\Index.cshtml" />
+    <Content Include="Views\PerformTest\Result.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

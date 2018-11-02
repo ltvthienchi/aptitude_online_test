@@ -7,6 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AptitudeTestOnline.Models
 {
+    [Table("Questions")]
     public class QuestionsModels
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
