@@ -17,7 +17,7 @@ namespace AptitudeTestOnline.Areas.Manager
             context.MapRoute(
                 "Manager_default",
                 "Manager/{controller}/{action}/{id}",
-                new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                new { controller = "Candidate", action = "Index", id = UrlParameter.Optional },
                 new[] { "AptitudeTestOnline.Areas.Manager.Controllers" } 
             );
         }
