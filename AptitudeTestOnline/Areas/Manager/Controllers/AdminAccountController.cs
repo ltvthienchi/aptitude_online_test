@@ -164,6 +164,9 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
+            
+            //Accounts accounts = db.AccountModels.Find(id);
+            //ViewData["AccountInfor"] = accounts;
             if (ModelState.IsValid)
             {
 

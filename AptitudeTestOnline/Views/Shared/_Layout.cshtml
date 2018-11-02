@@ -32,12 +32,17 @@
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-center">
                 <ul class="navbar-nav navbar-nav-left header-links d-none d-md-flex">
-                    <li class="nav-item" style="min-width: 130px">
-                        @Html.ActionLink("Apply cv", "Create", "Accounts")
-                    </li>
-                    @if (Request.IsAuthenticated) {
+
+                    @if (Request.IsAuthenticated)
+                    {
                         <li class="nav-item" style="min-width: 130px">
                             @Html.ActionLink("Perform Test", "Index", "PerformTest")
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item" style="min-width: 130px">
+                            @Html.ActionLink("Apply cv", "Create", "Accounts")
                         </li>
                     }
                     <li class="nav-item" style="min-width: 130px">

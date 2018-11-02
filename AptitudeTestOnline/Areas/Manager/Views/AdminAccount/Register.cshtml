@@ -1,18 +1,45 @@
 ﻿@model AptitudeTestOnline.Models.RegisterViewModel
-    @using AptitudeTestOnline.Models
+@using AptitudeTestOnline.Models
 @{
     ViewBag.Title = "Register";
-   RegisterViewModel accountInfor =
-       ViewData["AccountInfor"] as RegisterViewModel;
+    Accounts accountInfor =
+        ViewData["AccountInfor"] as Accounts;
 }
 
-<h2>@ViewBag.Title.</h2>
+<h2>Create Account for Candidate</h2>
+<hr />
+<dl class="dl-horizontal">
+    <dt>
+        Full Name
+    </dt>
+    <dd>
+        @accountInfor.Name
+    </dd>
+    <dt>
+        Education
+    </dt>
+    <dd>
+        @accountInfor.Education
+    </dd>
+    <dt>
+
+    </dt>
+    <dd>
+        @accountInfor.Experience
+    </dd>
+    <dt>
+
+    </dt>
+    <dd>
+        @accountInfor.Dateofbirth
+    </dd>
+
+</dl>
 
 @using (Html.BeginForm("Register", "AdminAccount", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
-    <hr />
+
     @Html.ValidationSummary("", new { @class = "text-danger" })
     <div class="form-group">
         @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })

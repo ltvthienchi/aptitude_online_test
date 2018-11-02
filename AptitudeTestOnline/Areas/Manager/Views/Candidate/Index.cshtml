@@ -1,8 +1,31 @@
-﻿@model IEnumerable<AptitudeTestOnline.Models.Accounts>
+﻿@model PagedList.IPagedList<AptitudeTestOnline.Models.Accounts>
+
+@using PagedList.Mvc
 
 @{
     ViewBag.Title = "Index";
 }
+<style>
+    .form-find input {
+        border: 1px solid silver;
+        border-radius: 3px;
+        min-height: 20px;
+        max-height: 34px;
+        padding: 5px;
+    }
+</style>
+<div class="row mb-3">
+
+    <div class="col-12">
+        @using (Html.BeginForm("Index", "Candidate", FormMethod.Get))
+        {
+            <div class="form-find">
+                @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, htmlAttributes: new { @class = "find-admin", placeholder = "Enter name" })
+                <button type="submit" class="btn btn-default btn-outline-primary">Search</button>
+            </div>
+        }
+    </div>
+</div>
 
 <h2>Candidate List</h2>
 
@@ -10,63 +33,84 @@
 <table class="table table table-bordered table-hover">
     <tr class="bg-default">
         <th class="w-2">
-            @Html.DisplayNameFor(model => model.Name)
+            Full Name
         </th>
         <th class="w-2">
-            @Html.DisplayNameFor(model => model.Education)
+            Education
         </th>
         <th class="w-1">
-            @Html.DisplayNameFor(model => model.Experience)
+            Experience
         </th>
         <th class="w-1">
-            @Html.DisplayNameFor(model => model.Interest)
+            Interest
         </th>
         <th class="w-1">
-            @Html.DisplayNameFor(model => model.Email)
+            Email
         </th>
         <th class="w-1">
             Have Account
         </th>
         <th class="w-1">
-            @Html.DisplayNameFor(model => model.Dateofbirth)
+            Dateofbirth
         </th>
         <th class="w-1">
             Tools
         </th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Education)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Experience)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Interest)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @if(item.UserID == null)
-            {<P class="text-center">Yes</P> }
-            @Html.DisplayFor(modelItem => item.UserID)
-             <p></p>
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Dateofbirth)
-        </td>
-        <td>
-            @Html.ActionLink(" ", "Edit", new { id = item.AccountID }, htmlAttributes: new { @class = "fas fa-edit btn-admin" }) |
-            @Html.ActionLink(" ", "Details", new { id = item.AccountID }, htmlAttributes: new { @class = "fas fa-plus btn-admin btn-ad-cr" }) |
-            @Html.ActionLink(" ", "Schedule", new { id = item.AccountID }, htmlAttributes: new { @class = "fas fa-plus btn-admin" }) |
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Education)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Experience)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Interest)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @if (item.UserID == null)
+                {<P class="text-center">Yes</P>}
+                @Html.DisplayFor(modelItem => item.UserID)
+                <p></p>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dateofbirth)
+            </td>
+            <td>
+                @if (item.UserID == null)
+                {
+                    @Html.ActionLink(" ", "Register","AdminAccount", new { id = item.AccountID }, htmlAttributes: new { @class = "fas fa-edit btn-admin" })
+                }
+                else
+                {
+                    @Html.ActionLink(" ", "Schedule", new { id = item.AccountID }, htmlAttributes: new { @class = "fas fa-plus btn-admin" })
+                }
+
+
+
+            </td>
+        </tr>
+    }
 
 </table>
+<div class="pagi-admin">
+    <p>
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+    </p>
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, currentFilter = ViewBag.CurrentFilter }))
+</div>
+
+@Scripts.Render("~/bundles/jquery")
+<script>
+    $('.pagi-admin .pagination').addClass('justify-content-center');
+</script>

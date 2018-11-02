@@ -33,7 +33,7 @@ namespace AptitudeTestOnline.Models
         [DataType(DataType.Date)]
         [Display(Name="Date Of Birth")]
         
-        [Range(typeof(DateTime), "1/2/1900","11/03/2018", ErrorMessage = "Value for {0} must be between {1} and {2}")]
+        
         public DateTime? Dateofbirth { get; set; }
     }
 }
