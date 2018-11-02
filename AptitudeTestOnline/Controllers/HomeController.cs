@@ -115,10 +115,10 @@ namespace AptitudeTestOnline.Controllers
                 ComputerTechnology.TypeOfQuestion = 3;
                 ComputerTechnology.NameTypeOfQuestion = "Computer Technology";
 
-                db.TypeOfQuestionModel.Add(GeneralKnowledge);
-                db.TypeOfQuestionModel.Add(Mathematics);
-                db.TypeOfQuestionModel.Add(ComputerTechnology);
-                db.SaveChanges();
+                dbATO.TypeOfQuestionModel.Add(GeneralKnowledge);
+                dbATO.TypeOfQuestionModel.Add(Mathematics);
+                dbATO.TypeOfQuestionModel.Add(ComputerTechnology);
+                dbATO.SaveChanges();
             }
 
             return View();
