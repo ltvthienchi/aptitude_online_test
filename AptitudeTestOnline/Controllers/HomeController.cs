@@ -22,6 +22,7 @@ namespace AptitudeTestOnline.Controllers
     public class HomeController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        private ATODatabaseContext dbATO = new ATODatabaseContext();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -99,6 +100,25 @@ namespace AptitudeTestOnline.Controllers
 
 
 
+            }
+            if (dbATO.TypeOfQuestionModel.ToList().Count == 0)
+            {
+                TypeOfQuestionModel GeneralKnowledge = new TypeOfQuestionModel() { };
+                GeneralKnowledge.TypeOfQuestion = 1;
+                GeneralKnowledge.NameTypeOfQuestion = "General Knowledge";
+
+                TypeOfQuestionModel Mathematics = new TypeOfQuestionModel() { };
+                Mathematics.TypeOfQuestion = 2;
+                Mathematics.NameTypeOfQuestion = "Mathematics";
+
+                TypeOfQuestionModel ComputerTechnology = new TypeOfQuestionModel() { };
+                ComputerTechnology.TypeOfQuestion = 3;
+                ComputerTechnology.NameTypeOfQuestion = "Computer Technology";
+
+                db.TypeOfQuestionModel.Add(GeneralKnowledge);
+                db.TypeOfQuestionModel.Add(Mathematics);
+                db.TypeOfQuestionModel.Add(ComputerTechnology);
+                db.SaveChanges();
             }
 
             return View();
