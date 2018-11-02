@@ -17,6 +17,7 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
         // GET: Manager/Schedules
         public ActionResult Index()
         {
+            GetData();
             return View(db.Schedules.ToList());
         }
 
@@ -47,7 +48,7 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Schedule,ExamID,DateOfTime")] SchedulesModels schedulesModels)
+        public ActionResult Create([Bind(Include = "ScheduleID,ExamID,DateOfTime")] SchedulesModels schedulesModels)
         {
             if (ModelState.IsValid)
             {
@@ -80,7 +81,7 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Schedule,ExamID,DateOfTime")] SchedulesModels schedulesModels)
+        public ActionResult Edit([Bind(Include = "ScheduleID,ExamID,DateOfTime")] SchedulesModels schedulesModels)
         {
             if (ModelState.IsValid)
             {
@@ -89,15 +90,6 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
                 return RedirectToAction("Index");
             }
             return View(schedulesModels);
-        }
-        public List<ExamModels> GetExam()
-        {
-            return db.ExamModels.ToList();
-        }
-
-        public void GetData()
-        {
-            ViewData["Exam"] = GetExam();
         }
 
         // GET: Manager/Schedules/Delete/5
@@ -114,7 +106,15 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
             }
             return View(schedulesModels);
         }
+        public List<ExamModels> GetExam()
+        {
+            return db.ExamModels.ToList();
+        }
 
+        public void GetData()
+        {
+            ViewData["Exam"] = GetExam();
+        }
         // POST: Manager/Schedules/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

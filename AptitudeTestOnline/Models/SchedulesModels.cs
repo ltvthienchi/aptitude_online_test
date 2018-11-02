@@ -16,9 +16,10 @@ namespace AptitudeTestOnline.Models
         public int ScheduleID { get; set; }
 
         [Required]
-        public string ExamID { get; set; }
+        public int ExamID { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true), Required]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true), Required]
+        [DataType(DataType.Date)]
         public DateTime DateOfTime { get; set; }
 
     }

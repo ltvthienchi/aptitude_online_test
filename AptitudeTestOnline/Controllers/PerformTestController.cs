@@ -73,7 +73,7 @@ namespace AptitudeTestOnline.Controllers
         public ActionResult Begin()
         {
             SchedulesModels userSchedules = getUserSchedules();
-            int ExamID = int.Parse(userSchedules.ExamID);
+            int ExamID = userSchedules.ExamID;
             GetData();
             List<int> MyList = new List<int>();
             var ListDetailsQuestions = db.DetailsExamModels.Where(r => r.ExamID == ExamID).ToList();
