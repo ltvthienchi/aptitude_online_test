@@ -68,7 +68,7 @@ namespace AptitudeTestOnline.Controllers
             else if (userDetailsReg.Mark != -1)
             {
                 ViewBag.CheckDate = false;
-                ViewBag.CheckText = "You have already test!, click bottom link to view the results!";
+                ViewBag.CheckText = "You have already test! click under link to view the results!";
                 ViewBag.CheckLink = "Go to result!";
                 return false;
             }

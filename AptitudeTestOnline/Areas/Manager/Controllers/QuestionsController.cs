@@ -54,7 +54,7 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
                 questions = db.QuestionsModels.Where(s => s.QuestionsName.Contains(searchString));
             }
 
-            questions = questions.OrderByDescending(q => q.TypeOfQuestion);
+            questions = questions.OrderByDescending(q => q.QuestionsID);
 
             int pageSize = 10;
             int pageNumber = (page ?? 1);

@@ -115,9 +115,18 @@ input, textarea {
     padding: 5px;
 }
 
+.font-alert {
+    font-size: 12px;
+}
+
+#sidebar-admin a{
+    color: black;
+}
+
 @media (min-width: 768px) {
     .form-horizontal .control-label {
         padding-top: 13px !important;
     }
 }
+
 
