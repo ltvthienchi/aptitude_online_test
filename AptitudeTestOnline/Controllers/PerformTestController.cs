@@ -38,6 +38,7 @@ namespace AptitudeTestOnline.Controllers
         private DetailsRegistrations getUserDetails()
         {
             int AccountID = getUserAccounts().AccountID;
+            
             var userDetails = db.DetailsRegistrations.Where(item => item.AccountID == AccountID).ToList();
             return userDetails[0];
         }
@@ -53,18 +54,26 @@ namespace AptitudeTestOnline.Controllers
         public ActionResult Index()
         {
             SchedulesModels userSchedules = getUserSchedules();
+            DetailsRegistrations userDetailsReg = getUserDetails();
             DateTime Now = DateTime.Now;
             DateTime ScheduleTime = userSchedules.DateOfTime;
             //var TempScheduleTime = ScheduleTime.ToString("DD/MM/YYYY");
             //DateTime MyScheduleTime = DateTime.ParseExact(TempScheduleTime, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-            if (Now.Date <= ScheduleTime.Date)
-            {
-                ViewBag.CheckDate = true;
-                ViewBag.CheckText = "You have start your test";
-            } else
+            if (Now.Date > ScheduleTime.Date)
             {
                 ViewBag.CheckDate = false;
                 ViewBag.CheckText = "You don't start your test";
+            }
+            else if (userDetailsReg.Mark != -1)
+            {
+                ViewBag.CheckDate = false;
+                ViewBag.CheckText = "You took the test, click HERE to view the results";
+                ViewBag.Result = "";
+            }
+            else
+            {
+                ViewBag.CheckDate = true;
+                ViewBag.CheckText = "You have start your test";
             }
             return View();
         }
@@ -84,6 +93,10 @@ namespace AptitudeTestOnline.Controllers
             }
             ViewBag.Test = ListDetailsQuestions;
             ViewData["MyQuestions"] = db.QuestionsModels.Where(r => MyList.Contains(r.QuestionsID)).ToList();
+            //DetailsRegistrations userDetail = getUserDetails();
+            //userDetail.Mark = 0;
+            //db.Entry(userDetail).State = EntityState.Modified;
+            //db.SaveChanges();
             return View(db.ExamModels.ToList());
         }
 
@@ -91,28 +104,47 @@ namespace AptitudeTestOnline.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Begin(int? id)
         {
+            int AcountID = getUserAccounts().AccountID;
+            int ExamID = getUserSchedules().ExamID;
             List<int> MyList = new List<int>();
             var ListDetailsQuestions = db.DetailsExamModels.Where(r => r.ExamID == 1).ToList();
             ViewData["DetailQuestions"] = ListDetailsQuestions;
             foreach (var item in ListDetailsQuestions) { MyList.Add(item.QuestionsID); }
             var ListMyQuestions = db.QuestionsModels.Where(r => MyList.Contains(r.QuestionsID)).ToList();
+            //update candidate mark's
 
             int CandidateMark = 0, totalMark = 0;
             foreach (var item in ListMyQuestions)
             {
-                int name = item.QuestionsID;
+                //logic mark
+                string name = "T" + item.TypeOfQuestion + item.QuestionsID;
                 var temp = int.Parse(Request.Form[name]);
                 if (temp == item.CorrectAnswer) CandidateMark += item.Mark;
                 totalMark += item.Mark;
+                //add candidate answer
+                int value = int.Parse(Request.Form[name]);
+                CandidateAnswer NewCanAnswer = new CandidateAnswer();
+                NewCanAnswer.QuestionID = item.QuestionsID;
+                NewCanAnswer.AccountID = AcountID;
+                NewCanAnswer.Answer = value;
+                db.CandidateAnswers.Add(NewCanAnswer);
             }
+            //add mark
             int userMark = (CandidateMark * 100) / totalMark;
             DetailsRegistrations userDetail = getUserDetails();
             userDetail.Mark = userMark;
             db.Entry(userDetail).State = EntityState.Modified;
+            //add record candidate test
+            PerformTest record = new PerformTest();
+            record.AccountID = AcountID;
+            record.AddedDate = DateTime.Now;
+            record.ExamID = ExamID;
+            record.TimePartOne = Request.Form["timeRemaingOne"];
+            record.TimePartTwo = Request.Form["timeRemaingTwo"];
+            record.TimePartThree = Request.Form["timeRemaingThree"];
+            db.PerformTests.Add(record);
+            //
             db.SaveChanges();
-            //string name = "T" + 1 + "Q" + 1;
-            //string value = Request.Form[name];
-            //string valueTwo = Request.Form["T1Q2"];
             return Redirect("Result");
         }
 
