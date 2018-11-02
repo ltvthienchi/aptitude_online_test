@@ -79,9 +79,12 @@
             <td>
                 @if (item.UserID == null)
                 {<P class="text-center">No</P>}
-                Else{<p class="text-center">Yes</p>}
+                
+
+                @if (item.UserID != null)
+                {<p class="text-center">Yes</p> }
                 @*@Html.DisplayFor(modelItem => item.UserID)*@
-                <p></p>
+                
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Dateofbirth)
@@ -89,11 +92,11 @@
             <td>
                 @if (item.UserID == null)
                 {
-                    @Html.ActionLink(" ", "Register","AdminAccount", new { id = item.AccountID }, htmlAttributes: new { @class = "fas fa-edit btn-admin" })
+                    @Html.ActionLink("Create Account", "Register","AdminAccount", new { id = item.AccountID }, htmlAttributes: new { @class = "fas  btn-admin" })
                 }
                 else
                 {
-                    @Html.ActionLink(" ", "Schedule", new { id = item.AccountID }, htmlAttributes: new { @class = "fas fa-plus btn-admin" })
+                    @Html.ActionLink("Add Schedule", "Schedule", new { id = item.AccountID }, htmlAttributes: new { @class = "fas  btn-admin" })
                 }
 
 
