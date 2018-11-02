@@ -46,6 +46,7 @@ namespace AptitudeTestOnline.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "AccountID,Name,Education,Experience,Interest,Email,UserID,Dateofbirth")] Accounts accounts)
         {
+            // check validate cua ngay thang
             if (ModelState.IsValid)
             {
                 db.AccountModels.Add(accounts);

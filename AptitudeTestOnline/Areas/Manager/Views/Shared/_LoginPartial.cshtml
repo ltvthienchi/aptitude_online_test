@@ -1,6 +1,20 @@
 ﻿@{
     ViewBag.NameLogin = "Hello " + User.Identity.GetUserName() + "!";
 }
+<style>
+    .nav-item a {
+        height: 63px;
+        font-size: 12px;
+        padding: 16px 25px;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-align-items: center;
+        align-items: center;
+        color: inherit;
+        vertical-align: middle;
+        text-decoration: none;
+    }
+</style>
 @using Microsoft.AspNet.Identity
 @if (Request.IsAuthenticated)
 {
@@ -13,6 +27,7 @@
                 <span class="profile-text">
                     @ViewBag.NameLogin
                 </span>
+                <span class="fas fa-cog"></span>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="messageDropdown">
                 @Html.ActionLink("Accounts Info", "Index", "Manage", routeValues: null,

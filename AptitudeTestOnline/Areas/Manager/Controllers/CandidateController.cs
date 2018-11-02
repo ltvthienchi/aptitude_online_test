@@ -37,7 +37,7 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
                 Candidate = db.AccountModels.Where(s => s.Name.Contains(searchString));
             }
 
-
+            ViewData["Details"] = db.DetailsRegistrations.ToList();
             Candidate = Candidate.OrderByDescending(q => q.AccountID);
             int pageSize = 10;
             int pageNumber = (page ?? 1);
@@ -167,6 +167,25 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
                 return RedirectToAction("Index");
             }
 
+            return View(detailsRegistrations);
+        }
+
+        public ActionResult ScheduleEdit(int? id)
+        {
+            ViewData["Schedules"] = db.Schedules.ToList();
+            return View(db.DetailsRegistrations.Find(id));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ScheduleEdit([Bind(Include = "RegistrationID,AccountID,ScheduleID,Mark")] DetailsRegistrations detailsRegistrations)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(detailsRegistrations).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
             return View(detailsRegistrations);
         }
     }

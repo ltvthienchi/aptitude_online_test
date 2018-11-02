@@ -4,6 +4,8 @@
 
 @{
     ViewBag.Title = "Index";
+    IEnumerable<AptitudeTestOnline.Models.DetailsRegistrations> Details =
+         ViewData["Details"] as IEnumerable<AptitudeTestOnline.Models.DetailsRegistrations>;
 }
 <style>
     .form-find input {
@@ -91,17 +93,30 @@
                         @Html.DisplayFor(modelItem => item.Dateofbirth)
                     </td>
                     <td>
+
+
+
+                        @{ bool check = true; }
+                        @foreach (var itemA in Details)
+                        {
+                            if (itemA.AccountID == item.AccountID)
+                            {
+                                if (itemA.Mark == -1)
+                                {
+                                    check = false;
+                                    @Html.ActionLink("Edit Schedule", "ScheduleEdit", new { id = itemA.RegistrationID }, htmlAttributes: new { @class = "fas  btn-admin" });
+                                }
+
+                            }
+                        }
                         @if (item.UserID == null)
                         {
                             @Html.ActionLink("Create Account", "Register", "AdminAccount", new { id = item.AccountID }, htmlAttributes: new { @class = "fas  btn-admin" })
                         }
-                        else
+                        else if (check == true)
                         {
-                            
-                            @Html.ActionLink("Add Schedule", "Schedule", new { id = item.AccountID }, htmlAttributes: new { @class = "fas  btn-admin" })
+                            @Html.ActionLink("Add Schedule", "Schedule", new { id = item.AccountID }, htmlAttributes: new { @class = "fas  btn-admin" });
                         }
-
-
 
                     </td>
                 </tr>
