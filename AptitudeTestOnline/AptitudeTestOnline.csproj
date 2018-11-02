@@ -240,7 +240,6 @@
     <Compile Include="Models\QuestionsModels.cs" />
     <Compile Include="Models\SchedulesModels.cs" />
     <Compile Include="Models\TypeOfQuestionModel.cs" />
-    <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -2270,10 +2269,6 @@
     <Content Include="Areas\Manager\Views\Exam\Edit.cshtml" />
     <Content Include="Areas\Manager\Views\Exam\Index.cshtml" />
     <Content Include="Areas\Manager\Views\Users\Index.cshtml" />
-    <Content Include="Areas\Manager\Views\Candidate\Create.cshtml" />
-    <Content Include="Areas\Manager\Views\Candidate\Delete.cshtml" />
-    <Content Include="Areas\Manager\Views\Candidate\Details.cshtml" />
-    <Content Include="Areas\Manager\Views\Candidate\Edit.cshtml" />
     <Content Include="Areas\Manager\Views\Candidate\Index.cshtml" />
     <Content Include="Areas\Manager\Views\Schedules\Create.cshtml" />
     <Content Include="Areas\Manager\Views\Schedules\Delete.cshtml" />
