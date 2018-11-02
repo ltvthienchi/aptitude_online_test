@@ -10,6 +10,7 @@ using AptitudeTestOnline.Models;
 
 namespace AptitudeTestOnline.Controllers
 {
+    
     public class AccountsController : Controller
     {
         private ATODatabaseContext db = new ATODatabaseContext();

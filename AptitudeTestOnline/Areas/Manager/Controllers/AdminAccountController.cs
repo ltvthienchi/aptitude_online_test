@@ -18,7 +18,7 @@ using System.Text;
 
 namespace AptitudeTestOnline.Areas.Manager.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class AdminAccountController : Controller
     {
         private ATODatabaseContext db = new ATODatabaseContext();

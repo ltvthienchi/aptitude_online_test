@@ -6,29 +6,29 @@
         ViewData["AccountInfor"] as Accounts;
 }
 
-<h2>Create Account for Candidate</h2>
+<h2 class="text-center text-primary">Create Account for Candidate</h2>
 <hr />
-<dl class="dl-horizontal">
-    <dt>
+<dl class="dl-horizontal text-info">
+    <dt class="text-black">
         Full Name
     </dt>
     <dd>
         @accountInfor.Name
     </dd>
-    <dt>
+    <dt class="text-black">
         Education
     </dt>
     <dd>
         @accountInfor.Education
     </dd>
-    <dt>
-
+    <dt class="text-black">
+        Experience
     </dt>
     <dd>
         @accountInfor.Experience
     </dd>
-    <dt>
-
+    <dt class="text-black">
+        Date Of Birth
     </dt>
     <dd>
         @accountInfor.Dateofbirth
@@ -64,7 +64,7 @@
     </div>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
+            <input type="submit" class="btn btn-success" value="Register" />
         </div>
     </div>
 }

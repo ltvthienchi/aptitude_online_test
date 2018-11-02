@@ -11,6 +11,7 @@ using PagedList;
 
 namespace AptitudeTestOnline.Areas.Manager.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class CandidateController : Controller
     {
         private ATODatabaseContext db = new ATODatabaseContext();
@@ -18,6 +19,7 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
         // GET: Manager/Candidate
         public ActionResult Index(int? page, string searchString, string currentFilter)
         {
+
             var Candidate = from q in db.AccountModels select q;
             if (searchString != null)
             {

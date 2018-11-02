@@ -12,7 +12,7 @@ using AptitudeTestOnline.Models;
 
 namespace AptitudeTestOnline.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "User")]
 
     public class AccountController : Controller
     {
