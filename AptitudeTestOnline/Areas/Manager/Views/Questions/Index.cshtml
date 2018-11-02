@@ -1,5 +1,5 @@
-﻿@*@model IEnumerable<AptitudeTestOnline.Models.QuestionsModels>*@
-
+﻿@model PagedList.IPagedList<AptitudeTestOnline.Models.QuestionsModels>
+@using PagedList.Mvc
 @{
     ViewBag.Title = "Index";
     IEnumerable<AptitudeTestOnline.Models.QuestionsModels> Questions =
@@ -9,6 +9,16 @@
 
 }
 
+<style>
+    .form-find input {
+        border: 1px solid silver;
+        border-radius: 3px;
+        min-height: 20px;
+        max-height: 34px;
+        padding: 5px;
+    }
+</style>
+
 <div class="row mb-3">
     <div class="col-2">
         <a class="btn btn-success btn-block" href="/Manager/Questions/Create">
@@ -16,10 +26,18 @@
             <i class="fas fa-plus"></i>
         </a>
     </div>
+    <div class="col-10">
+        @using (Html.BeginForm("Index", "Questions", FormMethod.Get))
+        {
+            <div class="form-find">
+                @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, htmlAttributes: new { @class = "find-admin", placeholder = "Enter name" })
+                <button type="submit" class="btn btn-default btn-outline-primary">Search</button>
+            </div>
+        }
+    </div>
 </div>
 
 <div class="table-responsive">
-
     <table class="table table-bordered table-hover">
         <tr class="bg-default">
             <th class="w-1">
@@ -40,11 +58,11 @@
         </tr>
 
         @{int i = 1;}
-        @foreach (var item in Questions)
+        @foreach (var item in Model)
         {
             <tr>
                 <td>
-                    <p>@i</p> 
+                    <p>@i</p>
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.QuestionsName)
@@ -69,22 +87,20 @@
         }
 
     </table>
+    @*@{Html.RenderAction("GetPagination", "Questions", new { page = 1 });}*@
 </div>
 
-<nav aria-label="Page navigation example" style="margin: 0 auto; width: 25%;">
-    <ul class="pagination">
-        <li class="page-item">
-            <a class="page-link" href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-                <span class="sr-only">Previous</span>
-            </a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item">
-            <a class="page-link" href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-                <span class="sr-only">Next</span>
-            </a>
-        </li>
-    </ul>
-</nav>
+
+
+<div class="pagi-admin">
+    <p>
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+    </p>
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, currentFilter = ViewBag.CurrentFilter }))
+</div>
+
+@Scripts.Render("~/bundles/jquery")
+<script>
+    $('.pagi-admin .pagination').addClass('justify-content-center');
+</script>

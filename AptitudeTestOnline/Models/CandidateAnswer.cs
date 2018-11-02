@@ -7,12 +7,19 @@ using System.Web;
 
 namespace AptitudeTestOnline.Models
 {
-    [Table("TypeOfQuestions")]
-    public class TypeOfQuestionModel
+    public class CandidateAnswer
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
-        public int TypeOfQuestion { get; set; }
-        public string NameTypeOfQuestion { get; set; }
+        public int CandidateAnswerID { get; set; }
+
+        [Required]
+        public int AccountID { get; set; }
+
+        [Required]
+        public int QuestionID { get; set; }
+
+        [Required]
+        public int Answer { get; set; }
     }
 }

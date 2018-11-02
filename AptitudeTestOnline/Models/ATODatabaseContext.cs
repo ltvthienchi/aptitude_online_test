@@ -22,5 +22,9 @@ namespace AptitudeTestOnline.Models
 
 
         public System.Data.Entity.DbSet<AptitudeTestOnline.Models.UserViewModel> UserViewModels { get; set; }
+
+        public DbSet<PerformTest> PerformTests { get; set; }
+
+        public DbSet<CandidateAnswer> CandidateAnswers { get; set; }
     }
 }
