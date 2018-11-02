@@ -7,7 +7,7 @@
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
         @Html.AntiForgeryToken()
-        
+
         <li class="nav-item dropdown">
             <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
                 <span class="profile-text">
@@ -16,19 +16,24 @@
                 <span class="fas fa-cog"></span>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="messageDropdown">
-                @Html.ActionLink("Manage Accounts", "Index", "Manage", routeValues: null,
-                                htmlAttributes: new { title = "Manage" , @class = "dropdown-item" })
+                @Html.ActionLink("Accounts Info", "Index", "Manage", routeValues: null,
+                     htmlAttributes: new { title = "Manage", @class = "dropdown-item" })
+                @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+                {
+                    <div class="dropdown-divider"></div>
+                    <a href="/Manager" class="dropdown-item">Manager Site</a>
+                }
                 <div class="dropdown-divider"></div>
                 <a href="javascript:document.getElementById('logoutForm').submit()" class="dropdown-item">
                     Log off
                 </a>
             </div>
         </li>
-    }
-}
-else
-{
-    
+                        }
+                    }
+                    else
+                    {
+
     <li class="nav-item">
         @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
     </li>

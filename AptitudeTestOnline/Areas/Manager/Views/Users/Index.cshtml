@@ -1,4 +1,7 @@
-﻿@model IEnumerable<AptitudeTestOnline.Models.UserViewModel>
+﻿
+@model PagedList.IPagedList<AptitudeTestOnline.Models.Accounts>
+
+@using PagedList.Mvc
 @using AptitudeTestOnline.Models;
 
 @{
@@ -12,63 +15,100 @@
     ViewBag.Title = "Index";
 
 }
+<style>
+    .form-find input {
+        border: 1px solid silver;
+        border-radius: 3px;
+        min-height: 20px;
+        max-height: 34px;
+        padding: 5px;
+    }
+</style>
+<div class="row mb-3">
+
+    <div class="col-12">
+        @using (Html.BeginForm("Index", "Candidate", FormMethod.Get))
+        {
+            <div class="form-find">
+                @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, htmlAttributes: new { @class = "find-admin", placeholder = "Enter name" })
+                <button type="submit" class="btn btn-default btn-outline-primary">Search</button>
+            </div>
+        }
+    </div>
+</div>
 
 <h2 class="text-center text-primary">List Result Of Candidate</h2>
+<div class="border-window">
+    <div class="table-responsive">
+        <table class="table table table-bordered table-hover">
+            <tr class="bg-default">
+                <th class="w-2">
+                    Full NAme
+                </th>
+                <th class="w-2">
+                    Email
+                </th>
+                <th class="w-2">
+                    Education
+                </th>
+                <th class="w-2">
+                    Experience
+                </th>
+                <th class="w-2">
+                    Mark
+                </th>
 
-<div class="table-responsive">
-    <table class="table table table-bordered table-hover">
-        <tr class="bg-default">
-            <th class="w-2">
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th class="w-2">
-                Email
-            </th>
-            <th class="w-2">
-                @Html.DisplayNameFor(model => model.Education)
-            </th>
-            <th class="w-2">
-                @Html.DisplayNameFor(model => model.Experience)
-            </th>
-            <th class="w-2">
-                @Html.DisplayNameFor(model => model.Mark)
-            </th>
-            
-        </tr>
+            </tr>
 
-        @foreach (var account in ListAccount)
-        {
-            foreach (var regis in ListRegister)
+            @foreach (var account in ListAccount)
             {
-                if (account.AccountID == regis.AccountID)
+                foreach (var regis in ListRegister)
                 {
-                    <tr>
-                        <td>
-                            @account.Name
-                        </td>
-                        <td>
-                            @account.Email
-                        </td>
-                        <td>
-                            @account.Education
-                        </td>
-                        <td>
-                            @account.Experience
-                        </td>
-                        <td>
-                            @regis.Mark
-                        </td>
-                        <td>
-                            @*@Html.ActionLink("Edit", "Edit", new { id = item.AccountID }) |
-                                @Html.ActionLink("Details", "Details", new { id = item.AccountID }) |
-                                @Html.ActionLink("Delete", "Delete", new { id = item.AccountID })*@
-                        </td>
-                    </tr>
+                    if (account.AccountID == regis.AccountID)
+                    {
+                        <tr>
+                            <td>
+                                @account.Name
+                            </td>
+                            <td>
+                                @account.Email
+                            </td>
+                            <td>
+                                @account.Education
+                            </td>
+                            <td>
+                                @account.Experience
+                            </td>
+                            <td>
+                                @regis.Mark
+                            </td>
+                            <td>
+                                @*@Html.ActionLink("Edit", "Edit", new { id = item.AccountID }) |
+                                    @Html.ActionLink("Details", "Details", new { id = item.AccountID }) |
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.AccountID })*@
+                            </td>
+                        </tr>
 
+                    }
                 }
+
             }
 
-        }
-
-    </table>
+        </table>
+    </div>
 </div>
+
+    <div class="pagi-admin">
+        <p>
+            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+        </p>
+        @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page, currentFilter = ViewBag.CurrentFilter }))
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    <script>
+        $('.pagi-admin .pagination').addClass('justify-content-center');
+        var heightCard = $('body').height() - 430;
+        $('.border-window').height(heightCard);
+    </script>
