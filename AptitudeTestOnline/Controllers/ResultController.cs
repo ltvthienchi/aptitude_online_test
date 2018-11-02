@@ -19,7 +19,14 @@ namespace AptitudeTestOnline.Controllers
             var accID = userAccounts[0].AccountID;
             ViewData["myname"] = userAccounts[0].Name;
             var detailsRegis = db.DetailsRegistrations.Where(item => item.AccountID == accID).ToList();
-            ViewData["mymark"] = detailsRegis[0].Mark;
+            if (detailsRegis.Count == 0)
+            {
+                ViewData["mymark"] = "You haven't done the test yet";
+            }
+            else
+            {
+                ViewData["mymark"] = "Your mark is: " + detailsRegis[0].Mark;
+            }
             return View();
         }
     }

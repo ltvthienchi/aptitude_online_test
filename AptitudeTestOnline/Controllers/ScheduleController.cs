@@ -19,9 +19,23 @@ namespace AptitudeTestOnline.Controllers
             var accID = userAccounts[0].AccountID;
             ViewData["myname"] = userAccounts[0].Name;
             var detailsRegis = db.DetailsRegistrations.Where(item => item.AccountID == accID).ToList();
-            var scheduleid = detailsRegis[0].ScheduleID;
-            var myschedule = db.Schedules.Where(item => item.ScheduleID == scheduleid).ToList();
-            ViewData["mytimeschedule"] = myschedule[0].DateOfTime;
+            if(detailsRegis.Count == 0)
+            {
+                ViewData["mytimeschedule"] = "You have no schedule!";
+            }
+            else
+            {
+                var scheduleid = detailsRegis[0].ScheduleID;
+                var myschedule = db.Schedules.Where(item => item.ScheduleID == scheduleid).ToList();
+                if(detailsRegis[0].Mark != -1)
+                {
+                    ViewData["mytimeschedule"] = "You had done the test";
+                }
+                else
+                {
+                    ViewData["mytimeschedule"] = "Please do the test before "+myschedule[0].DateOfTime;
+                }
+            }
             return View();
         }
     }

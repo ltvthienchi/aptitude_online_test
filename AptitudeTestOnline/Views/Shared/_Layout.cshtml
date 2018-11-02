@@ -38,6 +38,12 @@
                         <li class="nav-item" style="min-width: 130px">
                             @Html.ActionLink("Perform Test", "Index", "PerformTest")
                         </li>
+                        <li class="nav-item" style="min-width: 130px">
+                            @Html.ActionLink("Result", "Index", "Result")
+                        </li>
+                        <li class="nav-item" style="min-width: 130px">
+                            @Html.ActionLink("Schedule", "Index", "Schedule")
+                        </li>
                     }
                     else
                     {
@@ -51,15 +57,6 @@
                     <li class="nav-item" style="min-width: 130px">
                         @Html.ActionLink("About", "About", "Home")
                     </li>
-                    @if (Request.IsAuthenticated)
-                    {
-                        <li class="nav-item" style="min-width: 130px">
-                            @Html.ActionLink("Result", "Index", "Result")
-                        </li>
-                        <li class="nav-item" style="min-width: 130px">
-                            @Html.ActionLink("Schedule", "Index", "Schedule")
-                        </li>
-                    }
                 </ul>
                 <ul class="navbar-nav navbar-nav-right">
                     @Html.Partial("_LoginPartial")
