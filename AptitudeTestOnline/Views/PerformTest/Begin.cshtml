@@ -58,34 +58,35 @@
                                                     if (itemDetail.QuestionsID == item.QuestionsID)
                                                     {
                                                         string name = "T" + 1 + "Q" + t1;
+                                                        string nameForm = "T1" + item.QuestionsID;
                                                         <h4>
                                                             <span style="font-weight: bold; text-decoration: underline">Question 1:</span>
                                                             @item.QuestionsName
                                                         </h4>
                                                         <div class="form-radio form-radio-flat">
                                                             <label class="form-check-label" for="@name-1">
-                                                                <input type="radio" class="form-check-input" name="@item.QuestionsID" id="@name-1" value="1">
+                                                                <input type="radio" class="form-check-input" name="@nameForm" id="@name-1" value="1">
                                                                 (A). @item.AnswerOne
                                                             </label>
                                                         </div>
 
                                                         <div class="form-radio form-radio-flat">
                                                             <label class="form-check-label" for="@name-2">
-                                                                <input type="radio" class="form-check-input" name="@item.QuestionsID" id="@name-2" value="2">
+                                                                <input type="radio" class="form-check-input" name="@nameForm" id="@name-2" value="2">
                                                                 (B). @item.AnswerTwo
                                                             </label>
                                                         </div>
 
                                                         <div class="form-radio form-radio-flat">
                                                             <label class="form-check-label" for="@name-3">
-                                                                <input type="radio" class="form-check-input" name="@item.QuestionsID" id="@name-3" value="3">
+                                                                <input type="radio" class="form-check-input" name="@nameForm" id="@name-3" value="3">
                                                                 (C). @item.AnswerThree
                                                             </label>
                                                         </div>
 
                                                         <div class="form-radio form-radio-flat">
                                                             <label class="form-check-label" for="@name-4">
-                                                                <input type="radio" class="form-check-input" name="@item.QuestionsID" id="@name-4" value="4">
+                                                                <input type="radio" class="form-check-input" name="@nameForm" id="@name-4" value="4">
                                                                 (D). @item.AnswerFour
                                                             </label>
                                                         </div>
@@ -96,6 +97,7 @@
                                             }
                                         </div>
                                     }
+                                    <input type="text" name="timeRemaingOne" id="timeRemaingOne" value="" hidden/>
                                 </div>
                             </div>
                             <div class="tab-content perform-test" id="tabContent-2">
@@ -111,34 +113,35 @@
                                                     if (itemDetail.QuestionsID == item.QuestionsID)
                                                     {
                                                         string name = "T" + 2 + "Q" + t2;
+                                                        string nameForm = "T2" + item.QuestionsID;
                                                         <h4>
                                                             <span style="font-weight: bold; text-decoration: underline">Question 1:</span>
                                                             @item.QuestionsName
                                                         </h4>
                                                         <div class="form-radio form-radio-flat">
                                                             <label class="form-check-label" for="@name-1">
-                                                                <input type="radio" class="form-check-input" name="@item.QuestionsID" id="@name-1" value="1">
+                                                                <input type="radio" class="form-check-input" name="@nameForm" id="@name-1" value="1">
                                                                 (A). @item.AnswerOne
                                                             </label>
                                                         </div>
 
                                                         <div class="form-radio form-radio-flat">
                                                             <label class="form-check-label" for="@name-2">
-                                                                <input type="radio" class="form-check-input" name="@item.QuestionsID" id="@name-2" value="2">
+                                                                <input type="radio" class="form-check-input" name="@nameForm" id="@name-2" value="2">
                                                                 (B). @item.AnswerTwo
                                                             </label>
                                                         </div>
 
                                                         <div class="form-radio form-radio-flat">
                                                             <label class="form-check-label" for="@name-3">
-                                                                <input type="radio" class="form-check-input" name="@item.QuestionsID" id="@name-3" value="3">
+                                                                <input type="radio" class="form-check-input" name="@nameForm" id="@name-3" value="3">
                                                                 (C). @item.AnswerThree
                                                             </label>
                                                         </div>
 
                                                         <div class="form-radio form-radio-flat">
                                                             <label class="form-check-label" for="@name-4">
-                                                                <input type="radio" class="form-check-input" name="@item.QuestionsID" id="@name-4" value="4">
+                                                                <input type="radio" class="form-check-input" name="@nameForm" id="@name-4" value="4">
                                                                 (D). @item.AnswerFour
                                                             </label>
                                                         </div>
@@ -150,6 +153,7 @@
                                         </div>
                                     }
                                 </div>
+                                <input type="text" name="timeRemaingTwo" id="timeRemaingTwo" value="" hidden />
                             </div>
                             <div class="tab-content perform-test" id="tabContent-3">
                                 <div class="tab-pane fade show active" id="computer-technology" role="tabpanel" style="margin-top: 20px;">
@@ -164,34 +168,35 @@
                                                     if (itemDetail.QuestionsID == item.QuestionsID)
                                                     {
                                                         string name = "T" + 3 + "Q" + t3;
+                                                        string nameForm = "T3" + item.QuestionsID;
                                                         <h4>
                                                             <span style="font-weight: bold; text-decoration: underline">Question 1:</span>
                                                             @item.QuestionsName
                                                         </h4>
                                                         <div class="form-radio form-radio-flat">
                                                             <label class="form-check-label" for="@name-1">
-                                                                <input type="radio" class="form-check-input" name="@item.QuestionsID" id="@name-1" value="1">
+                                                                <input type="radio" class="form-check-input" name="@nameForm" id="@name-1" value="1">
                                                                 (A). @item.AnswerOne
                                                             </label>
                                                         </div>
 
                                                         <div class="form-radio form-radio-flat">
                                                             <label class="form-check-label" for="@name-2">
-                                                                <input type="radio" class="form-check-input" name="@item.QuestionsID" id="@name-2" value="2">
+                                                                <input type="radio" class="form-check-input" name="@nameForm" id="@name-2" value="2">
                                                                 (B). @item.AnswerTwo
                                                             </label>
                                                         </div>
 
                                                         <div class="form-radio form-radio-flat">
                                                             <label class="form-check-label" for="@name-3">
-                                                                <input type="radio" class="form-check-input" name="@item.QuestionsID" id="@name-3" value="3">
+                                                                <input type="radio" class="form-check-input" name="@nameForm" id="@name-3" value="3">
                                                                 (C). @item.AnswerThree
                                                             </label>
                                                         </div>
 
                                                         <div class="form-radio form-radio-flat">
                                                             <label class="form-check-label" for="@name-4">
-                                                                <input type="radio" class="form-check-input" name="@item.QuestionsID" id="@name-4" value="4">
+                                                                <input type="radio" class="form-check-input" name="@nameForm" id="@name-4" value="4">
                                                                 (D). @item.AnswerFour
                                                             </label>
                                                         </div>
@@ -203,6 +208,7 @@
                                         </div>
                                     }
                                 </div>
+                                <input type="text" name="timeRemaingThree" id="timeRemaingThree" value="" hidden />
                             </div>
                         </div>
                     </div>
@@ -211,7 +217,7 @@
                 <button type="button" id="step-1" class="btn btn-success mr-2 float-right disabled" disabled>Next</button>
                 <button type="button" id="step-2" class="btn btn-success mr-2 float-right disabled" disabled hidden>Next</button>
                 <button type="button" id="step-3" class="btn btn-success mr-2 float-right disabled" disabled hidden>Completed</button>
-                <input type="submit" value="Index" id="completed" hidden />
+                <input type="submit" value="Index" id="completed" hidden/>
             }
         </div>
     </div>
@@ -243,14 +249,14 @@
     //
     function presentTime() {
         var newDate = new Date();
-        var newDateObj = new Date(newDate.getTime() + 1 * 60000);
+        var newDateObj = new Date(newDate.getTime() + 5 * 60000);
         return newDateObj.getTime();
     }
 
     function checkInput(step, arr, typeQuestion) {
         arrMyQuestions.map(item => {
             if (item.TypeOfQuestion == typeQuestion) {
-                let name = `input:radio[name="${item.QuestionsID}"]`;
+                let name = `input:radio[name="T${typeQuestion}${item.QuestionsID}"]`;
                 console.log(name);
                 $(name).change(
                 function () {
@@ -327,14 +333,17 @@
     }
 
     $("#step-1").click(function () {
+        $("#timeRemaingOne").val(time);
         getStepTwo();
     })
 
     $("#step-2").click(function () {
+        $("#timeRemaingTwo").val(time);
         getStepThree();
     })
 
     $("#step-3").click(function () {
+        $("#timeRemaingThree").val(time);
         $("#main-tab").append(tab1);
         $("#main-tab").append(tab2);
         $("#completed").click();

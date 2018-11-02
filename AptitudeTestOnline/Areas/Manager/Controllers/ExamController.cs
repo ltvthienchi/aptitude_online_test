@@ -59,21 +59,7 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
             int pageNumber = (page ?? 1);
             return View(exam.ToPagedList(pageNumber, pageSize));
         }
-
-        // GET: Manager/Exam/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            ExamModels examModels = db.ExamModels.Find(id);
-            if (examModels == null)
-            {
-                return HttpNotFound();
-            }
-            return View(examModels);
-        }
+        
 
         // GET: Manager/Exam/Create
         public ActionResult Create()

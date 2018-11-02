@@ -21,7 +21,7 @@ namespace AptitudeTestOnline.Models
         public DbSet<SchedulesModels> Schedules { get; set; }
 
 
-        public System.Data.Entity.DbSet<AptitudeTestOnline.Models.UserViewModel> UserViewModels { get; set; }
+        
 
         public DbSet<PerformTest> PerformTests { get; set; }
 

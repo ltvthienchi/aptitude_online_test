@@ -17,25 +17,6 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
         // GET: Manager/TypeOfQuestions
         public ActionResult Index()
         {
-            if(db.TypeOfQuestionModel.ToList().Count == 0)
-            {
-                TypeOfQuestionModel GeneralKnowledge = new TypeOfQuestionModel() { };
-                GeneralKnowledge.TypeOfQuestion = 1;
-                GeneralKnowledge.NameTypeOfQuestion = "General Knowledge";
-
-                TypeOfQuestionModel Mathematics = new TypeOfQuestionModel() { };
-                Mathematics.TypeOfQuestion = 2;
-                Mathematics.NameTypeOfQuestion = "Mathematics";
-
-                TypeOfQuestionModel ComputerTechnology = new TypeOfQuestionModel() { };
-                ComputerTechnology.TypeOfQuestion = 3;
-                ComputerTechnology.NameTypeOfQuestion = "Computer Technology";
-
-                db.TypeOfQuestionModel.Add(GeneralKnowledge);
-                db.TypeOfQuestionModel.Add(Mathematics);
-                db.TypeOfQuestionModel.Add(ComputerTechnology);
-                db.SaveChanges();
-            }
             return View(db.TypeOfQuestionModel.ToList());
         }
 

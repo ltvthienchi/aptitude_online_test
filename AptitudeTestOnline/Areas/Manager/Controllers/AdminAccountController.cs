@@ -13,6 +13,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Net;
+using System.Net.Mail;
+using System.Text;
 
 namespace AptitudeTestOnline.Areas.Manager.Controllers
 {
@@ -138,6 +140,31 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
                     return View(model);
             }
         }
+        public ActionResult SendMail(RegisterViewModel user)
+        {
+            StringBuilder Body = new StringBuilder();
+            Body.Append("<p>ThankYou for apply cv in AptitudeTest</p>");
+            Body.Append("<p>Your Account: </p>");
+            Body.Append("<p>Uername:</p>");
+            Body.Append(user.Email);
+            Body.Append("<p>Password:</p>");
+            Body.Append(user.Password);
+            Body.Append("<br/><p>Visit our website to see the exam schedule</p>");
+            MailMessage mail = new MailMessage();
+            mail.To.Add(user.Email);
+            mail.From = new MailAddress("aptitudetestonlinefpt@gmail.com");
+            mail.Subject = "Your apply cv result ";
+            mail.Body = Body.ToString();// phần thân của mail ở trên
+            mail.IsBodyHtml = true;
+            SmtpClient smtp = new SmtpClient();
+            smtp.Host = "smtp.gmail.com";
+            smtp.Port = 587;
+            smtp.UseDefaultCredentials = true;
+            smtp.Credentials = new System.Net.NetworkCredential("aptitudetestonlinefpt@gmail.com", "Fpt123456");// tài khoản Gmail của bạn
+            smtp.EnableSsl = true;
+            smtp.Send(mail);
+            return RedirectToAction("Index", "Candidate");
+        }
 
         //
         // GET: /Account/Register
@@ -164,16 +191,23 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
-            
-            //Accounts accounts = db.AccountModels.Find(id);
-            //ViewData["AccountInfor"] = accounts;
+            int id = Convert.ToInt32(Request.Form["AccountID"]);
+            Accounts accounts = db.AccountModels.Find(id);
+            ViewData["AccountInfor"] = accounts;
             if (ModelState.IsValid)
             {
+                
 
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    accounts.UserID = user.Id;
+                    db.SaveChanges();
+                    RegisterViewModel sendMail = new RegisterViewModel();
+                    sendMail.Email = model.Email;
+                    sendMail.Password = model.Password;
+                    sendMail.ConfirmPassword = model.ConfirmPassword;
                     //await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
@@ -181,8 +215,10 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
-                    return RedirectToAction("Index", "Home");
+                    
+                    await UserManager.AddToRolesAsync(user.Id, "User");
+                    return RedirectToAction("SendMail",sendMail);
+                    
                 }
                 AddErrors(result);
             }

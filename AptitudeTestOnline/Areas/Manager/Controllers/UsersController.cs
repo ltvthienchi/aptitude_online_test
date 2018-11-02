@@ -16,18 +16,10 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
         // GET: Manager/Users
         public ActionResult Index()
         {
-            var result = from a in db.AccountModels
-                         join b in db.DetailsRegistrations
-                         on a.AccountID equals b.AccountID
-                         select new
-                         {
-                             UserName = a.Name,
-                             Education = a.Education,
-                             Experience = a.Experience,
-                             Mark = b.Mark
-
-                         };
-            return View(result.ToList());
+            
+            ViewData["ListAccount"] = db.AccountModels.ToList();
+            ViewData["ListRegister"] = db.DetailsRegistrations.OrderByDescending(a => a.Mark).ToList();
+            return View();
             
         }
     }
