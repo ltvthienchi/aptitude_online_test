@@ -164,11 +164,12 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
-            
-            //Accounts accounts = db.AccountModels.Find(id);
-            //ViewData["AccountInfor"] = accounts;
+            int id = Convert.ToInt32(Request.Form["AccountID"]);
+            Accounts accounts = db.AccountModels.Find(id);
+            ViewData["AccountInfor"] = accounts;
             if (ModelState.IsValid)
             {
+                
 
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
@@ -181,8 +182,9 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
-                    return RedirectToAction("Index", "Home");
+                    accounts.UserID = user.Id;
+                    db.SaveChanges();
+                    return RedirectToAction("Index", "Candidate");
                 }
                 AddErrors(result);
             }

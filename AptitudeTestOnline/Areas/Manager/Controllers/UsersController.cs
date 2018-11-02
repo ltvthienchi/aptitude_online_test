@@ -27,7 +27,8 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
                              Mark = b.Mark
 
                          };
-            return View(result.ToList());
+            ViewData["ListResult"] = result.OrderByDescending(a => a.Mark).ToList();
+            return View();
             
         }
     }
