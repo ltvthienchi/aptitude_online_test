@@ -11,6 +11,7 @@ using PagedList;
 
 namespace AptitudeTestOnline.Areas.Manager.Controllers
 {
+    [Authorize(Roles = "Admin, Manager")]
     public class SchedulesController : Controller
     {
         private ATODatabaseContext db = new ATODatabaseContext();
