@@ -6,6 +6,12 @@
             ViewData["TypeOfQuestion"] as IEnumerable<AptitudeTestOnline.Models.TypeOfQuestionModel>;
 }
 
+<style>
+    .font-alert {
+        font-size: 12px;
+    }
+</style>
+
 <div class="forms-sample">
 
     @using (Html.BeginForm())
@@ -22,9 +28,10 @@
             <div class="form-group row">
                 <label for="QuestionsName" class="control-label col-md-2">Questions Name</label>
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.QuestionsName, new { htmlAttributes = new { @class = "form-control text-box single-line" } })
+                    @Html.EditorFor(model => model.QuestionsName, new { htmlAttributes = new { @class = "form-control text-box single-line", required = true } })
+                    @Html.ValidationMessageFor(model => model.QuestionsName, "", new { @class = "text-danger font-alert" })
                 </div>
-                @Html.ValidationMessageFor(model => model.QuestionsName, "", new { @class = "text-danger" })
+                
             </div>
 
             <div class="form-group">
@@ -50,33 +57,33 @@
             <div class="form-group row">
                 <label for="AnswerOne" class="control-label col-md-2">Answer (A)</label>
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.AnswerOne, new { htmlAttributes = new { @class = "form-control text-box single-line" } })
+                    @Html.EditorFor(model => model.AnswerOne, new { htmlAttributes = new { @class = "form-control text-box single-line", required = true } })
+                    @Html.ValidationMessageFor(model => model.AnswerOne, "", new { @class = "text-danger font-alert" })
                 </div>
-                @Html.ValidationMessageFor(model => model.AnswerOne, "", new { @class = "text-danger" })
             </div>
 
             <div class="form-group row">
                 <label for="AnswerTwo" class="control-label col-md-2">Answer (B)</label>
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.AnswerTwo, new { htmlAttributes = new { @class = "form-control text-box single-line" } })
+                    @Html.EditorFor(model => model.AnswerTwo, new { htmlAttributes = new { @class = "form-control text-box single-line", required = true } })
+                    @Html.ValidationMessageFor(model => model.AnswerTwo, "", new { @class = "text-danger font-alert" })
                 </div>
-                @Html.ValidationMessageFor(model => model.AnswerTwo, "", new { @class = "text-danger" })
             </div>
 
             <div class="form-group row">
                 <label for="AnswerThree" class="control-label col-md-2">Answer (C)</label>
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.AnswerThree, new { htmlAttributes = new { @class = "form-control text-box single-line" } })
+                    @Html.EditorFor(model => model.AnswerThree, new { htmlAttributes = new { @class = "form-control text-box single-line", required = true } })
+                    @Html.ValidationMessageFor(model => model.AnswerThree, "", new { @class = "text-danger font-alert" })
                 </div>
-                @Html.ValidationMessageFor(model => model.AnswerThree, "", new { @class = "text-danger" })
             </div>
 
             <div class="form-group row">
                 <label for="AnswerFour" class="control-label col-md-2">Answer (D)</label>
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.AnswerFour, new { htmlAttributes = new { @class = "form-control text-box single-line" } })
+                    @Html.EditorFor(model => model.AnswerFour, new { htmlAttributes = new { @class = "form-control text-box single-line", required = true } })
+                    @Html.ValidationMessageFor(model => model.AnswerFour, "", new { @class = "text-danger font-alert" })
                 </div>
-                @Html.ValidationMessageFor(model => model.AnswerFour, "", new { @class = "text-danger" })
             </div>
 
             <div class="form-group row">
@@ -108,9 +115,9 @@
             <div class="form-group row">
                 <label for="Mark" class="control-label col-md-2">Mark</label>
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Mark, new { htmlAttributes = new { @class = "form-control text-box single-line" } })
+                    @Html.EditorFor(model => model.Mark, new { htmlAttributes = new { @class = "form-control text-box single-line", required = true } })
                 </div>
-                @Html.ValidationMessageFor(model => model.Mark, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.Mark, "", new { @class = "text-danger font-alert" })
             </div>
 
             <div class="form-group">

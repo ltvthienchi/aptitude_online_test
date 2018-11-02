@@ -10,6 +10,7 @@ using AptitudeTestOnline.Models;
 
 namespace AptitudeTestOnline.Areas.Manager.Controllers
 {
+    [Authorize(Roles = "Admin, Manager")]
     public class TypeOfQuestionsController : Controller
     {
         private ATODatabaseContext db = new ATODatabaseContext();

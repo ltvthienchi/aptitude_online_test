@@ -51,7 +51,7 @@ namespace AptitudeTestOnline.Controllers
         }
         // GET: PerformTest
 
-        public ActionResult Index()
+        public bool CheckTime()
         {
             SchedulesModels userSchedules = getUserSchedules();
             DetailsRegistrations userDetailsReg = getUserDetails();
@@ -62,42 +62,57 @@ namespace AptitudeTestOnline.Controllers
             if (Now.Date > ScheduleTime.Date)
             {
                 ViewBag.CheckDate = false;
-                ViewBag.CheckText = "You don't start your test";
+                ViewBag.CheckText = "Exam has been over!";
+                return false;
             }
             else if (userDetailsReg.Mark != -1)
             {
                 ViewBag.CheckDate = false;
-                ViewBag.CheckText = "You took the test, click HERE to view the results";
-                ViewBag.Result = "";
+                ViewBag.CheckText = "You have already test!, click bottom link to view the results!";
+                ViewBag.CheckLink = "Go to result!";
+                return false;
             }
             else
             {
                 ViewBag.CheckDate = true;
                 ViewBag.CheckText = "You have start your test";
             }
+            return true;
+        }
+
+        public ActionResult Index()
+        {
+            CheckTime();
             return View();
         }
 
 
         public ActionResult Begin()
         {
-            SchedulesModels userSchedules = getUserSchedules();
-            int ExamID = userSchedules.ExamID;
-            GetData();
-            List<int> MyList = new List<int>();
-            var ListDetailsQuestions = db.DetailsExamModels.Where(r => r.ExamID == ExamID).ToList();
-            ViewData["DetailQuestions"] = ListDetailsQuestions;
-            foreach (var item in ListDetailsQuestions)
+            bool check = CheckTime();
+            if (check == true)
             {
-                MyList.Add(item.QuestionsID);
+                SchedulesModels userSchedules = getUserSchedules();
+                int ExamID = userSchedules.ExamID;
+                GetData();
+                List<int> MyList = new List<int>();
+                var ListDetailsQuestions = db.DetailsExamModels.Where(r => r.ExamID == ExamID).ToList();
+                ViewData["DetailQuestions"] = ListDetailsQuestions;
+                foreach (var item in ListDetailsQuestions)
+                {
+                    MyList.Add(item.QuestionsID);
+                }
+                ViewBag.Test = ListDetailsQuestions;
+                ViewData["MyQuestions"] = db.QuestionsModels.Where(r => MyList.Contains(r.QuestionsID)).ToList();
+                DetailsRegistrations userDetail = getUserDetails();
+                userDetail.Mark = 0;
+                db.Entry(userDetail).State = EntityState.Modified;
+                db.SaveChanges();
+                return View(db.ExamModels.ToList());
+            } else
+            {
+                return RedirectToAction("Index", "Home");
             }
-            ViewBag.Test = ListDetailsQuestions;
-            ViewData["MyQuestions"] = db.QuestionsModels.Where(r => MyList.Contains(r.QuestionsID)).ToList();
-            //DetailsRegistrations userDetail = getUserDetails();
-            //userDetail.Mark = 0;
-            //db.Entry(userDetail).State = EntityState.Modified;
-            //db.SaveChanges();
-            return View(db.ExamModels.ToList());
         }
 
         [HttpPost]

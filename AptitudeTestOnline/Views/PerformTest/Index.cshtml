@@ -7,13 +7,15 @@
         font-size: 1.5rem;
         width: 100%
     }
+
 </style>
 
 <div class="content-wrapper">
     <div class="card">
         <div class="card-body" style="min-height: 580px">
             <h2 class="text-center">Welcome to Aptitude Online Test!</h2>
-            <p class="text-center">@ViewBag.CheckText</p>
+            <p class="text-center" style="font-size: 26px; color: forestgreen">@ViewBag.CheckText</p>
+            <a href="/Result">@ViewBag.CheckLink</a>
             <div style="width: 20%; margin: 30px auto 20px auto">
                 @if (ViewBag.CheckDate == true)
                 {

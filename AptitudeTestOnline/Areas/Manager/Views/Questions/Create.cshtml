@@ -18,8 +18,8 @@
             <div class="form-group row">
                 <label for="QuestionsName" class="control-label col-md-2">Questions Name</label>
                 <div class="col-md-10">
-                    <input class="form-control text-box single-line" placeholder="Choose question type"
-                           id="QuestionsName" name="QuestionsName" type="text" value="">
+                    <input class="form-control text-box single-line" placeholder="Enter questions name"
+                           id="QuestionsName" name="QuestionsName" type="text" value="" required>
                 </div>
                 @Html.ValidationMessageFor(model => model.QuestionsName, "", new { @class = "text-danger" })
             </div>
@@ -27,7 +27,7 @@
             <div class="form-group row">
                 <label for="TypeOfQuestion" class="control-label col-md-2">Type Of Question</label>
                 <div class="col-sm-9">
-                    <select class="form-control" id="TypeOfQuestion" name="TypeOfQuestion">
+                    <select class="form-control" id="TypeOfQuestion" name="TypeOfQuestion" required>
                         @foreach (var item in TypeOfQuestion)
                         {
                             <option value="@item.TypeOfQuestion">@item.NameTypeOfQuestion</option>
@@ -41,7 +41,7 @@
                 <label for="AnswerOne" class="control-label col-md-2">Answer (A)</label>
                 <div class="col-md-10">
                     <input class="form-control text-box single-line" placeholder="Enter answer A"
-                           id="AnswerOne" name="AnswerOne" type="text" value="A">
+                           id="AnswerOne" name="AnswerOne" type="text" value="" required>
                 </div>
                 @Html.ValidationMessageFor(model => model.AnswerOne, "", new { @class = "text-danger" })
             </div>
@@ -50,7 +50,7 @@
                 <label for="AnswerTwo" class="control-label col-md-2">Answer (B)</label>
                 <div class="col-md-10">
                     <input class="form-control text-box single-line" placeholder="Enter answer B"
-                           id="AnswerTwo" name="AnswerTwo" type="text" value="B">
+                           id="AnswerTwo" name="AnswerTwo" type="text" value="" required>
                 </div>
                 @Html.ValidationMessageFor(model => model.AnswerTwo, "", new { @class = "text-danger" })
             </div>
@@ -59,7 +59,7 @@
                 <label for="AnswerThree" class="control-label col-md-2">Answer (C)</label>
                 <div class="col-md-10">
                     <input class="form-control text-box single-line" placeholder="Enter answer C"
-                           id="AnswerThree" name="AnswerThree" type="text" value="C">
+                           id="AnswerThree" name="AnswerThree" type="text" value="" required>
                 </div>
                 @Html.ValidationMessageFor(model => model.AnswerThree, "", new { @class = "text-danger" })
             </div>
@@ -68,7 +68,7 @@
                 <label for="AnswerFour" class="control-label col-md-2">Answer (D)</label>
                 <div class="col-md-10">
                     <input class="form-control text-box single-line" placeholder="Enter answer D"
-                           id="AnswerFour" name="AnswerFour" type="text" value="D">
+                           id="AnswerFour" name="AnswerFour" type="text" value="" required>
                 </div>
                 @Html.ValidationMessageFor(model => model.AnswerFour, "", new { @class = "text-danger" })
             </div>
