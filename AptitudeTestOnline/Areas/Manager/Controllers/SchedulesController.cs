@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AptitudeTestOnline.Models;
+using PagedList;
 
 namespace AptitudeTestOnline.Areas.Manager.Controllers
 {
@@ -15,10 +16,14 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
         private ATODatabaseContext db = new ATODatabaseContext();
 
         // GET: Manager/Schedules
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             GetData();
-            return View(db.Schedules.ToList());
+            var schedules = from q in db.Schedules select q;
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            schedules = schedules.OrderByDescending(q => q.ScheduleID);
+            return View(schedules.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Manager/Schedules/Details/5

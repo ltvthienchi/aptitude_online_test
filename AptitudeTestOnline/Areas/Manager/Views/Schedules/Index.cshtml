@@ -1,7 +1,8 @@
-﻿@model IEnumerable<AptitudeTestOnline.Models.SchedulesModels>
+﻿@model PagedList.IPagedList<AptitudeTestOnline.Models.SchedulesModels>
+@using PagedList.Mvc
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Schedules";
     IEnumerable<AptitudeTestOnline.Models.ExamModels> Exam =
         ViewData["Exam"] as IEnumerable<AptitudeTestOnline.Models.ExamModels>;
 }
@@ -14,66 +15,61 @@
         </a>
     </div>
 </div>
+<div class="border-window">
+    <div class="table-responsive">
 
-<div class="table-responsive">
-
-    <table class="table table-bordered table-hover">
-        <tr class="bg-default">
-            <th class="w-1">
-                #
-            </th>
-            <th class="w-6">
-                Exam Name
-            </th>
-            <th class="w-2">
-                Date of Time
-            </th>
-            <th class="w-1">
-                Tools
-            </th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ScheduleID)
-                </td>
-                <td>
-                    @foreach (var itemm in Exam)
-                    {
-                        if (itemm.ExamID == item.ExamID)
-                        {
-                            @Html.DisplayFor(modelItem => itemm.ExamName)
-                        }
-                    }
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DateOfTime)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id=item.ScheduleID }, htmlAttributes: new { @class = "fas fa-edit btn-admin" })
-                </td>
+        <table class="table table-bordered table-hover">
+            <tr class="bg-default">
+                <th class="w-1">
+                    #
+                </th>
+                <th class="w-6">
+                    Exam Name
+                </th>
+                <th class="w-2">
+                    Date of Time
+                </th>
+                <th class="w-1">
+                    Tools
+                </th>
             </tr>
-        }
+            @{ int i = 1;}
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @i
+                    </td>
+                    <td>
+                        @foreach (var itemm in Exam)
+                        {
+                            if (itemm.ExamID == item.ExamID)
+                            {
+                                @Html.DisplayFor(modelItem => itemm.ExamName)
+                            }
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateOfTime)
+                    </td>
+                    <td>
+                        @Html.ActionLink(" ", "Edit", new { id = item.ScheduleID }, htmlAttributes: new { @class = "fas fa-edit btn-admin" })
+                    </td>
+                </tr>
+                i++;
+            }
 
-    </table>
+        </table>
+    </div>
 </div>
-
-<nav aria-label="Page navigation example" style="margin: 0 auto; width: 25%;">
-    <ul class="pagination">
-        <li class="page-item">
-            <a class="page-link" href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-                <span class="sr-only">Previous</span>
-            </a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item">
-            <a class="page-link" href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-                <span class="sr-only">Next</span>
-            </a>
-        </li>
-    </ul>
-</nav>
+<div class="pagi-admin">
+    <p class="text-right">
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+    </p>
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page }))
+</div>
+@Scripts.Render("~/bundles/jquery")
+<script>
+    $('.pagi-admin .pagination').addClass('justify-content-center');
+</script>
