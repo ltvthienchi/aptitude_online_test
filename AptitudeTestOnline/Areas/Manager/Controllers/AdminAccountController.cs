@@ -19,6 +19,7 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
     [Authorize]
     public class AdminAccountController : Controller
     {
+        private ATODatabaseContext db = new ATODatabaseContext();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -152,6 +153,7 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
             {
                 return HttpNotFound();
             }
+            ViewData["AccountInfor"] = accounts;
             return View();
         }
 

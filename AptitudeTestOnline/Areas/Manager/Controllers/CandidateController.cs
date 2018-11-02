@@ -17,7 +17,8 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
         // GET: Manager/Candidate
         public ActionResult Index()
         {
-            return View(db.AccountModels.ToList());
+            var accountList = db.AccountModels.OrderByDescending(a => a.AccountID);
+            return View(accountList.ToList());
         }
 
         // GET: Manager/Candidate/Details/5

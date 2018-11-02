@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Candidate List</h2>
 
 
 <table class="table table table-bordered table-hover">
@@ -25,7 +25,7 @@
             @Html.DisplayNameFor(model => model.Email)
         </th>
         <th class="w-1">
-            @Html.DisplayNameFor(model => model.UserID)
+            Have Account
         </th>
         <th class="w-1">
             @Html.DisplayNameFor(model => model.Dateofbirth)
@@ -53,7 +53,10 @@
             @Html.DisplayFor(modelItem => item.Email)
         </td>
         <td>
+            @if(item.UserID == null)
+            {<P class="text-center">Yes</P> }
             @Html.DisplayFor(modelItem => item.UserID)
+             <p></p>
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Dateofbirth)

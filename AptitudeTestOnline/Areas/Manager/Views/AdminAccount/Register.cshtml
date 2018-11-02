@@ -1,6 +1,9 @@
 ﻿@model AptitudeTestOnline.Models.RegisterViewModel
+    @using AptitudeTestOnline.Models
 @{
     ViewBag.Title = "Register";
+   RegisterViewModel accountInfor =
+       ViewData["AccountInfor"] as RegisterViewModel;
 }
 
 <h2>@ViewBag.Title.</h2>
