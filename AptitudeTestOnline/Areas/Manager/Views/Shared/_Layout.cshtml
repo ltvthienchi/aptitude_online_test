@@ -145,7 +145,7 @@
 
                 <div class="content-wrapper">
                     <div class="card">
-                        <div class="card-body">
+                        <div class="card-body" style="min-height: 500px">
                             @RenderBody()
                         </div>
                     </div>
@@ -181,10 +181,5 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-    <script>
-        var height = $('.content-wrapper').height();
-        console.log(height);
-        $(".card-body").height(height);
-    </script>
 </body>
 </html>

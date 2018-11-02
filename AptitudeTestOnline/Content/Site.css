@@ -100,7 +100,19 @@ input, textarea {
 }
 
 .card-body {
-    overflow: scroll;
+    overflow: hidden !important;
+}
+
+.border-window {
+    overflow-y: scroll;
+}
+
+.form-find input {
+    border: 1px solid silver;
+    border-radius: 3px;
+    min-height: 20px;
+    max-height: 34px;
+    padding: 5px;
 }
 
 @media (min-width: 768px) {

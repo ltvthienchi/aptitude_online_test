@@ -9,16 +9,6 @@
 
 }
 
-<style>
-    .form-find input {
-        border: 1px solid silver;
-        border-radius: 3px;
-        min-height: 20px;
-        max-height: 34px;
-        padding: 5px;
-    }
-</style>
-
 <div class="row mb-3">
     <div class="col-2">
         <a class="btn btn-success btn-block" href="/Manager/Questions/Create">
@@ -37,57 +27,59 @@
     </div>
 </div>
 
-<div class="table-responsive">
-    <table class="table table-bordered table-hover">
-        <tr class="bg-default">
-            <th class="w-1">
-                #
-            </th>
-            <th class="w-5">
-                Questions Name
-            </th>
-            <th class="w-2">
-                Questions Type
-            </th>
-            <th class="w-1">
-                Mark
-            </th>
-            <th class="w-1">
-                Tools
-            </th>
-        </tr>
-
-        @{int i = 1;}
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    <p>@i</p>
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.QuestionsName)
-                </td>
-                <td>
-                    @foreach (var itemType in TypeOfQuestion)
-                    {
-                        if (item.TypeOfQuestion == itemType.TypeOfQuestion)
-                        {
-                            @itemType.NameTypeOfQuestion;
-                        }
-                    }
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Mark)
-                </td>
-                <td>
-                    @Html.ActionLink(" ", "Edit", new { id = item.QuestionsID }, htmlAttributes: new { @class = "fas fa-edit btn-admin" })
-                </td>
+<div class="border-window" style="overflow-y: scroll">
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <tr class="bg-default">
+                <th class="w-1">
+                    #
+                </th>
+                <th class="w-5">
+                    Questions Name
+                </th>
+                <th class="w-2">
+                    Questions Type
+                </th>
+                <th class="w-1">
+                    Mark
+                </th>
+                <th class="w-1">
+                    Tools
+                </th>
             </tr>
-            i++;
-        }
 
-    </table>
-    @*@{Html.RenderAction("GetPagination", "Questions", new { page = 1 });}*@
+            @{int i = 1;}
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <p>@i</p>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.QuestionsName)
+                    </td>
+                    <td>
+                        @foreach (var itemType in TypeOfQuestion)
+                        {
+                            if (item.TypeOfQuestion == itemType.TypeOfQuestion)
+                            {
+                                @itemType.NameTypeOfQuestion;
+                            }
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Mark)
+                    </td>
+                    <td>
+                        @Html.ActionLink(" ", "Edit", new { id = item.QuestionsID }, htmlAttributes: new { @class = "fas fa-edit btn-admin" })
+                    </td>
+                </tr>
+                i++;
+            }
+
+        </table>
+        @*@{Html.RenderAction("GetPagination", "Questions", new { page = 1 });}*@
+    </div>
 </div>
 
 
@@ -103,4 +95,7 @@
 @Scripts.Render("~/bundles/jquery")
 <script>
     $('.pagi-admin .pagination').addClass('justify-content-center');
+    var heightCard = $('body').height() - 430;
+    console.log(heightCard);
+    $('.border-window').height(heightCard);
 </script>

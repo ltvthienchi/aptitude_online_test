@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AptitudeTestOnline.Models;
+using PagedList;
 
 namespace AptitudeTestOnline.Areas.Manager.Controllers
 {
@@ -31,9 +32,32 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
         }
 
         // GET: Manager/Exam
-        public ActionResult Index()
+        public ActionResult Index(int? page, string searchString, string currentFilter)
         {
-            return View(db.ExamModels.ToList());
+
+            GetData();
+            var exam = from q in db.ExamModels select q;
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                exam = db.ExamModels.Where(s => s.ExamName.Contains(searchString));
+            }
+
+            exam = exam.OrderByDescending(q => q.ExamID);
+
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(exam.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Manager/Exam/Details/5
@@ -131,40 +155,6 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
             }
             return View(examModels);
         }
-
-        // GET: Manager/Exam/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            ExamModels examModels = db.ExamModels.Find(id);
-            if (examModels == null)
-            {
-                return HttpNotFound();
-            }
-            return View(examModels);
-        }
-
-        // POST: Manager/Exam/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            ExamModels examModels = db.ExamModels.Find(id);
-            db.ExamModels.Remove(examModels);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        
     }
 }
