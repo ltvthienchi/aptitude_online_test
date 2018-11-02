@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AptitudeTestOnline.Models;
+using PagedList;
 
 namespace AptitudeTestOnline.Areas.Manager.Controllers
 {
@@ -31,27 +32,43 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
         }
 
         // GET: Manager/Questions
-        public ActionResult Index()
+        public ActionResult Index(int? page, string searchString, string currentFilter)
+        {
+
+            GetData();
+            var questions = from q in db.QuestionsModels select q;
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                questions = db.QuestionsModels.Where(s => s.QuestionsName.Contains(searchString));
+            }
+
+            questions = questions.OrderByDescending(q => q.TypeOfQuestion);
+
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(questions.ToPagedList(pageNumber, pageSize));
+        }
+        
+
+        public PartialViewResult GetPagination(int? page)
         {
             GetData();
-            return View();
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return PartialView("_Pagination", db.QuestionsModels.ToList().ToPagedList(pageNumber, pageSize));
         }
-
-        // GET: Manager/Questions/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            QuestionsModels questionsModels = db.QuestionsModels.Find(id);
-            if (questionsModels == null)
-            {
-                return HttpNotFound();
-            }
-            return View(questionsModels);
-        }
-
+        
         // GET: Manager/Questions/Create
         public ActionResult Create()
         {
@@ -108,40 +125,6 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
             }
             return View(questionsModels);
         }
-
-        // GET: Manager/Questions/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            QuestionsModels questionsModels = db.QuestionsModels.Find(id);
-            if (questionsModels == null)
-            {
-                return HttpNotFound();
-            }
-            return View(questionsModels);
-        }
-
-        // POST: Manager/Questions/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            QuestionsModels questionsModels = db.QuestionsModels.Find(id);
-            db.QuestionsModels.Remove(questionsModels);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        
     }
 }
