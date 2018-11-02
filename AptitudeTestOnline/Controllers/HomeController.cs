@@ -92,7 +92,29 @@ namespace AptitudeTestOnline.Controllers
                         // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                         // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
                         await UserManager.AddToRoleAsync(user.Id, "Admin");
-                        return View();
+
+                        if (dbATO.TypeOfQuestionModel.ToList().Count == 0)
+                        {
+                            TypeOfQuestionModel GeneralKnowledge = new TypeOfQuestionModel() { };
+                            GeneralKnowledge.TypeOfQuestion = 1;
+                            GeneralKnowledge.NameTypeOfQuestion = "General Knowledge";
+
+                            TypeOfQuestionModel Mathematics = new TypeOfQuestionModel() { };
+                            Mathematics.TypeOfQuestion = 2;
+                            Mathematics.NameTypeOfQuestion = "Mathematics";
+
+                            TypeOfQuestionModel ComputerTechnology = new TypeOfQuestionModel() { };
+                            ComputerTechnology.TypeOfQuestion = 3;
+                            ComputerTechnology.NameTypeOfQuestion = "Computer Technology";
+
+                            dbATO.TypeOfQuestionModel.Add(GeneralKnowledge);
+                            dbATO.TypeOfQuestionModel.Add(Mathematics);
+                            dbATO.TypeOfQuestionModel.Add(ComputerTechnology);
+                            dbATO.SaveChanges();
+
+
+                            return View();
+                        }
                     }
 
                 }
@@ -101,25 +123,7 @@ namespace AptitudeTestOnline.Controllers
 
 
             }
-            if (dbATO.TypeOfQuestionModel.ToList().Count == 0)
-            {
-                TypeOfQuestionModel GeneralKnowledge = new TypeOfQuestionModel() { };
-                GeneralKnowledge.TypeOfQuestion = 1;
-                GeneralKnowledge.NameTypeOfQuestion = "General Knowledge";
-
-                TypeOfQuestionModel Mathematics = new TypeOfQuestionModel() { };
-                Mathematics.TypeOfQuestion = 2;
-                Mathematics.NameTypeOfQuestion = "Mathematics";
-
-                TypeOfQuestionModel ComputerTechnology = new TypeOfQuestionModel() { };
-                ComputerTechnology.TypeOfQuestion = 3;
-                ComputerTechnology.NameTypeOfQuestion = "Computer Technology";
-
-                dbATO.TypeOfQuestionModel.Add(GeneralKnowledge);
-                dbATO.TypeOfQuestionModel.Add(Mathematics);
-                dbATO.TypeOfQuestionModel.Add(ComputerTechnology);
-                dbATO.SaveChanges();
-            }
+            
 
             return View();
         }
