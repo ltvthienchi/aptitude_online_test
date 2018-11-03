@@ -5,7 +5,36 @@
 <div class="content-wrapper">
 	<div class="container">
 		<h4 class="text-center" id="jn-h4-hi">Hi <a href="/Manage">@ViewData["myname"]</a></h4>
-        <h3 class="text-center">@ViewData["mytimeschedule"]</h3>
+        <h2 class="text-center text-primary">Your Schedule is:</h2>
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-hover">
+                <tr class="bg-default">
+                    <th class="w-6">
+                        Exam Name
+                    </th>
+                    <th class="w-2">
+                        Take the test before
+                    </th>
+                    <th class="w-1">
+                        Status
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+                        @ViewData["examname"]
+                    </td>
+                    <td>
+                        @ViewData["mytimeschedule"]
+                    </td>
+                    <td>
+                        @ViewData["status"]
+                    </td>
+                </tr>
+            
+
+            </table>
+        </div>
 	</div>
 </div>
 

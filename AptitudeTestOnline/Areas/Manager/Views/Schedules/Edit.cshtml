@@ -10,7 +10,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal ">
         <h2 class="text-center text-primary">Edit schedule</h2>
         <hr />
@@ -38,9 +38,9 @@
         </div>
 
         <div class="form-group row">
-            @Html.LabelFor(model => model.DateOfTime, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2" for="DateOfTime">Date Of Time</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.DateOfTime, new { htmlAttributes = new { @class = "form-control", @placeholder = "Date of time" } })
+                <input class="form-control text-box single-line" data-val="true" data-val-date="The field DateOfTime must be a date." data-val-required="The DateOfTime field is required." id="DateOfTime" min="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")" name="DateOfTime" type="datetime-local" value="@Model.DateOfTime.ToString(string.Format("yyyy-MM-ddTHH:mm"))">
                 @Html.ValidationMessageFor(model => model.DateOfTime, "", new { @class = "text-danger" })
             </div>
         </div>
