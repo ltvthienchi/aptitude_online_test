@@ -1,0 +1,296 @@
+﻿@model IEnumerable<AptitudeTestOnline.Models.ExamModels>
+
+@{
+    ViewBag.Title = "Perform Test";
+    IEnumerable<AptitudeTestOnline.Models.QuestionsModels> Questions =
+          ViewData["Questions"] as IEnumerable<AptitudeTestOnline.Models.QuestionsModels>;
+    IEnumerable<AptitudeTestOnline.Models.QuestionsModels> MyQuestions =
+         ViewData["MyQuestions"] as IEnumerable<AptitudeTestOnline.Models.QuestionsModels>;
+    IEnumerable<AptitudeTestOnline.Models.DetailsExamModels> DetailQuestions =
+         ViewData["DetailQuestions"] as IEnumerable<AptitudeTestOnline.Models.DetailsExamModels>;
+    IEnumerable<AptitudeTestOnline.Models.CandidateAnswer> CandidateAnswer =
+         ViewData["CandidateAnswer"] as IEnumerable<AptitudeTestOnline.Models.CandidateAnswer>;
+    IEnumerable<AptitudeTestOnline.Models.PerformTest> PerformTest =
+         ViewData["PerformTest"] as IEnumerable<AptitudeTestOnline.Models.PerformTest>;
+}
+
+<style>
+    .perform-test {
+        height: 380px;
+        overflow-y: scroll;
+        margin-top: 20px;
+    }
+</style>
+
+<h4 class="text-right">
+    <span style="font-weight: bold; text-decoration: underline">Time remaining:</span>
+    <span style="font-size: 1.5rem" id="time-left">
+        @foreach (var itemP in PerformTest)
+        {
+            <span id="time-left-1">@itemP.TimePartOne</span>
+            <span id="time-left-2" style="display: none">@itemP.TimePartTwo</span>
+            <span id="time-left-3" style="display: none">@itemP.TimePartThree</span>
+        }
+    </span>
+</h4>
+
+<div class="form-group row">
+    <div class="col-md-12">
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link active" id="nav-1" data-toggle="tab" href="#general-knowledge" role="tab">General Knowledge</a>
+                <a class="nav-item nav-link " id="nav-2" data-toggle="tab" href="#mathematics" role="tab">Mathematics</a>
+                <a class="nav-item nav-link " id="nav-3" data-toggle="tab" href="#computer-technology" role="tab">Computer Technology</a>
+            </div>
+        </nav>
+        <div id="main-tab">
+            <div class="tab-content perform-test" id="tabContent-1">
+                <div class="tab-pane fade show active" id="general-knowledge" role="tabpanel" style="margin-top: 20px;">
+                    @{int t1 = 1; }
+                    @foreach (var itemDetail in DetailQuestions)
+                    {
+                        <div class="form-group">
+                            @foreach (var item in MyQuestions)
+                            {
+                                if (item.TypeOfQuestion == 1)
+                                {
+                                    if (itemDetail.QuestionsID == item.QuestionsID)
+                                    {
+                                        string name = "T" + 1 + "Q" + t1;
+                                        string nameForm = "T1" + item.QuestionsID;
+                                        <h4>
+                                            <span style="font-weight: bold; text-decoration: underline">Question @t1:</span>
+                                            @item.QuestionsName (@item.Mark mark)
+                                        </h4>
+
+                                        foreach (var itemA in CandidateAnswer)
+                                        {
+                                            if (itemA.QuestionID == item.QuestionsID)
+                                            {
+                                                string check1 = "";
+                                                string check2 = "";
+                                                string check3 = "";
+                                                string check4 = "";
+                                                if (itemA.Answer == 1) { check1 = "checked"; }
+                                                if (itemA.Answer == 2) { check2 = "checked"; }
+                                                if (itemA.Answer == 3) { check3 = "checked"; }
+                                                if (itemA.Answer == 4) { check4 = "checked"; }
+                                                <div class="form-radio form-radio-flat">
+                                                    <label class="form-check-label" for="@name-1">
+                                                        <input type="radio" class="form-check-input" name="@nameForm" id="@name-1" disabled value="1" @check1>
+                                                        (A). @item.AnswerOne
+
+                                                    </label>
+                                                </div>
+
+                                                <div class="form-radio form-radio-flat">
+                                                    <label class="form-check-label" for="@name-2">
+                                                        <input type="radio" class="form-check-input" name="@nameForm" id="@name-2" disabled value="2" @check2>
+                                                        (B). @item.AnswerTwo
+                                                    </label>
+                                                </div>
+
+                                                <div class="form-radio form-radio-flat">
+                                                    <label class="form-check-label" for="@name-3">
+                                                        <input type="radio" class="form-check-input" name="@nameForm" id="@name-3" disabled value="3" @check3>
+                                                        (C). @item.AnswerThree
+                                                    </label>
+                                                </div>
+
+                                                <div class="form-radio form-radio-flat">
+                                                    <label class="form-check-label" for="@name-4">
+                                                        <input type="radio" class="form-check-input" name="@nameForm" id="@name-4" disabled value="4" @check4>
+                                                        (D). @item.AnswerFour
+                                                    </label>
+                                                </div>
+
+                                                string CA = "";
+                                                if (item.CorrectAnswer == 1) { CA = "A"; }
+                                                if (item.CorrectAnswer == 2) { CA = "B"; }
+                                                if (item.CorrectAnswer == 3) { CA = "C"; }
+                                                if (item.CorrectAnswer == 4) { CA = "D"; }
+                                                <p style="color: red; font-size: 14px">Correct Answer: <b>@CA</b></p>
+                                            }
+                                        }
+                                        t1++;
+                                    }
+
+                                }
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="tab-pane fade" id="mathematics" role="tabpanel" style="margin-top: 20px;">
+                    @{int t2 = 1; }
+                    @foreach (var itemDetail in DetailQuestions)
+                    {
+                        <div class="form-group">
+                            @foreach (var item in MyQuestions)
+                            {
+                                if (item.TypeOfQuestion == 2)
+                                {
+                                    if (itemDetail.QuestionsID == item.QuestionsID)
+                                    {
+                                        string name = "T" + 2 + "Q" + t2;
+                                        string nameForm = "T2" + item.QuestionsID;
+                                        <h4>
+                                            <span style="font-weight: bold; text-decoration: underline">Question @t2:</span>
+                                            @item.QuestionsName (@item.Mark mark)
+                                        </h4>
+
+                                        foreach (var itemA in CandidateAnswer)
+                                        {
+                                            if (itemA.QuestionID == item.QuestionsID)
+                                            {
+                                                string check1 = "";
+                                                string check2 = "";
+                                                string check3 = "";
+                                                string check4 = "";
+                                                if (itemA.Answer == 1) { check1 = "checked"; }
+                                                if (itemA.Answer == 2) { check2 = "checked"; }
+                                                if (itemA.Answer == 3) { check3 = "checked"; }
+                                                if (itemA.Answer == 4) { check4 = "checked"; }
+                                                <div class="form-radio form-radio-flat">
+                                                    <label class="form-check-label" for="@name-1">
+                                                        <input type="radio" class="form-check-input" name="@nameForm" id="@name-1" disabled value="1" @check1>
+                                                        (A). @item.AnswerOne
+
+                                                    </label>
+                                                </div>
+
+                                                <div class="form-radio form-radio-flat">
+                                                    <label class="form-check-label" for="@name-2">
+                                                        <input type="radio" class="form-check-input" name="@nameForm" id="@name-2" disabled value="2" @check2>
+                                                        (B). @item.AnswerTwo
+                                                    </label>
+                                                </div>
+
+                                                <div class="form-radio form-radio-flat">
+                                                    <label class="form-check-label" for="@name-3">
+                                                        <input type="radio" class="form-check-input" name="@nameForm" id="@name-3" disabled value="3" @check3>
+                                                        (C). @item.AnswerThree
+                                                    </label>
+                                                </div>
+
+                                                <div class="form-radio form-radio-flat">
+                                                    <label class="form-check-label" for="@name-4">
+                                                        <input type="radio" class="form-check-input" name="@nameForm" id="@name-4" disabled value="4" @check4>
+                                                        (D). @item.AnswerFour
+                                                    </label>
+                                                </div>
+
+                                                string CA = "";
+                                                if (item.CorrectAnswer == 1) { CA = "A"; }
+                                                if (item.CorrectAnswer == 2) { CA = "B"; }
+                                                if (item.CorrectAnswer == 3) { CA = "C"; }
+                                                if (item.CorrectAnswer == 4) { CA = "D"; }
+                                                <p style="color: red; font-size: 14px">Correct Answer: <b>@CA</b></p>
+
+                                            }
+                                        }
+
+                                        t2++;
+                                    }
+
+                                }
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="tab-pane fade" id="computer-technology" role="tabpanel" style="margin-top: 20px;">
+                    @{int t3 = 1; }
+                    @foreach (var itemDetail in DetailQuestions)
+                    {
+                        <div class="form-group">
+                            @foreach (var item in MyQuestions)
+                            {
+                                if (item.TypeOfQuestion == 3)
+                                {
+                                    if (itemDetail.QuestionsID == item.QuestionsID)
+                                    {
+                                        string name = "T" + 3 + "Q" + t3;
+                                        string nameForm = "T3" + item.QuestionsID;
+                                        <h4>
+                                            <span style="font-weight: bold; text-decoration: underline">Question @t3:</span>
+                                            @item.QuestionsName (@item.Mark mark)
+                                        </h4>
+                                        foreach (var itemA in CandidateAnswer)
+                                        {
+                                            if (itemA.QuestionID == item.QuestionsID)
+                                            {
+                                                string check1 = "";
+                                                string check2 = "";
+                                                string check3 = "";
+                                                string check4 = "";
+                                                if (itemA.Answer == 1) { check1 = "checked"; }
+                                                if (itemA.Answer == 2) { check2 = "checked"; }
+                                                if (itemA.Answer == 3) { check3 = "checked"; }
+                                                if (itemA.Answer == 4) { check4 = "checked"; }
+                                                <div class="form-radio form-radio-flat">
+                                                    <label class="form-check-label" for="@name-1">
+                                                        <input type="radio" class="form-check-input" name="@nameForm" id="@name-1" disabled value="1" @check1>
+                                                        (A). @item.AnswerOne
+
+                                                    </label>
+                                                </div>
+
+                                                <div class="form-radio form-radio-flat">
+                                                    <label class="form-check-label" for="@name-2">
+                                                        <input type="radio" class="form-check-input" name="@nameForm" id="@name-2" disabled value="2" @check2>
+                                                        (B). @item.AnswerTwo
+                                                    </label>
+                                                </div>
+
+                                                <div class="form-radio form-radio-flat">
+                                                    <label class="form-check-label" for="@name-3">
+                                                        <input type="radio" class="form-check-input" name="@nameForm" id="@name-3" disabled value="3" @check3>
+                                                        (C). @item.AnswerThree
+                                                    </label>
+                                                </div>
+
+                                                <div class="form-radio form-radio-flat">
+                                                    <label class="form-check-label" for="@name-4">
+                                                        <input type="radio" class="form-check-input" name="@nameForm" id="@name-4" disabled value="4" @check4>
+                                                        (D). @item.AnswerFour
+                                                    </label>
+                                                </div>
+
+                                                string CA = "";
+                                                if (item.CorrectAnswer == 1) { CA = "A"; }
+                                                if (item.CorrectAnswer == 2) { CA = "B"; }
+                                                if (item.CorrectAnswer == 3) { CA = "C"; }
+                                                if (item.CorrectAnswer == 4) { CA = "D"; }
+                                                <p style="color: red; font-size: 14px">Correct Answer: <b>@CA</b></p>
+                                            }
+                                        }
+
+                                        t3++;
+                                    }
+
+                                }
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script>
+    $('#nav-1').click(function () {
+        $("#time-left").children().hide();
+        $("#time-left-1").show();
+    })
+
+    $('#nav-2').click(function () {
+        $("#time-left").children().hide();
+        $("#time-left-2").show();
+    })
+
+    $('#nav-3').click(function () {
+        $("#time-left").children().hide();
+        $("#time-left-3").show();
+    })
+</script>

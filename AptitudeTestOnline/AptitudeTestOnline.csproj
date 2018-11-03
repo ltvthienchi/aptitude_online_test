@@ -2246,10 +2246,6 @@
     <Content Include="Assets\default\vendors\tinymce\skins\lightgray\fonts\tinymce.eot" />
     <Content Include="Assets\default\vendors\tinymce\skins\lightgray\fonts\tinymce.ttf" />
     <Content Include="Assets\default\vendors\tinymce\skins\lightgray\fonts\tinymce.woff" />
-    <Content Include="Areas\Manager\Views\TypeOfQuestions\Create.cshtml" />
-    <Content Include="Areas\Manager\Views\TypeOfQuestions\Delete.cshtml" />
-    <Content Include="Areas\Manager\Views\TypeOfQuestions\Details.cshtml" />
-    <Content Include="Areas\Manager\Views\TypeOfQuestions\Edit.cshtml" />
     <Content Include="Areas\Manager\Views\TypeOfQuestions\Index.cshtml" />
     <Content Include="Areas\Manager\Views\Questions\Create.cshtml" />
     <Content Include="Areas\Manager\Views\Questions\Edit.cshtml" />
@@ -2265,12 +2261,12 @@
     <Content Include="Areas\Manager\Views\Schedules\Edit.cshtml" />
     <Content Include="Areas\Manager\Views\Schedules\Index.cshtml" />
     <Content Include="Areas\Manager\Views\Candidate\Schedule.cshtml" />
-    <Content Include="Areas\Manager\Views\Questions\_Pagination.cshtml" />
     <Content Include="Areas\Manager\Views\Candidate\ScheduleEdit.cshtml" />
     <Content Include="Areas\Manager\Views\Report\Index.cshtml" />
     <Content Include="Areas\Manager\Views\Manager\Index.cshtml" />
     <Content Include="Areas\Manager\Views\Manager\Register.cshtml" />
     <Content Include="Areas\Manager\Views\Manager\Delete.cshtml" />
+    <Content Include="Areas\Manager\Views\Report\Details.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

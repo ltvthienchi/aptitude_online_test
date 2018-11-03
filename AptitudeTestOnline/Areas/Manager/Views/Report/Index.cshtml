@@ -4,14 +4,30 @@
     ViewBag.Title = "Index";
 }
 
+<style>
+    .custom-col {
+        padding: 8px;
+        box-sizing: border-box; 
+    }
 
+    .border-r {
+        border-right: 1px solid #ddd
+    }
+
+    .custom-row {
+        margin: 0;
+    }
+</style>
+
+<h2 class="text-center text-primary">Candidate Report</h2>
+<hr />
 
 <div class="row mb-3">
     <div class="col-2">
-        <a class="btn btn-success btn-block" href="/Manager/Questions/Create">
+        @*<a class="btn btn-success btn-block" href="/Manager/Questions/Create">
             Create
             <i class="fas fa-plus"></i>
-        </a>
+        </a>*@
     </div>
     <div class="col-10">
         @*@using (Html.BeginForm("Index", "Questions", FormMethod.Get))
@@ -28,19 +44,21 @@
     <div class="table-responsive">
         <table class="table table-bordered table-hover" style="min-width: 1300px; text-align: center">
             <tr class="bg-default">
-                <th class="w-1">
-                    Full Name
-                </th>
+
                 <th class="w-1">
                     Username
                 </th>
 
-                <th class="w-4">
-                    <div class="row">
-                        <div class="col-12" style="padding-bottom: 15px">Time left</div>
-                        <div class="col-4">General Knowledge</div>
-                        <div class="col-3">Mathematics</div>
-                        <div class="col-5">Computer Technology</div>
+                <th class="w-1">
+                    Full Name
+                </th>
+
+                <th class="w-4" style="padding: 0">
+                    <div class="row" style="margin: 0;">
+                        <div class="col-12 custom-row" style="padding: 8px; border-bottom: 1px solid #fff">Time left</div>
+                        <div class="col-4 custom-col border-r">General Knowledge</div>
+                        <div class="col-3 custom-col border-r">Mathematics</div>
+                        <div class="col-5 custom-col">Computer Technology</div>
                     </div>
                 </th>
 
@@ -61,18 +79,20 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td class="w-1">
-                        @Html.DisplayFor(modelItem => item.CandidateName)
-                    </td>
+                    
                     <td class="w-1"> 
                         @Html.DisplayFor(modelItem => item.Username)
                     </td>
 
-                    <td class="w-4">
-                        <div class="row">
-                            <div class="col-4">@Html.DisplayFor(modelItem => item.TimeleftPartOne)</div>
-                            <div class="col-4">@Html.DisplayFor(modelItem => item.TimeleftPartTwo)</div>
-                            <div class="col-4">@Html.DisplayFor(modelItem => item.TimeleftPartThree)</div>
+                    <td class="w-1">
+                        @Html.DisplayFor(modelItem => item.CandidateName)
+                    </td>
+
+                    <td class="w-4" style="padding: 0">
+                        <div class="row custom-row">
+                            <div class="col-4 custom-col border-r">@Html.DisplayFor(modelItem => item.TimeleftPartOne)</div>
+                            <div class="col-3 custom-col border-r">@Html.DisplayFor(modelItem => item.TimeleftPartTwo)</div>
+                            <div class="col-5 custom-col">@Html.DisplayFor(modelItem => item.TimeleftPartThree)</div>
                         </div>
                     </td>
 
@@ -86,7 +106,7 @@
                         @Html.DisplayFor(modelItem => item.Mark)
                     </td>
                     <td class="w-1">
-                        
+                        @Html.ActionLink(" ", "Details", new { id = item.AccountID }, htmlAttributes: new { @class = "fas fa-info btn-admin" })
                     </td>
                 </tr>
                 i++;

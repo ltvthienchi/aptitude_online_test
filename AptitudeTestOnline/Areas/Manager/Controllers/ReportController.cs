@@ -29,9 +29,36 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
 {
     public class ReportController : Controller
     {
+        private ATODatabaseContext db = new ATODatabaseContext();
+        private ApplicationDbContext dbApp = new ApplicationDbContext();
+        public List<QuestionsModels> GetQuestions()
+        {
+            //
+            return db.QuestionsModels.ToList();
+        }
 
-        ATODatabaseContext db = new ATODatabaseContext();
+        public void GetData()
+        {
+            ViewData["Questions"] = GetQuestions();
 
+        }
+        private Accounts getUserAccounts(int? AccountID)
+        {
+            var userAccounts = db.AccountModels.Where(item => item.AccountID == AccountID).ToList();
+            return userAccounts[0];
+        }
+
+        private DetailsRegistrations getUserDetails(int? AccountID)
+        {
+            var userDetails = db.DetailsRegistrations.Where(item => item.AccountID == AccountID).ToList();
+            return userDetails[0];
+        }
+
+        private SchedulesModels getUserSchedules(int? ScheduleID)
+        {
+            SchedulesModels userSchedules = db.Schedules.Find(ScheduleID);
+            return userSchedules;
+        }
         // GET: Manager/Report
         public ActionResult Index(int? page, string searchString, string currentFilter)
         {
@@ -81,6 +108,28 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
             int pageSize = 10;
             int pageNumber = (page ?? 1);
             return View(reports.ToPagedList(pageNumber, pageSize));
+        }
+
+        public ActionResult Details(int? id)
+        {
+            GetData();
+            //
+            DetailsRegistrations userDetail = getUserDetails(id);
+            SchedulesModels userSchedules = getUserSchedules(userDetail.ScheduleID);
+            int ExamID = userSchedules.ExamID;
+            List<int> MyList = new List<int>();
+            //
+            var ListDetailsQuestions = db.DetailsExamModels.Where(r => r.ExamID == ExamID).ToList();
+            ViewData["DetailQuestions"] = ListDetailsQuestions;
+            foreach (var item in ListDetailsQuestions)
+            {
+                MyList.Add(item.QuestionsID);
+            }
+            ViewBag.Test = ListDetailsQuestions;
+            ViewData["MyQuestions"] = db.QuestionsModels.Where(r => MyList.Contains(r.QuestionsID)).ToList();
+            ViewData["CandidateAnswer"] = db.CandidateAnswers.Where(r => r.AccountID == id);
+            ViewData["PerformTest"] = db.PerformTests.Where(r => r.AccountID == id);
+            return View();
         }
     }
 }
