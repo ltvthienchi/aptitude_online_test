@@ -4,6 +4,13 @@
     ViewBag.Title = "Log in";
 }
 
+<style>
+    .login-alert {
+        font-size: 14px;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+</style>
 
 <div class="container-scroller">
 
@@ -22,7 +29,6 @@
                                         <div class="input-group col-md-9">
                                             @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholer = "username" })
                                         </div>
-                                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger", placeholer = "******" })
                                     </div>
                                     <div class="form-group">
 
@@ -30,13 +36,18 @@
                                         <div class="input-group col-md-9">
                                             @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
                                         </div>
-                                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                                     </div>
+
+                                    <p style="text-align: center">
+                                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger login-alert" })
+                                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger login-alert", placeholer = "******" })
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger login-alert" })
+                                    </p>
+
                                     <div class="form-group">
                                         <button type="submit" value="Log in" class="btn btn-primary submit-btn btn-block">Login</button>
                                     </div>
-
-                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    
                                 </form>
                             </div>
                             <ul class="auth-footer">

@@ -32,22 +32,39 @@ namespace AptitudeTestOnline.Controllers
         {
             var userID = User.Identity.GetUserId();
             var userAccounts = db.AccountModels.Where(item => item.UserID == userID).ToList();
-            return userAccounts[0];
+            if (userAccounts != null)
+            {
+                return userAccounts[0];
+            }
+            return null;
         }
 
         private DetailsRegistrations getUserDetails()
         {
-            int AccountID = getUserAccounts().AccountID;
-            
-            var userDetails = db.DetailsRegistrations.Where(item => item.AccountID == AccountID).ToList();
-            return userDetails[0];
+            Accounts accounts = getUserAccounts();
+            if (accounts != null)
+            {
+                int AccountID = accounts.AccountID;
+                var userDetails = db.DetailsRegistrations.Where(item => item.AccountID == AccountID).ToList();
+                if (userDetails.Count() != 0)
+                {
+                    return userDetails[0];
+                }
+                return null;
+            }
+            return null;
         }
 
         private SchedulesModels getUserSchedules()
         {
-            int ScheduleID = getUserDetails().ScheduleID;
-            SchedulesModels userSchedules = db.Schedules.Find(ScheduleID);
-            return userSchedules;
+            DetailsRegistrations detailsRegistrations = getUserDetails();
+            if (detailsRegistrations != null)
+            {
+                int ScheduleID = detailsRegistrations.ScheduleID;
+                SchedulesModels userSchedules = db.Schedules.Find(ScheduleID);
+                return userSchedules;
+            }
+            return null;
         }
         // GET: PerformTest
 
@@ -55,29 +72,33 @@ namespace AptitudeTestOnline.Controllers
         {
             SchedulesModels userSchedules = getUserSchedules();
             DetailsRegistrations userDetailsReg = getUserDetails();
-            DateTime Now = DateTime.Now;
-            DateTime ScheduleTime = userSchedules.DateOfTime;
-            //var TempScheduleTime = ScheduleTime.ToString("DD/MM/YYYY");
-            //DateTime MyScheduleTime = DateTime.ParseExact(TempScheduleTime, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-            if (Now.Date > ScheduleTime.Date)
+            if(userDetailsReg != null && userSchedules != null)
             {
-                ViewBag.CheckDate = false;
-                ViewBag.CheckText = "Exam has been over!";
-                return false;
+                DateTime Now = DateTime.Now;
+                DateTime ScheduleTime = userSchedules.DateOfTime;
+                if (Now.Date > ScheduleTime.Date)
+                {
+                    ViewBag.CheckDate = false;
+                    ViewBag.CheckText = "Exam has been over!";
+                    return false;
+                }
+                else if (userDetailsReg.Mark != -1)
+                {
+                    ViewBag.CheckDate = false;
+                    ViewBag.CheckText = "You have already test! click under link to view the results!";
+                    ViewBag.CheckLink = "Go to result!";
+                    return false;
+                }
+                else
+                {
+                    ViewBag.CheckDate = true;
+                    ViewBag.CheckText = "You have start your test";
+                }
+                return true;
             }
-            else if (userDetailsReg.Mark != -1)
-            {
-                ViewBag.CheckDate = false;
-                ViewBag.CheckText = "You have already test! click under link to view the results!";
-                ViewBag.CheckLink = "Go to result!";
-                return false;
-            }
-            else
-            {
-                ViewBag.CheckDate = true;
-                ViewBag.CheckText = "You have start your test";
-            }
-            return true;
+            ViewBag.CheckDate = false;
+            ViewBag.CheckText = "Your current exam schedule is not available, please try again later!";
+            return false;
         }
 
         public ActionResult Index()

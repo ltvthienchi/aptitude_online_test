@@ -63,6 +63,7 @@ textarea {
     padding: 5px;
     border-radius: 2px;
     color: white;
+    min-width: 30px;
 }
 
 .btn-admin:hover {

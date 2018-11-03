@@ -3,6 +3,8 @@
 @{
     ViewBag.Title = "Index";
 }
+<h2 class="text-center text-primary">Type of Questions</h2>
+<hr />
 
 <div class="table-responsive">
 
@@ -21,7 +23,7 @@
         {
             <tr>
                 <td>
-                    <p>@i</p> 
+                    <p>@i</p>
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.NameTypeOfQuestion)
