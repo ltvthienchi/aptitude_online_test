@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -66,7 +67,7 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
             return View(schedulesModels);
         }
 
-        // GET: Manager/Schedules/Edit/5
+        // GET: Manager/Schedules/Edit/1
         public ActionResult Edit(int? id)
         {
             GetData();

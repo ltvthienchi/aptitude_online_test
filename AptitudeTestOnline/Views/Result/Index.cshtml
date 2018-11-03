@@ -1,11 +1,45 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Result";
 }
 <div class="content-wrapper">
     <div class="container">
         <h4 class="text-center" id="jn-h4-hi">Hi <a href="/Manage">@ViewData["myname"]</a></h4>
-        <h3 class="text-center">@ViewData["mymark"]</h3>
+        <h2 class="text-center text-primary">Your Result is:</h2>
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-hover">
+                <tr class="bg-default">
+                    <th class="w-6">
+                        Exam Name
+                    </th>
+                    <th class="w-2">
+                        Submit Date time
+                    </th>
+                    <th class="w-1">
+                        Number correct
+                    </th>
+                    <th class="w-1">
+                        Mark
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+                        @ViewData["examname"]
+                    </td>
+                    <td>
+                        @ViewData["submitdate"]
+                    </td>
+                    <td>
+                        @ViewData["dad"]
+                    </td>
+                    <td>
+                        @ViewData["mymark"]
+                    </td>
+                </tr>
+            
+
+            </table>
+        </div>
     </div>
 </div>
 
