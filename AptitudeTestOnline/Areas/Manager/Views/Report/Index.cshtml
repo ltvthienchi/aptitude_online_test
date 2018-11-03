@@ -1,0 +1,116 @@
+﻿@model PagedList.IPagedList<JoinAndViewModel.Models.Report>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+<div class="row mb-3">
+    <div class="col-2">
+        <a class="btn btn-success btn-block" href="/Manager/Questions/Create">
+            Create
+            <i class="fas fa-plus"></i>
+        </a>
+    </div>
+    <div class="col-10">
+        @*@using (Html.BeginForm("Index", "Questions", FormMethod.Get))
+        {
+            <div class="form-find">
+                @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, htmlAttributes: new { @class = "find-admin", placeholder = "Enter name" })
+                <button type="submit" class="btn btn-default btn-outline-primary">Search</button>
+            </div>
+        }*@
+    </div>
+</div>
+
+<div class="border-window" style="overflow-y: scroll">
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover" style="min-width: 1300px; text-align: center">
+            <tr class="bg-default">
+                <th class="w-1">
+                    Full Name
+                </th>
+                <th class="w-1">
+                    Username
+                </th>
+
+                <th class="w-4">
+                    <div class="row">
+                        <div class="col-12" style="padding-bottom: 15px">Time left</div>
+                        <div class="col-4">General Knowledge</div>
+                        <div class="col-3">Mathematics</div>
+                        <div class="col-5">Computer Technology</div>
+                    </div>
+                </th>
+
+                <th class="w-1">
+                    Date Test
+                </th>
+                <th class="w-1">
+                    Schedule
+                </th>
+                <th class="w-1">
+                    Mark
+                </th>
+                <th class="w-1">
+                </th>
+            </tr>
+
+            @{int i = 1;}
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="w-1">
+                        @Html.DisplayFor(modelItem => item.CandidateName)
+                    </td>
+                    <td class="w-1"> 
+                        @Html.DisplayFor(modelItem => item.Username)
+                    </td>
+
+                    <td class="w-4">
+                        <div class="row">
+                            <div class="col-4">@Html.DisplayFor(modelItem => item.TimeleftPartOne)</div>
+                            <div class="col-4">@Html.DisplayFor(modelItem => item.TimeleftPartTwo)</div>
+                            <div class="col-4">@Html.DisplayFor(modelItem => item.TimeleftPartThree)</div>
+                        </div>
+                    </td>
+
+                    <td class="w-1">
+                        @Html.DisplayFor(modelItem => item.AddedDate)
+                    </td>
+                    <td class="w-1">
+                        @Html.DisplayFor(modelItem => item.Schedules)
+                    </td>
+                    <td class="w-1">
+                        @Html.DisplayFor(modelItem => item.Mark)
+                    </td>
+                    <td class="w-1">
+                        
+                    </td>
+                </tr>
+                i++;
+            }
+
+        </table>
+        @*@{Html.RenderAction("GetPagination", "Questions", new { page = 1 });}*@
+    </div>
+</div>
+
+
+
+<div class="pagi-admin">
+    <p>
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+    </p>
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, currentFilter = ViewBag.CurrentFilter }))
+</div>
+
+@Scripts.Render("~/bundles/jquery")
+<script>
+    $('.pagi-admin .pagination').addClass('justify-content-center');
+    //var heightCard = $('body').height() - 430;
+    //console.log(heightCard);
+    //$('.border-window').height(heightCard);
+</script>

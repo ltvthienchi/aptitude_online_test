@@ -207,6 +207,7 @@
     <Compile Include="Areas\Manager\Controllers\ExamController.cs" />
     <Compile Include="Areas\Manager\Controllers\HomeController.cs" />
     <Compile Include="Areas\Manager\Controllers\QuestionsController.cs" />
+    <Compile Include="Areas\Manager\Controllers\ReportController.cs" />
     <Compile Include="Areas\Manager\Controllers\SchedulesController.cs" />
     <Compile Include="Areas\Manager\Controllers\TypeOfQuestionsController.cs" />
     <Compile Include="Areas\Manager\Controllers\UsersController.cs" />
@@ -2270,6 +2271,7 @@
     <Content Include="Areas\Manager\Views\Candidate\Schedule.cshtml" />
     <Content Include="Areas\Manager\Views\Questions\_Pagination.cshtml" />
     <Content Include="Areas\Manager\Views\Candidate\ScheduleEdit.cshtml" />
+    <Content Include="Areas\Manager\Views\Report\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
