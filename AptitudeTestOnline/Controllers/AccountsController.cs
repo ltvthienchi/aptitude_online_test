@@ -47,7 +47,15 @@ namespace AptitudeTestOnline.Controllers
         public ActionResult Create([Bind(Include = "AccountID,Name,Education,Experience,Interest,Email,UserID,Dateofbirth")] Accounts accounts)
         {
             // check validate cua ngay thang
-            if (ModelState.IsValid)
+            DateTime check = DateTime.Parse(accounts.Dateofbirth.ToString(),
+                          System.Globalization.CultureInfo.InvariantCulture);
+            
+            if (check.Year>DateTime.Now.Year || check.Year<1755)
+            {
+                ViewBag.errorDate = "Year Of Birth out range 1755 to 2018";
+                return View(accounts);
+
+            }else if (ModelState.IsValid)
             {
                 db.AccountModels.Add(accounts);
                 db.SaveChanges();

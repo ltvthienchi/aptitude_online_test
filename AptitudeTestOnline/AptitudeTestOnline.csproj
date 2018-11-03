@@ -201,6 +201,7 @@
     <Compile Include="Areas\Manager\Controllers\CandidateController.cs" />
     <Compile Include="Areas\Manager\Controllers\ExamController.cs" />
     <Compile Include="Areas\Manager\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Manager\Controllers\ManagerController.cs" />
     <Compile Include="Areas\Manager\Controllers\QuestionsController.cs" />
     <Compile Include="Areas\Manager\Controllers\ReportController.cs" />
     <Compile Include="Areas\Manager\Controllers\SchedulesController.cs" />
@@ -2267,6 +2268,9 @@
     <Content Include="Areas\Manager\Views\Questions\_Pagination.cshtml" />
     <Content Include="Areas\Manager\Views\Candidate\ScheduleEdit.cshtml" />
     <Content Include="Areas\Manager\Views\Report\Index.cshtml" />
+    <Content Include="Areas\Manager\Views\Manager\Index.cshtml" />
+    <Content Include="Areas\Manager\Views\Manager\Register.cshtml" />
+    <Content Include="Areas\Manager\Views\Manager\Delete.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

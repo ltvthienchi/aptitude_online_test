@@ -30,10 +30,11 @@ namespace AptitudeTestOnline.Models
 
         public string UserID { get; set; }
 
-        [DataType(DataType.Date)]
+        
         [Display(Name="Date Of Birth")]
         
-        
-        public DateTime? Dateofbirth { get; set; }
+        [DataType(DataType.Date)]
+
+        public DateTime Dateofbirth { get; set; }
     }
 }

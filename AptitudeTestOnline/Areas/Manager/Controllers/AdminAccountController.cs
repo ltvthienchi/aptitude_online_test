@@ -18,7 +18,7 @@ using System.Text;
 
 namespace AptitudeTestOnline.Areas.Manager.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Manager,Admin")]
     public class AdminAccountController : Controller
     {
         private ATODatabaseContext db = new ATODatabaseContext();
@@ -168,7 +168,7 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
 
         //
         // GET: /Account/Register
-        [AllowAnonymous]
+        
         public ActionResult Register(int? id)
         {
             if (id == null)
@@ -187,7 +187,7 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
         //
         // POST: /Account/Register
         [HttpPost]
-        [AllowAnonymous]
+        
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
@@ -229,7 +229,7 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
 
         //
         // GET: /Account/ConfirmEmail
-        [AllowAnonymous]
+        
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
         {
             if (userId == null || code == null)
@@ -242,7 +242,7 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
 
         //
         // GET: /Account/ForgotPassword
-        [AllowAnonymous]
+        
         public ActionResult ForgotPassword()
         {
             return View();
@@ -251,7 +251,7 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
         //
         // POST: /Account/ForgotPassword
         [HttpPost]
-        [AllowAnonymous]
+        
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ForgotPassword(ForgotPasswordViewModel model)
         {
@@ -278,7 +278,7 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
 
         //
         // GET: /Account/ForgotPasswordConfirmation
-        [AllowAnonymous]
+        
         public ActionResult ForgotPasswordConfirmation()
         {
             return View();
@@ -295,7 +295,7 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
         //
         // POST: /Account/ResetPassword
         [HttpPost]
-        [AllowAnonymous]
+        
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ResetPassword(ResetPasswordViewModel model)
         {
@@ -320,7 +320,7 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
 
         //
         // GET: /Account/ResetPasswordConfirmation
-        [AllowAnonymous]
+        
         public ActionResult ResetPasswordConfirmation()
         {
             return View();
@@ -329,7 +329,7 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
         //
         // POST: /Account/ExternalLogin
         [HttpPost]
-        [AllowAnonymous]
+        
         [ValidateAntiForgeryToken]
         public ActionResult ExternalLogin(string provider, string returnUrl)
         {
@@ -339,7 +339,7 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
 
         //
         // GET: /Account/SendCode
-        [AllowAnonymous]
+        
         public async Task<ActionResult> SendCode(string returnUrl, bool rememberMe)
         {
             var userId = await SignInManager.GetVerifiedUserIdAsync();
@@ -355,7 +355,7 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
         //
         // POST: /Account/SendCode
         [HttpPost]
-        [AllowAnonymous]
+        
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> SendCode(SendCodeViewModel model)
         {
@@ -374,7 +374,7 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
 
         //
         // GET: /Account/ExternalLoginCallback
-        [AllowAnonymous]
+        
         public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
         {
             var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
@@ -405,7 +405,7 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
         //
         // POST: /Account/ExternalLoginConfirmation
         [HttpPost]
-        [AllowAnonymous]
+        
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ExternalLoginConfirmation(ExternalLoginConfirmationViewModel model, string returnUrl)
         {
@@ -452,7 +452,7 @@ namespace AptitudeTestOnline.Areas.Manager.Controllers
 
         //
         // GET: /Account/ExternalLoginFailure
-        [AllowAnonymous]
+        
         public ActionResult ExternalLoginFailure()
         {
             return View();

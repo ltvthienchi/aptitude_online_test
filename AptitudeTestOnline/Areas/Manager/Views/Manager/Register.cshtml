@@ -2,41 +2,14 @@
 @using AptitudeTestOnline.Models
 @{
     ViewBag.Title = "Register";
-    Accounts accountInfor =
-        ViewData["AccountInfor"] as Accounts;
+    
 }
 
-<h2 class="text-center text-primary">Create Account for Candidate</h2>
+<h2 class="text-center text-primary">Create Account for Manager</h2>
 <hr />
-<dl class="dl-horizontal text-info">
-    <dt class="text-black">
-        Full Name
-    </dt>
-    <dd>
-        @accountInfor.Name
-    </dd>
-    <dt class="text-black">
-        Education
-    </dt>
-    <dd>
-        @accountInfor.Education
-    </dd>
-    <dt class="text-black">
-        Experience
-    </dt>
-    <dd>
-        @accountInfor.Experience
-    </dd>
-    <dt class="text-black">
-        Date Of Birth
-    </dt>
-    <dd>
-        @accountInfor.Dateofbirth.Value.ToShortDateString()
-    </dd>
 
-</dl>
 
-@using (Html.BeginForm("Register", "AdminAccount", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm("Register", "Manager", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
 
@@ -44,9 +17,9 @@
     <div class="form-group">
         @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            <input type="text" name="Email" id="Email" class="form-control" value="@accountInfor.Email" readonly/>
-            @*@Html.TextBoxFor(m => m.Email, new { @class = "form-control" })*@
-            <input type="text" name="AccountID" value="@accountInfor.AccountID" hidden />
+            
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            
         </div>
     </div>
     <div class="form-group">
@@ -55,7 +28,7 @@
             @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
         </div>
     </div>
-    
+
     <div class="form-group">
         @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
@@ -72,3 +45,5 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+

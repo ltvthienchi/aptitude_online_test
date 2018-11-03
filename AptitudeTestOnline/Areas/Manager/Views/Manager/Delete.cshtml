@@ -1,0 +1,41 @@
+﻿@model AptitudeTestOnline.Models.ApplicationUser
+
+@{
+
+    ViewBag.Title = "Delete Manager";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<br />
+<div class="row">
+
+    <div class="col-sm-12">
+
+        <h2 class="text-center text-primary">@ViewBag.Title</h2>
+
+        <hr />
+
+        <div class="text-center">
+
+            <h5 class="text-danger" >Are you sure you want to delete the manager @Model.Email?</h5>
+
+            @using (Html.BeginForm())
+
+            {
+
+                @Html.AntiForgeryToken()
+
+                @Html.ValidationSummary("", new { @class = "text-danger" })
+
+            <button type="submit" class="btn btn-success">Yes</button>
+
+                <a href="@Url.Action("Index")" class="btn btn-primary">No</a>
+
+            }
+
+        </div>
+
+    </div>
+
+</div>

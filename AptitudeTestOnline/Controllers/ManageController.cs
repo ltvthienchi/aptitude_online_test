@@ -7,12 +7,14 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using AptitudeTestOnline.Models;
+using System.Net;
 
 namespace AptitudeTestOnline.Controllers
 {
     [Authorize]
     public class ManageController : Controller
     {
+        private ATODatabaseContext db = new ATODatabaseContext();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -64,8 +66,19 @@ namespace AptitudeTestOnline.Controllers
                 : "";
 
             var userId = User.Identity.GetUserId();
+            if (userId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Accounts accounts = db.AccountModels.Where(item => item.UserID == userId).ToList().FirstOrDefault();
+            if (accounts == null)
+            {
+                return HttpNotFound();
+            }
+            ViewData["AccountInfor"] = accounts;
             var model = new IndexViewModel
             {
+
                 HasPassword = HasPassword(),
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),

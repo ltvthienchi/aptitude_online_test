@@ -3,6 +3,7 @@
 @using PagedList.Mvc
 
 @{
+    int i = 0;
     ViewBag.Title = "Index";
     IEnumerable<AptitudeTestOnline.Models.DetailsRegistrations> Details =
          ViewData["Details"] as IEnumerable<AptitudeTestOnline.Models.DetailsRegistrations>;
@@ -35,13 +36,16 @@
     <div class="table-responsive">
         <table class="table table table-bordered table-hover">
             <tr class="bg-default">
-                <th class="w-2">
+                <th style="width:5%">
+                    #
+                </th>
+                <th style="width:15%">
                     Full Name
                 </th>
-                <th class="w-2">
+                <th style="width:15%">
                     Education
                 </th>
-                <th class="w-1">
+                <th style="width:15%">
                     Experience
                 </th>
                 <th class="w-1">
@@ -63,7 +67,11 @@
 
             @foreach (var item in Model)
             {
+                i++;
                 <tr>
+                    <td>
+                        @i
+                    </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Name)
                     </td>

@@ -1,0 +1,71 @@
+﻿@model PagedList.IPagedList<AptitudeTestOnline.Models.ApplicationUser>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Exam Manage";
+    int i = 0;
+}
+
+<h2 class="text-center text-primary">List Manager</h2>
+
+<div class="row mb-3">
+    <div class="col-2">
+        <a class="btn btn-success btn-block" href="/Manager/Manager/Register">
+            Create
+            <i class="fas fa-plus"></i>
+        </a>
+    </div>
+    <div class="col-10">
+        @using (Html.BeginForm("Index", "Manager", FormMethod.Get))
+        {
+            <div class="form-find">
+                @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, htmlAttributes: new { @class = "find-admin", placeholder = "Enter name" })
+                <button type="submit" class="btn btn-default btn-outline-primary">Search</button>
+            </div>
+        }
+    </div>
+</div>
+<div class="table-responsive">
+    <table class="table table table-bordered table-hover">
+        <tr class="bg-default">
+            <th class="w-1">#</th>
+            <th class="w-7">
+                User Name
+            </th>
+            <th class="w-2">Delete</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            i++;
+            <tr>
+                <td>
+                    @i
+               
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @*@Html.ActionLink("Edit", "Edit", new { id=item.Id }) |*@
+                    @*@Html.ActionLink("Details", "Details", new { id=item.Id }) |*@
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }, htmlAttributes: new { @class = "fas  btn-admin" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+<div class="pagi-admin">
+    <p>
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+    </p>
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, currentFilter = ViewBag.CurrentFilter }))
+</div>
+@Scripts.Render("~/bundles/jquery")
+<script>
+    $('.pagi-admin .pagination').addClass('justify-content-center');
+    var heightCard = $('body').height() - 430;
+    $('.border-window').height(heightCard);
+</script>

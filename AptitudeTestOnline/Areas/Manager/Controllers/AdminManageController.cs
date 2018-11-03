@@ -10,7 +10,7 @@ using AptitudeTestOnline.Models;
 
 namespace AptitudeTestOnline.Areas.Manager.Controllers
 {
-    [Authorize(Roles = "Admin, Manager")]
+    [Authorize(Roles = "Admin,Manager")]
     public class AdminManageController : Controller
     {
         private ApplicationSignInManager _signInManager;
